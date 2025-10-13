@@ -34,9 +34,24 @@ header{position:sticky;top:0;z-index:61;background:rgba(255,255,255,.95);backdro
   .burger{display:inline-flex}
 }
 /* Mobile drawer */
-.mobile{position:fixed;inset:110px 0 0;background:#fff;border-top:1px solid var(--border);padding:8px 16px 16px;display:none}
-.mobile.open{display:block}
-.mobile a{display:block;padding:12px 6px;border-bottom:1px solid var(--border);color:#111;font-weight:600}
+.mobile{
+  position:fixed;left:0;right:0;width:100vw;
+  top: var(--hdr-h);
+  padding: 8px 16px 16px;
+  background:#fff;border-top:1px solid var(--border);
+  max-height: calc(100dvh - var(--hdr-h));
+  overflow:auto; -webkit-overflow-scrolling:touch;
+  z-index:1000; transform: translateY(-8px); opacity:0;
+  transition: transform .18s ease, opacity .18s ease; display:none;
+}
+.mobile.open{display:block;transform:none;opacity:1}
+.mobile .mnav{list-style:none;padding:0;margin:0}
+.mobile .mnav li+li{margin-top:6px}
+.mobile .mnav a{display:block;padding:12px 20px;font-size:16px;border-radius:8px;color:#111}
+.mobile .mnav a:active{background:#f2f5f8}
+
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;z-index:999;transition:opacity .15s}
+.scrim.open{opacity:1;pointer-events:auto}
 
 /* Hero */
 .hero{position:relative;padding:90px 0 40px;background:linear-gradient(180deg,#f6f9fc 0%,#ffffff 66%)}
@@ -66,7 +81,14 @@ header{position:sticky;top:0;z-index:61;background:rgba(255,255,255,.95);backdro
 footer{border-top:1px solid var(--border);background:#f7f9fc;padding:30px 0;color:#334155;font-size:.95rem}
 footer .cols{display:grid;gap:20px;grid-template-columns:2fr 1fr 1fr}@media (max-width:900px){footer .cols{grid-template-columns:1fr}}
 .sticky-cta{position:fixed;right:16px;bottom:16px;z-index:80}
-.notice{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:12px;padding:10px 12px;font-size:.9rem}
+.notice{
+  background: #fff7ed; /* subtle warm background retained */
+  border: 1px solid var(--border); /* neutral border instead of orange */
+  color: var(--text); /* use theme text color instead of red */
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: .9rem;
+}
 
 /* Utilities */
 .hidden{display:none!important}
