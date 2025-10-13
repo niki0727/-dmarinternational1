@@ -34,9 +34,34 @@ header{position:sticky;top:0;z-index:61;background:rgba(255,255,255,.95);backdro
   .burger{display:inline-flex}
 }
 /* Mobile drawer */
-.mobile{position:fixed;inset:110px 0 0;background:#fff;border-top:1px solid var(--border);padding:8px 16px 16px;display:none}
-.mobile.open{display:block}
-.mobile a{display:block;padding:12px 6px;border-bottom:1px solid var(--border);color:#111;font-weight:600}
+.mobile{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--hdr-h, 64px);   /* start right below the header */
+  bottom: 0;                 /* extend to bottom */
+  background: #fff;
+  border-top: 1px solid var(--border);
+  padding: 16px;             /* a bit more breathing room */
+  display: none;
+  z-index: 1000;             /* sit above header/content */
+  max-height: calc(100dvh - var(--hdr-h, 64px));
+  overflow: auto;            /* allow scrolling if long */
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile.open{ display:block; }
+
+/* Menu items: bigger tap targets + clearer text */
+.mobile a{
+  display: block;
+  padding: 14px 16px;        /* larger tap area */
+  color: #111;
+  font-weight: 700;
+  font-size: 16px;           /* make text readable */
+  border-bottom: 1px solid var(--border);
+}
+
 
 /* Hero */
 .hero{position:relative;padding:90px 0 40px;background:linear-gradient(180deg,#f6f9fc 0%,#ffffff 66%)}
