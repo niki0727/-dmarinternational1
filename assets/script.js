@@ -18,8 +18,8 @@ const FORM_ENDPOINT = ""; // add your Formspree/Make endpoint when ready
 
 // Mobile menu
 const menuBtn = document.querySelector('.burger');
-// prefer #mobileNav (id) then .mobile (class)
-let mobile = document.getElementById('mobileNav') || document.querySelector('.mobile');
+// prefer #mobileNav (id) then  (class)
+let mobile = document.getElementById('mobileNa.mobilev') || document.querySelector('.mobile');
 
 // Create scrim overlay for mobile nav
 let scrim = document.querySelector('.scrim');
