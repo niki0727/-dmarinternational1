@@ -16,8 +16,9 @@ const FORM_ENDPOINT = ""; // add your Formspree/Make endpoint when ready
 })();
 
 // Mobile menu
-const menuBtn = document.querySelector('.burger'); 
-const mobile = document.querySelector('.mobile');
+const menuBtn = document.querySelector('.burger');
+// prefer #mobileNav (id) then .mobile (class)
+let mobile = document.getElementById('mobileNav') || document.querySelector('.mobile');
 
 // Create scrim overlay for mobile nav
 let scrim = document.querySelector('.scrim');
@@ -28,16 +29,20 @@ if(!scrim){
 }
 
 function positionMobile(){
-  if(!mobile) return;
+  // safely find nav element each time (handles markup differences)
+  const navEl = mobile || document.getElementById('mobileNav') || document.querySelector('.mobile');
+  if(!navEl) return;
   const hdr = document.querySelector('header');
   const top = (hdr ? hdr.offsetHeight : 110);
-  mobile.style.top = top + 'px';
-  mobile.style.maxHeight = `calc(100dvh - ${top}px)`;
+  navEl.style.top = top + 'px';
+  navEl.style.maxHeight = `calc(100dvh - ${top}px)`;
 }
 
 function setNav(open){
-  mobile.classList.toggle('open', open);
-  scrim.classList.toggle('open', open);
+  // safely find nav element each time
+  const navEl = mobile || document.getElementById('mobileNav') || document.querySelector('.mobile');
+  if(navEl) navEl.classList.toggle('open', open);
+  if(scrim) scrim.classList.toggle('open', open);
   document.documentElement.classList.toggle('nav-open', open);
   document.body.classList.toggle('nav-open', open);
   positionMobile();
@@ -47,13 +52,25 @@ function setNav(open){
   try { (window.applyCompactScale || function(){})(open); } catch(e){}
 }
 
-if(menuBtn && mobile){
-  menuBtn.addEventListener('click', ()=> setNav(!mobile.classList.contains('open')));
-  scrim.addEventListener('click', ()=> setNav(false));
-  window.addEventListener('resize', positionMobile);
-  window.addEventListener('load', positionMobile);
-  document.addEventListener('visibilitychange', positionMobile);
+// Always wire burger toggle (don't require mobile variable to be present at bind)
+if(menuBtn){
+  menuBtn.addEventListener('click', function(e){
+    e && e.preventDefault();
+    const navEl = mobile || document.getElementById('mobileNav') || document.querySelector('.mobile');
+    const isOpen = !!(navEl && navEl.classList.contains('open'));
+    setNav(!isOpen);
+  });
 }
+
+// Wire scrim close globally
+if(scrim){
+  scrim.addEventListener('click', ()=> setNav(false));
+}
+
+// keep responsive position wiring
+window.addEventListener('resize', positionMobile);
+window.addEventListener('load', positionMobile);
+document.addEventListener('visibilitychange', positionMobile);
 
 // Simple form wiring
 function wireSimpleForm(form, msgSel){
