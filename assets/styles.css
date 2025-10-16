@@ -687,123 +687,18 @@ body.contact .btn, body.careers .btn{
     opacity: 1 !important;
   }
 }
-/* ================================
-   DMAR — FINAL COMPACT MOBILE OVERRIDES
-   Make drawer the size of items, shrink type, shrink buttons,
-   fix Contact/Careers density. Uses !important to win cascade.
-   ================================ */
 
-@media (max-width: 480px){
-
-  /* Base shrink */
-  html { font-size: 15px !important; }
-  body { line-height: 1.45 !important; }
-
-  /* Header tighter */
-  :root{ --hdr-h: 54px !important; }
-  header{ min-height: 54px !important; }
-  .logo{ height: 26px !important; }
-
-  /* Announcement smaller */
-  .announcement, .notice, .hiring-banner{
-    font-size: 13px !important;
-    line-height: 1.25 !important;
-    padding: 6px 10px !important;
-  }
-
-  /* BUTTONS smaller everywhere (except your call/contact bar which is already okay) */
-  .btn, .button, a.btn, button.btn-primary, .cta{
-    border-radius: 12px !important;
-    min-height: 38px !important;
-    padding: 8px 12px !important;
-    font-size: 14.5px !important;
-    font-weight: 700 !important;
-  }
-
-  /* Bottom action bar stay compact */
-  .action-bar{ padding: 6px 8px calc(6px + env(safe-area-inset-bottom,0)) !important; }
-  .action-bar .btn{ min-height: 38px !important; padding: 8px 12px !important; font-size: 14.5px !important; }
-
-  /* ==== DRAWER (assumes #mobileNav is your drawer element) ==== */
-  #mobileNav, .mobile{
-    position: fixed !important;
-    left: 0 !important; right: 0 !important;
-    top: var(--hdr-h, 54px) !important;
-
-    /* KEY: size to content */
-    height: auto !important;
-    max-height: min(75dvh, 520px) !important;
-    overflow: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-
-    background: #fff !important;
-    border-top: 1px solid #E6EAF0 !important;
-    border-radius: 0 0 14px 14px !important;
-
-    padding: 10px 12px !important; /* small so first item is visible */
-    box-shadow: 0 10px 24px rgba(0,0,0,.14) !important;
-
-    display: none; opacity: 0; transform: translateY(-6px);
-    transition: opacity .18s ease, transform .18s ease;
-    z-index: 1000 !important;
-  }
-  #mobileNav.open, .mobile.open{ display:block !important; opacity:1 !important; transform: none !important; }
-
-  /* Drawer menu items smaller/tighter */
-  #mobileNav a, .mobile a{
-    display: block !important;
-    padding: 12px 6px !important;
-    font-size: 15px !important;
-    line-height: 1.2 !important;
-    font-weight: 700 !important;
-    color: #111 !important;
-    text-decoration: none !important;
-    border-bottom: 1px solid #E6EAF0 !important;
-    opacity: 0; transform: translateY(6px);
-    animation: dmar-item-in .22s cubic-bezier(.2,.6,.2,1) forwards;
-    animation-delay: var(--delay, 0s);
-  }
-  #mobileNav a:last-child, .mobile a:last-child{ border-bottom: 0 !important; }
-
-  /* Scrim visible */
-  #scrim, .scrim{
-    position: fixed !important; inset: 0 !important;
-    background: rgba(0,0,0,.35) !important;
-    opacity: 0; pointer-events: none; z-index: 999 !important;
-    transition: opacity .18s ease !important;
-  }
-  #scrim.open, .scrim.open{ opacity: 1 !important; pointer-events: auto !important; }
-
-  /* ====== CONTACT page compact (works if body has .contact, else still helps) ====== */
-  body.contact .card, .contact .card{ padding: 12px !important; border-radius: 14px !important; }
-  body.contact .grid, .contact .grid{ display: grid !important; gap: 10px !important; grid-template-columns: 1fr !important; }
-  body.contact input, body.contact select, body.contact textarea,
-  .contact input, .contact select, .contact textarea{
-    font-size: 15px !important; padding: 9px 10px !important; border-radius: 12px !important;
-  }
-  .contact textarea{ min-height: 110px !important; }
-  .contact .direct-contacts, .contact .contacts, .contact .right-card{
-    font-size: 14.5px !important; line-height: 1.4 !important;
-  }
-  .contact .direct-contacts h3, .contact .contacts h3{ font-size: 17px !important; margin-bottom: 6px !important; }
-
-  /* ====== CAREERS page compact ====== */
-  body.careers .card, .careers .card{ padding: 12px !important; border-radius: 14px !important; }
-  body.careers .grid, .careers .grid{ display: grid !important; gap: 10px !important; grid-template-columns: 1fr !important; }
-  body.careers input, body.careers select, body.careers textarea,
-  .careers input, .careers select, .careers textarea{
-    font-size: 15px !important; padding: 9px 10px !important; border-radius: 12px !important;
-  }
-  .careers .btn, .careers .btn-upload{ min-height: 38px !important; padding: 8px 12px !important; font-size: 14.5px !important; }
-
-  /* Anim: respect reduced motion */
-  @media (prefers-reduced-motion: reduce){
-    #mobileNav, .mobile, #mobileNav a, .mobile a{ transition: none !important; animation: none !important; opacity: 1 !important; transform: none !important; }
-  }
+/* Ensure main/content transitions are smooth when JS applies scaling */
+main,
+.container {
+  transition: transform .18s ease;
+  transform-origin: top center;
 }
 
-/* Stagger animation keyframes (outside media query so it exists) */
-@keyframes dmar-item-in{
-  from{ opacity: 0; transform: translateY(6px); }
-  to  { opacity: 1; transform: translateY(0); }
+/* Prefer explicit transform-origin on Contact/Careers pages */
+body.contact main,
+body.careers main,
+body.contact .container,
+body.careers .container {
+  transform-origin: top center;
 }

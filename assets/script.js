@@ -44,6 +44,10 @@ function setNav(open){
   document.documentElement.classList.toggle('nav-open', open);
   document.body.classList.toggle('nav-open', open);
   positionMobile();
+
+  // apply compact scaling for contact/careers pages on small screens
+  // applyCompactScale may be defined later; it will be exposed to window by the helper IIFE below
+  try { (window.applyCompactScale || function(){})(open); } catch(e){}
 }
 
 if(menuBtn && mobile){
@@ -132,12 +136,68 @@ if(careers){
     nav.classList.add('open'); if(scrim) scrim.classList.add('open');
     document.documentElement.classList.add('nav-open'); document.body.classList.add('nav-open');
     setHdr(); setStagger();
+    // apply compact scaling when opening
+    try{ applyCompactScale(true); }catch(e){}
   }
   function closeNav(){
     if(!nav) return;
     nav.classList.remove('open'); if(scrim) scrim.classList.remove('open');
     document.documentElement.classList.remove('nav-open'); document.body.classList.remove('nav-open');
+    // remove compact scaling when closing
+    try{ applyCompactScale(false); }catch(e){}
   }
   if(toggle){ toggle.addEventListener('click', function(e){ e.preventDefault(); (nav.classList.contains('open')?closeNav:openNav)(); }); }
   if(scrim){ scrim.addEventListener('click', closeNav); }
+})();
+
+// Add compact-scaling helper for contact/careers pages on small screens
+(function(){
+  // Compact scale settings (tuned for phones)
+  const COMPACT_SCALE = 0.92;
+  const COMPACT_BREAKPOINT = 480;  // px - target small phones
+
+  // detect contact/careers pages by form presence or body classes
+  const isContactOrCareers = !!(
+    document.querySelector('form[data-contact]') ||
+    document.querySelector('form[data-careers]') ||
+    document.body.classList.contains('contact') ||
+    document.body.classList.contains('careers')
+  );
+
+  function chooseTarget(){
+    // prefer <main>, fallback to container or body
+    return document.querySelector('main') || document.querySelector('.container') || document.body;
+  }
+
+  function applyCompactScale(open){
+    if(!isContactOrCareers) return;
+    const small = window.matchMedia(`(max-width: ${COMPACT_BREAKPOINT}px)`).matches;
+    const target = chooseTarget();
+    if(!target) return;
+
+    if(open && small){
+      target.style.transition = 'transform .18s ease';
+      target.style.transformOrigin = 'top center';
+      target.style.transform = `scale(${COMPACT_SCALE})`;
+      target.style.willChange = 'transform';
+    }else{
+      target.style.transform = '';
+      target.style.transition = '';
+      target.style.willChange = '';
+    }
+  }
+
+  // expose globally so other modules / earlier code can call it safely
+  window.applyCompactScale = applyCompactScale;
+
+  // Re-apply when viewport resizes (if nav is open)
+  window.addEventListener('resize', function(){
+    try{ applyCompactScale(document.body.classList.contains('nav-open')); }catch(e){}
+  });
+
+  // Also re-run on orientation change for some devices
+  window.addEventListener('orientationchange', function(){
+    try{ applyCompactScale(document.body.classList.contains('nav-open')); }catch(e){}
+  });
+
 })();
