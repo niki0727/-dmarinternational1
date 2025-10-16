@@ -1,4 +1,3 @@
-
 const FORM_ENDPOINT = ""; // add your Formspree/Make endpoint when ready
 
 // Announcement bar dismiss
@@ -107,158 +106,38 @@ if(careers){
 }
 
 
-// ---- Robust mobile nav (v6) ----
+// ===== Unified Mobile Drawer Logic =====
 (function(){
-  const menuBtn = document.querySelector('[aria-label="Menu"], .burger');
-  const mobile = document.querySelector('.mobile');
-  if(!menuBtn || !mobile) return;
-  // Create scrim if missing
-  let scrim = document.querySelector('.scrim');
-  if(!scrim){
-    scrim = document.createElement('div');
-    scrim.className = 'scrim';
-    document.body.appendChild(scrim);
+  function setHdr(){ 
+    var h = document.querySelector('header'); 
+    if(h){ document.documentElement.style.setProperty('--hdr-h', h.getBoundingClientRect().height + 'px'); }
   }
-  function getHeaderTop(){
-    const hdr = document.querySelector('header');
-    return hdr ? hdr.getBoundingClientRect().height : 88;
-  }
-  function lockScroll(on){
-    document.documentElement.classList.toggle('nav-open', on);
-    document.body.classList.toggle('nav-open', on);
-  }
-  function openNav(on){
-    if(on){
-      mobile.style.top = getHeaderTop() + 'px';
-      mobile.style.maxHeight = `calc(100dvh - ${getHeaderTop()}px)`;
-    }
-    mobile.classList.toggle('open', on);
-    scrim.classList.toggle('open', on);
-    menuBtn.setAttribute('aria-expanded', String(on));
-    lockScroll(on);
-  }
-  // Toggle on tap
-  menuBtn.addEventListener('click', function(e){ e.preventDefault(); openNav(!mobile.classList.contains('open')); }, {passive:false});
-  // Close on overlay or escape
-  scrim.addEventListener('click', ()=> openNav(false));
-  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') openNav(false); });
-  // Recalc on resize/visibility changes
-  ['resize','load','orientationchange','visibilitychange'].forEach(ev=> window.addEventListener(ev, ()=>{
-    if(mobile.classList.contains('open')){
-      mobile.style.top = getHeaderTop() + 'px';
-      mobile.style.maxHeight = `calc(100dvh - ${getHeaderTop()}px)`;
-    }
-  }));
-})();
+  setHdr(); window.addEventListener('resize', setHdr); window.addEventListener('orientationchange', setHdr);
 
-
-// ===== v7 robust mobile nav =====
-(function(){
-  const btn = document.querySelector('.btn.burger,[aria-label="Menu"]');
-  const drawer = document.querySelector('.mobile');
-  if(!btn || !drawer) return;
-  // create scrim if missing
-  let scrim = document.querySelector('.scrim');
-  if(!scrim){
-    scrim = document.createElement('div');
-    scrim.className = 'scrim';
-    document.body.appendChild(scrim);
-  }
-  function setHdrVar(){
-    const h = (document.querySelector('header')?.getBoundingClientRect().height) || 64;
-    document.documentElement.style.setProperty('--hdr-h', h+'px');
-  }
-  function lock(on){
-    document.documentElement.classList.toggle('nav-open', on);
-    document.body.classList.toggle('nav-open', on);
-    if(on){
-      document.body.style.overflow='hidden';
-      document.body.style.touchAction='none';
-    }else{
-      document.body.style.overflow='';
-      document.body.style.touchAction='';
-    }
-  }
-  function toggle(open){
-    setHdrVar();
-    drawer.classList.toggle('open', open);
-    scrim.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', String(open));
-    lock(open);
-  }
-  btn.addEventListener('click', (e)=>{ e.preventDefault(); toggle(!drawer.classList.contains('open')); }, {passive:false});
-  scrim.addEventListener('click', ()=> toggle(false));
-  ['load','resize','orientationchange','visibilitychange'].forEach(ev => window.addEventListener(ev, setHdrVar));
-  setHdrVar();
-})();
-</body>
-  (function(){
-    const nav = document.getElementById('mobileNav');
+  // Stagger menu links
+  var nav = document.getElementById('mobileNav') || document.querySelector('.mobile');
+  function setStagger(){
     if(!nav) return;
-
-    // Assign a small stagger delay to visible links
-    function setStagger(){
-      const links = nav.querySelectorAll('a');
-      links.forEach((a, i) => {
-        a.style.setProperty('--delay', (0.03 * i) + 's'); // 30ms steps
-      });
-    }
-
-    // Call once now and again whenever we open the drawer
-    setStagger();
-    const toggle = document.getElementById('menuToggle');
-    const scrim  = document.getElementById('scrim');
-    function onOpen(){ setStagger(); }  // refresh in case DOM changed
-
-    toggle?.addEventListener('click', onOpen);
-    scrim?.addEventListener('click', ()=>{}); // no-op, keeps symmetry
-  })();
-</script>
-
-
-// ===== v8: single reliable mobile menu handler =====
-(function(){
-  const btn = document.getElementById('menuToggle');
-  const drawer = document.getElementById('mobileNav');
-  if(!btn || !drawer) return;
-
-  // Create scrim if missing
-  let scrim = document.querySelector('.scrim');
-  if(!scrim){
-    scrim = document.createElement('div');
-    scrim.className = 'scrim';
-    document.body.appendChild(scrim);
+    var links = nav.querySelectorAll('a');
+    links.forEach(function(a,i){ a.style.setProperty('--delay', (0.03 * i)+'s'); });
   }
+  setStagger();
 
-  function setHdrH(){
-    const h = (document.querySelector('header')?.getBoundingClientRect().height) || 64;
-    document.documentElement.style.setProperty('--hdr-h', h + 'px');
+  // If you use a toggle button with id="menuToggle" and scrim with id="scrim"
+  var toggle = document.getElementById('menuToggle');
+  var scrim  = document.getElementById('scrim') || document.querySelector('.scrim');
+
+  function openNav(){
+    if(!nav) return;
+    nav.classList.add('open'); if(scrim) scrim.classList.add('open');
+    document.documentElement.classList.add('nav-open'); document.body.classList.add('nav-open');
+    setHdr(); setStagger();
   }
-  function lock(on){
-    document.body.style.overflow = on ? 'hidden' : '';
-    document.body.style.touchAction = on ? 'none' : '';
-    document.documentElement.classList.toggle('nav-open', on);
-    document.body.classList.toggle('nav-open', on);
+  function closeNav(){
+    if(!nav) return;
+    nav.classList.remove('open'); if(scrim) scrim.classList.remove('open');
+    document.documentElement.classList.remove('nav-open'); document.body.classList.remove('nav-open');
   }
-  function openNav(on){
-    setHdrH();
-    drawer.classList.toggle('open', on);
-    scrim.classList.toggle('open', on);
-    if(on){ try{ drawer.scrollTop = 0; }catch(e){} }
-    btn.setAttribute('aria-expanded', String(on));
-    lock(on);
-  }
-  function toggle(){ openNav(!drawer.classList.contains('open')); }
-
-  // Click + keyboard
-  btn.addEventListener('click', (e)=>{ e.preventDefault(); toggle(); });
-  btn.addEventListener('keydown', (e)=>{
-    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
-  });
-  scrim.addEventListener('click', ()=> openNav(false));
-
-  // Keep position correct on rotate/resize
-  ['load','resize','orientationchange','visibilitychange'].forEach(ev => window.addEventListener(ev, setHdrH));
-
-  setHdrH();
+  if(toggle){ toggle.addEventListener('click', function(e){ e.preventDefault(); (nav.classList.contains('open')?closeNav:openNav)(); }); }
+  if(scrim){ scrim.addEventListener('click', closeNav); }
 })();
