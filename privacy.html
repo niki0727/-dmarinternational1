@@ -104,6 +104,51 @@
   <a class="btn" href="/contact.html">Talk to an expert</a>
 </div>
 <script src="/assets/script.js"></script>
+  <!-- Mobile drawer positioning & toggle -->
+  <script>
+  (function () {
+    const root  = document.documentElement;
+    const nav   = document.querySelector('.mobile');
+    const scrim = document.querySelector('.scrim');
+    const btn   = document.getElementById('menuToggle') ||
+                  document.querySelector('.btn.burger') ||
+                  document.querySelector('[data-menu]');
+
+    function setOffsets(){
+      const header = document.querySelector('header, .site-header');
+      const topbar = document.querySelector('.hiring-banner, .announcement, .notice');
+      const h = header ? header.getBoundingClientRect().height : 64;
+      const t = (topbar && topbar.offsetParent !== null) ? topbar.getBoundingClientRect().height : 0;
+      root.style.setProperty('--hdr-h',  h + 'px');
+      root.style.setProperty('--topbar-h', t + 'px');
+    }
+
+    function openNav(){
+      if(!nav) return;
+      nav.classList.add('open');
+      scrim && scrim.classList.add('open');
+      root.classList.add('nav-open');
+    }
+    function closeNav(){
+      if(!nav) return;
+      nav.classList.remove('open');
+      scrim && scrim.classList.remove('open');
+      root.classList.remove('nav-open');
+    }
+
+    btn && btn.addEventListener('click', e => {
+      e.preventDefault();
+      nav && nav.classList.contains('open') ? closeNav() : openNav();
+    });
+    scrim && scrim.addEventListener('click', closeNav);
+
+    setOffsets();
+    window.addEventListener('resize', setOffsets);
+    window.addEventListener('orientationchange', setOffsets);
+  })();
+  </script>
+</body>
+</html>
 
 </body>
 </html>
