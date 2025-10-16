@@ -521,3 +521,177 @@ html.nav-open, body.nav-open { overflow: hidden; touch-action: none; }
   .mobile.open{ display:block; opacity:1; transform: translateY(0); }
 
   
+  /* ===============================
+   DMAR — Mobile Drawer + Contact/Careers polish (FINAL)
+   Paste this at the END of styles.css
+   =============================== */
+
+/* lock page scroll when drawer open */
+html.nav-open, body.nav-open { overflow: hidden; touch-action: none; }
+
+/* header height variable used by drawer */
+:root { --hdr-h: 64px; }
+
+@media (max-width: 780px){
+  :root { --hdr-h: 56px; }         /* slightly tighter header on phones */
+  header { min-height: var(--hdr-h); }
+  .logo { height: 28px; }
+}
+
+/* ---------- MOBILE DRAWER (visible first item, compact, scrollable) ---------- */
+.mobile{
+  position: fixed;
+  left: 0; right: 0;
+  top: var(--hdr-h);
+  background: #fff;
+  border-top: 1px solid #E6EAF0;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.16);
+  /* KEY: small top padding so the first item shows immediately */
+  padding: 12px 16px 14px;
+  display: none;                   /* shown via .open */
+  z-index: 1000;
+
+  /* size to content but don’t exceed 75% of viewport on small phones */
+  height: auto;
+  max-height: min(75dvh, 520px);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.mobile.open { display: block; opacity: 1; transform: translateY(0); }
+
+/* optional dark backdrop under drawer (if you have <div class="scrim"> in HTML) */
+.scrim{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.35);
+  opacity: 0; pointer-events: none; z-index: 999;
+  transition: opacity .18s ease;
+}
+.scrim.open{ opacity: 1; pointer-events: auto; }
+
+/* Drawer items — slightly smaller, strong tap targets */
+.mobile a{
+  display: block;
+  padding: 13px 8px;
+  border-bottom: 1px solid #E6EAF0;
+  color: #111; font-weight: 700; font-size: 16px; letter-spacing: .1px;
+}
+.mobile a:last-child{ border-bottom: 0; }
+
+/* kill any accidental top margin on lists inside drawer */
+.mobile .menu, .mobile .menu-list, .mobile nav { margin-top: 0 !important; }
+
+/* ultra-small phones */
+@media (max-width: 360px){
+  .mobile { padding: 10px 12px; }
+  .mobile a { padding: 12px 8px; font-size: 15.5px; }
+}
+
+/* ---------- GLOBAL BUTTONS (match the square-ish Call/Contact look) ---------- */
+.btn, .button, a.btn, button.btn-primary, .cta{
+  border-radius: 12px !important;
+  min-height: 42px;
+  padding: 10px 14px;
+  font-weight: 700;
+}
+.btn-outline, .button-outline{ border-radius: 12px !important; }
+
+/* smaller on very small phones */
+@media (max-width: 480px){
+  .btn, .button, a.btn, button.btn-primary, .cta{
+    min-height: 38px; padding: 8px 12px; font-size: 14.5px;
+  }
+}
+
+/* ---------- ANNOUNCEMENT BANNER (smaller on phone) ---------- */
+@media (max-width: 780px){
+  .announcement, .notice, .hiring-banner{
+    font-size: 14px !important;
+    line-height: 1.3 !important;
+    padding: 6px 10px !important;
+  }
+}
+
+/* ---------- CONTACT PAGE (not squeezed, readable) ---------- */
+/* Wrap two columns on tablet/desktop, stack on phones */
+.contact .grid{
+  display: grid; gap: 14px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px){
+  .contact .grid{ grid-template-columns: 1fr 1fr; }
+}
+
+/* Left form card and right “Direct contacts” card */
+.contact .card, .contact-card, .contact .right-card, .contact .direct-contacts{
+  background: #fff;
+  border: 1px solid #E6EAF0;
+  border-radius: 16px;
+  padding: 14px 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+
+/* Inputs smaller but >=16px to avoid iOS zoom */
+.contact input, .contact select, .contact textarea{
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #E6EAF0;
+  border-radius: 12px;
+  font-size: 16px; background: #fff;
+}
+.contact textarea{ min-height: 120px; resize: vertical; }
+.contact button.btn{ padding: 11px 16px; min-height: 44px; border-radius: 12px; }
+
+/* Typography a touch smaller on phones for better fit */
+@media (max-width: 780px){
+  .contact h1{ font-size: clamp(22px, 5.5vw, 28px); }
+  .contact h2{ font-size: clamp(18px, 4.6vw, 22px); }
+  .contact p.lead{ font-size: clamp(15px, 4.2vw, 17px); }
+  .contact .direct-contacts{ font-size: 15px; line-height: 1.45; }
+}
+
+/* Ensure the two small fields (first/last name etc.) sit side-by-side on big screens
+   and stack on mobile */
+.contact .grid-2{ display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+@media (max-width: 760px){ .contact .grid-2{ grid-template-columns: 1fr; } }
+
+/* ---------- CAREERS PAGE (compact, clear) ---------- */
+.careers .grid{
+  display: grid; gap: 14px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px){
+  .careers .grid{ grid-template-columns: 1fr 1fr; }
+}
+.careers .card, .careers-card{
+  border: 1px solid #E6EAF0; border-radius: 16px; padding: 14px 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+.careers input, .careers select, .careers textarea{
+  font-size: 16px; padding: 10px 12px; border-radius: 12px;
+}
+.careers .btn-upload, .careers .upload button{
+  min-height: 44px; padding: 10px 14px; border-radius: 12px;
+}
+@media (max-width: 780px){
+  .careers h1{ font-size: clamp(24px, 6vw, 32px); }
+  .careers p.lead{ font-size: clamp(15px, 4.2vw, 17px); }
+}
+
+/* ---------- BOTTOM ACTION BAR (Call/Contact) compact ---------- */
+.action-bar{
+  position: fixed; left: 0; right: 0; bottom: 0;
+  background: #fff; border-top: 1px solid #E6EAF0;
+  padding: 8px 10px calc(8px + env(safe-area-inset-bottom,0));
+  display: flex; gap: 8px; align-items: center; justify-content: center;
+  z-index: 70;
+}
+.action-bar .btn{ min-height: 42px; padding: 10px 14px; font-size: 15px; }
+@media (max-width: 480px){
+  .action-bar{ padding: 6px 8px calc(6px + env(safe-area-inset-bottom,0)); }
+  .action-bar .btn{ min-height: 38px; padding: 8px 12px; font-size: 14.5px; }
+}
