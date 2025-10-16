@@ -591,3 +591,99 @@ html.nav-open, body.nav-open { overflow: hidden; touch-action: none; }
   }
   .careers .btn, .careers .btn-upload{ min-height: 38px; padding: 8px 12px; font-size: 14.5px; }
 }
+/* ================================
+   Compact layout for Contact + Careers
+   (applies only to those pages via body classes)
+   ================================ */
+
+/* If your <body> has class="contact" or class="careers" (recommended) */
+body.contact, body.careers{
+  --page-font: 15px;          /* base size for these pages */
+  --h1: clamp(22px, 6vw, 28px);
+  --h2: clamp(18px, 4.8vw, 22px);
+  --h3: clamp(16px, 4.4vw, 19px);
+  --gap: 12px;                /* vertical and grid gaps */
+  --pad: 12px;                /* card padding */
+  --radius: 14px;             /* consistent radii */
+}
+
+body.contact, body.careers{
+  font-size: var(--page-font);
+  line-height: 1.45;
+}
+
+/* Headings */
+body.contact h1, body.careers h1{ font-size: var(--h1); }
+body.contact h2, body.careers h2{ font-size: var(--h2); }
+body.contact h3, body.careers h3{ font-size: var(--h3); }
+
+/* Cards / boxes */
+body.contact .card, body.careers .card{
+  padding: var(--pad) !important;
+  border-radius: var(--radius);
+}
+
+/* Grids become 1-column on phone, 2-cols on tablet+ */
+body.contact .grid, body.careers .grid{
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 740px){
+  body.contact .grid, body.careers .grid{ grid-template-columns: 1fr 1fr; }
+}
+
+/* Form controls */
+body.contact input, body.contact select, body.contact textarea,
+body.careers input, body.careers select, body.careers textarea{
+  font-size: 15px;             /* smaller but >= 15 to avoid iOS zoom */
+  padding: 9px 10px;
+  border-radius: 12px;
+}
+body.contact textarea, body.careers textarea{ min-height: 110px; }
+
+/* “Direct contacts” block gets a narrower type to fit long lines */
+body.contact .direct-contacts, body.contact .contacts, body.contact .right-card{
+  font-size: 14.5px;
+  line-height: 1.4;
+}
+body.contact .direct-contacts h3{ font-size: 17px; margin-bottom: 6px; }
+
+/* Buttons on these pages slightly smaller */
+body.contact .btn, body.careers .btn{
+  min-height: 38px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 14.5px;
+}
+/* Drawer base transition (you already have some; these override softly) */
+.mobile{
+  will-change: transform, opacity;
+  transform: translateY(-6px);
+  opacity: 0;
+  transition: opacity .18s ease, transform .18s ease;
+}
+.mobile.open{ opacity: 1; transform: translateY(0); }
+
+/* Staggered items */
+.mobile a{
+  opacity: 0;
+  transform: translateY(6px);
+  animation: dmar-item-in .22s cubic-bezier(.2,.6,.2,1) forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes dmar-item-in{
+  from{ opacity: 0; transform: translateY(6px); }
+  to  { opacity: 1; transform: translateY(0);   }
+}
+
+/* Respect “reduced motion” */
+@media (prefers-reduced-motion: reduce){
+  .mobile, .mobile a{
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

@@ -191,6 +191,29 @@ if(careers){
   ['load','resize','orientationchange','visibilitychange'].forEach(ev => window.addEventListener(ev, setHdrVar));
   setHdrVar();
 })();
+</body>
+  (function(){
+    const nav = document.getElementById('mobileNav');
+    if(!nav) return;
+
+    // Assign a small stagger delay to visible links
+    function setStagger(){
+      const links = nav.querySelectorAll('a');
+      links.forEach((a, i) => {
+        a.style.setProperty('--delay', (0.03 * i) + 's'); // 30ms steps
+      });
+    }
+
+    // Call once now and again whenever we open the drawer
+    setStagger();
+    const toggle = document.getElementById('menuToggle');
+    const scrim  = document.getElementById('scrim');
+    function onOpen(){ setStagger(); }  // refresh in case DOM changed
+
+    toggle?.addEventListener('click', onOpen);
+    scrim?.addEventListener('click', ()=>{}); // no-op, keeps symmetry
+  })();
+</script>
 
 
 // ===== v8: single reliable mobile menu handler =====
