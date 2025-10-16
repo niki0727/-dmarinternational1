@@ -486,3 +486,108 @@ html.nav-open, body.nav-open { overflow: hidden; touch-action: none; }
   :root{ --hdr-h: 56px; }             /* was ~64px; adjust to your real header */
 }
 
+/* =========================================================
+   DMAR — Compact Mobile Mode (<= 480px)
+   - Smaller typography & buttons
+   - Drawer auto-height (shows menu items immediately)
+   - Tighter cards/sections on Careers & Contact
+   ========================================================= */
+
+@media (max-width: 480px){
+
+  /* ---------- Global type scale (smaller but readable) ---------- */
+  html { font-size: 15px; }                      /* base down from 16 */
+  h1 { font-size: clamp(22px, 6.2vw, 28px); }
+  h2 { font-size: clamp(18px, 5.2vw, 22px); }
+  h3 { font-size: clamp(16px, 4.8vw, 19px); }
+  p, li, input, textarea, select { font-size: 14.5px; line-height: 1.45; }
+
+  /* ---------- Header (slightly shorter) ---------- */
+  :root{ --hdr-h: 54px; }                        /* drawer anchors here */
+  header { min-height: 54px; }
+  .logo { height: 26px; }
+  .nav { padding-block: 4px; }
+
+  /* ---------- Announcement banner smaller ---------- */
+  .announcement, .notice, .hiring-banner {
+    font-size: 13px !important;
+    line-height: 1.25 !important;
+    padding: 6px 10px !important;
+  }
+
+  /* ---------- Buttons (square-ish, smaller) ---------- */
+  .btn, .button, a.btn, button.btn-primary, .cta {
+    border-radius: 12px !important;
+    min-height: 38px;                /* was 44+ */
+    padding: 8px 12px;               /* smaller tap target */
+    font-size: 14.5px;
+    font-weight: 700;
+  }
+  .btn-outline, .button-outline { border-radius: 12px !important; }
+
+  /* Keep bottom Call/Contact compact too */
+  .action-bar { padding: 6px 8px calc(6px + env(safe-area-inset-bottom,0)); }
+  .action-bar .btn { min-height: 38px; padding: 8px 12px; font-size: 14.5px; }
+
+  /* ---------- Drawer: auto-height, shows items immediately ---------- */
+  /* Make it the size of the items (no huge white panel). If items overflow,
+     it will scroll but cap at ~75% of viewport. */
+  .mobile{
+    top: var(--hdr-h);               /* right under header */
+    background:#fff;
+    padding: 10px 12px 10px !important;  /* minimal padding so first item is visible */
+    border-top: 1px solid #E6EAF0;
+    border-radius: 0 0 14px 14px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.14);
+    display: none;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity .18s ease, transform .18s ease;
+
+    /* KEY: size to content, but don’t exceed 75% screen; allow scroll if many items */
+    height: auto;
+    max-height: min(75dvh, 520px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .mobile.open{ display:block; opacity:1; transform: translateY(0); }
+
+  /* Menu item style smaller/tighter */
+  .mobile a{
+    display:block;
+    padding: 12px 6px;
+    font-size: 15px;                 /* smaller menu font */
+    line-height: 1.2;
+    font-weight: 700;
+    color:#111;
+    text-decoration:none;
+    border-bottom: 1px solid #E6EAF0;
+  }
+  .mobile a:last-child{ border-bottom:0; }
+
+  /* Reduce any accidental extra spacing above the first item */
+  .mobile .menu, .mobile .menu-list, .mobile nav { margin-top: 0 !important; }
+
+  /* Dim scrim a bit (optional) */
+  .scrim { background: rgba(0,0,0,.35); }
+
+  /* ---------- Contact page compact ---------- */
+  .contact .card, .contact-card { padding: 12px !important; border-radius: 14px; }
+  .contact .grid { display:grid; gap:10px; grid-template-columns: 1fr; }
+  .contact input, .contact select, .contact textarea{
+    font-size: 15px; padding: 9px 10px; border-radius: 12px;
+  }
+  .contact textarea{ min-height: 110px; }
+  .contact .direct-contacts, .contact .contacts, .contact .right-card{
+    font-size: 14.5px; line-height: 1.4;   /* so all lines fit */
+  }
+  .contact .direct-contacts h3, .contact .contacts h3{ font-size: 17px; }
+
+  /* ---------- Careers page compact ---------- */
+  .careers .card, .careers-card { padding: 12px !important; border-radius: 14px; }
+  .careers .grid { display:grid; gap:10px; grid-template-columns: 1fr; }
+  .careers input, .careers select, .careers textarea{
+    font-size: 15px; padding: 9px 10px; border-radius: 12px;
+  }
+  .careers .btn, .careers .btn-upload{ min-height: 38px; padding: 8px 12px; font-size: 14.5px; }
+}
