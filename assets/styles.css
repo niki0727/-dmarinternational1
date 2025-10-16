@@ -876,7 +876,7 @@ html.nav-open, body.nav-open{ overflow:hidden; touch-action:none; }
   animation:itemIn .22s cubic-bezier(.2,.6,.2,1) forwards;
   animation-delay: var(--delay, 0s);
 }
-@keyframes itemIn{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none} }
+@keyframes itemIn{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0) } }
 @media (prefers-reduced-motion:reduce){
   #mobileNav, .mobile, #mobileNav a, .mobile a{
     transition:none !important; animation:none !important; opacity:1 !important; transform:none !important;
@@ -932,4 +932,13 @@ body.contact .btn, body.careers .btn{
 /* Optional: make those two input fields stack ABOVE the direct-contacts on phones */
 @media (max-width:740px){
   .contact .form-first{ order:-1; } /* add class="form-first" to the form column */
+}
+
+/* Slightly smaller buttons on very small phones */
+@media (max-width: 480px){
+  .btn {
+    min-height: 36px !important;
+    padding: 7px 10px !important;
+    font-size: 14px !important;
+  }
 }
