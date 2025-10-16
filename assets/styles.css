@@ -764,3 +764,62 @@ body.careers .container {
     opacity: 1 !important; transform: none !important;
   }
 }
+/* --- Fix header masking the drawer --- */
+header,
+.site-header,
+.header-wrap,
+.topbar,
+.hiring-banner,
+.announcement,
+.notice {
+  position: relative;           /* keep their stacking context */
+  z-index: 900;                 /* below the drawer */
+  overflow: visible !important; /* do not clip the drawer edge */
+  mask: none !important;        /* in case of iOS masking */
+}
+
+/* --- Drawer must sit above everything --- */
+#mobileNav, .mobile {
+  position: fixed;
+  left: 0; right: 0;
+
+  /* Start just under header/banner; the -1px ensures the first item isn't hidden
+     by any hairline border/curve on the header */
+  top: calc(var(--nav-top, 64px) - 1px);
+
+  background: #fff;
+  border-top: 1px solid #E6EAF0;
+  border-radius: 0 0 14px 14px;
+  padding: 8px 12px 10px;       /* small top pad => first item visible */
+  margin: 0;
+
+  height: auto;
+  max-height: min(75dvh, 520px);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  display: none;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease;
+
+  /* BIG z-index so it renders above header/banner on iOS Safari */
+  z-index: 3000 !important;
+  pointer-events: auto;
+}
+
+/* Open state */
+#mobileNav.open, .mobile.open { display:block; opacity:1; transform:none; }
+
+/* Drawer links compact & readable */
+#mobileNav a, .mobile a{
+  display:block;
+  padding:12px 6px;
+  font-size:15px;
+  line-height:1.2;
+  font-weight:700;
+  color:#111;
+  text-decoration:none;
+  border-bottom:1px solid #E6EAF0;
+}
+#mobileNav a:last-child, .mobile a:last-child{ border-bottom:0; }
