@@ -702,3 +702,65 @@ body.contact .container,
 body.careers .container {
   transform-origin: top center;
 }
+/* Mobile drawer: start exactly below header+banner, show first item immediately */
+#mobileNav, .mobile{
+  position: fixed;
+  left: 0; right: 0;
+  top: var(--nav-top, 64px);        /* set by JS below */
+  background: #fff;
+  border-top: 1px solid #E6EAF0;
+  border-radius: 0 0 14px 14px;
+  /* Make it the size of its items, but allow scrolling if many */
+  height: auto;
+  max-height: min(75dvh, 520px);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  /* Make sure first item is visible (no big white gap) */
+  padding: 8px 12px 10px;           /* small top padding */
+  margin: 0;
+
+  /* Transitions */
+  display: none;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease;
+  z-index: 1000;
+}
+#mobileNav.open, .mobile.open{
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Drawer links compact so more fit on screen */
+#mobileNav a, .mobile a{
+  display: block;
+  padding: 12px 6px;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+  border-bottom: 1px solid #E6EAF0;
+}
+#mobileNav a:last-child, .mobile a:last-child{ border-bottom: 0; }
+
+/* Optional small stagger for polish */
+#mobileNav a, .mobile a{
+  opacity: 0; transform: translateY(6px);
+  animation: itemIn .22s cubic-bezier(.2,.6,.2,1) forwards;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes itemIn{
+  from{ opacity:0; transform: translateY(6px); }
+  to  { opacity:1; transform: none; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  #mobileNav, .mobile, #mobileNav a, .mobile a{
+    transition: none !important; animation: none !important;
+    opacity: 1 !important; transform: none !important;
+  }
+}

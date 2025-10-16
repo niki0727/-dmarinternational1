@@ -201,3 +201,58 @@ if(careers){
   });
 
 })();
+
+// Tiny helper: compute header+banner top for drawer and wire toggle/staggering
+(function(){
+  const header = document.querySelector('header');
+  const banner = document.querySelector('.hiring-banner, .announcement, .notice'); // pick first visible banner
+  const nav    = document.getElementById('mobileNav') || document.querySelector('.mobile');
+  const toggle = document.getElementById('menuToggle') || document.querySelector('[data-menu-toggle]') || document.querySelector('.burger');
+  const scrim  = document.getElementById('scrim') || document.querySelector('.scrim');
+
+  function computeTop(){
+    let top = 0;
+    if (banner && banner.offsetParent !== null) top += banner.getBoundingClientRect().height;
+    if (header) top += header.getBoundingClientRect().height;
+    // CSS var used by styles and also set nav.top to be safe
+    document.documentElement.style.setProperty('--nav-top', top + 'px');
+    if (nav) nav.style.top = top + 'px';
+  }
+
+  function setStagger(){
+    if (!nav) return;
+    const links = nav.querySelectorAll('a');
+    links.forEach((a,i)=> a.style.setProperty('--delay', (0.03 * i) + 's'));
+  }
+
+  function openNav(){
+    if (!nav) return;
+    computeTop();
+    setStagger();
+    nav.classList.add('open');
+    if (scrim) scrim.classList.add('open');
+    document.documentElement.classList.add('nav-open');
+    document.body.classList.add('nav-open');
+  }
+
+  function closeNav(){
+    if (!nav) return;
+    nav.classList.remove('open');
+    if (scrim) scrim.classList.remove('open');
+    document.documentElement.classList.remove('nav-open');
+    document.body.classList.remove('nav-open');
+  }
+
+  // initial run + responsive updates
+  computeTop();
+  setStagger();
+  window.addEventListener('resize', computeTop);
+  window.addEventListener('orientationchange', computeTop);
+
+  if (toggle) toggle.addEventListener('click', function(e){
+    e && e.preventDefault();
+    if (!nav) return;
+    (nav.classList.contains('open') ? closeNav() : openNav());
+  });
+  if (scrim) scrim.addEventListener('click', closeNav);
+})();
