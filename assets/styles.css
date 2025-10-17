@@ -295,7 +295,7 @@ html.nav-open, body.nav-open{ overflow: hidden; touch-action: none; }
 .mobile{
   /* keep your computed position, but kill vertical padding */
   top: calc(var(--hdr-h) + var(--topbar-h));
-  padding-top: 6px;           /* was larger */
+  padding-top: 0px;           /* was larger */
   padding-bottom: 10px;
 }
 

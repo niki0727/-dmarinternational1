@@ -129,7 +129,7 @@ if(careers){
 (function(){
   function setHdr(){ 
     var h = document.querySelector('header'); 
-    if(h){ document.documentElement.style.setProperty('--hdr-h', h.getBoundingClientRect().height + 'px'); }
+    if(h){ document.documentElement.style.setProperty('--hdr-h', (h-1).getBoundingClientRect().height + 'px'); }
   }
   setHdr(); window.addEventListener('resize', setHdr); window.addEventListener('orientationchange', setHdr);
 
