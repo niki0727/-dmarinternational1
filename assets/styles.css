@@ -78,8 +78,8 @@ input, textarea, select {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid var(--border);
-  border-radius: 12px;
-  font-size: 16px;
+  border-radius: 1px;
+  font-size: 12px;
   outline: none;
   background: #fff;
 }
@@ -243,7 +243,7 @@ header, .site-header { z-index: 900; }
   border-bottom: 1px solid var(--border, #E6EAF0);
   color:#111;
   font-weight:700;
-  font-size: 16px;
+  font-size: 12px;
   letter-spacing:.1px;
 }
 .mobile a:last-child{ border-bottom:0; }
@@ -288,6 +288,6 @@ html.nav-open, body.nav-open{ overflow: hidden; touch-action: none; }
 /* Announcement bar smaller on phone */
 @media (max-width: 760px){
   .hiring-banner, .announcement, .notice{
-    font-size: 14px; padding: 6px 10px;
+    font-size: 12px; padding: 6px 10px;
   }
 }
