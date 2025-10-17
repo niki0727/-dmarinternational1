@@ -239,7 +239,7 @@ header, .site-header { z-index: 900; }
 /* Menu items readable and clickable */
 .mobile a{
   display:block;
-  padding: 13px 8px;
+  padding: 16px 8px;
   border-bottom: 1px solid var(--border, #E6EAF0);
   color:#111;
   font-weight:700;
