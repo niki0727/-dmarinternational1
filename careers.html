@@ -164,7 +164,7 @@
       const topbar = document.querySelector('.hiring-banner, .announcement, .notice');
       const h = header ? header.getBoundingClientRect().height : 64;
       const t = (topbar && topbar.offsetParent !== null) ? topbar.getBoundingClientRect().height : 0;
-      root.style.setProperty('--hdr-h',  h + 'px');
+      root.style.setProperty('--hdr-h',  (h-1) + 'px');
       root.style.setProperty('--topbar-h', t + 'px');
     }
 
