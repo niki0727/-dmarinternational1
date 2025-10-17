@@ -291,3 +291,29 @@ html.nav-open, body.nav-open{ overflow: hidden; touch-action: none; }
     font-size: 12px; padding: 6px 10px;
   }
 }
+/* ===== Drawer: remove empty gap above first item on mobile ===== */
+.mobile{
+  /* keep your computed position, but kill vertical padding */
+  top: calc(var(--hdr-h) + var(--topbar-h));
+  padding-top: 6px;           /* was larger */
+  padding-bottom: 10px;
+}
+
+/* In case a heading/list has default top margins, nuke them */
+.mobile > *:first-child{ margin-top: 0 !important; }
+.mobile a:first-child{ margin-top: 0 !important; }
+
+/* Compact item paddings so more fits at once */
+.mobile a{
+  padding: 12px 10px;         /* was 13+; slightly tighter */
+  line-height: 1.1;
+}
+
+/* If any spacer element slipped in, hide it on mobile drawer */
+.mobile .spacer,
+.mobile .divider:first-child{ display:none; }
+
+/* iOS safe-area: ignore extra notch padding inside the drawer */
+@supports (padding: max(0px)) {
+  .mobile{ padding-top: 6px; }
+}
