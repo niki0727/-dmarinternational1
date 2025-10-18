@@ -1,0 +1,280 @@
+From 1111111111111111111111111111111111111111 Mon Sep 17 00:00:00 2001
+From: DMAR Site Assistant <bot@dmarinternational.com>
+Date: Sat, 18 Oct 2025 15:28:00 +0100
+Subject: [PATCH] Compact mobile drawer + phone layouts (Contact/Careers helpers)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- Make the mobile menu drawer smaller and clearer
+- Prevent large empty gap above first item; lock offset to header height
+- Add scrim, focus handling, and body scroll lock
+- Add phone-first helpers to keep Contact/Careers from feeling “squeezed”
+- Add deploy workflow scaffold (Cloudflare Pages) – safe to keep disabled until secrets exist
+
+diff --git a/assets/styles.css b/assets/styles.css
+index 0000000..1111111 100644
+--- a/assets/styles.css
++++ b/assets/styles.css
+@@ -1,143 +1,263 @@
+-/* existing styles kept in repo history */
++/* DMAR International • Compact Mobile Drawer & Phone Layouts (2025-10-18) */
++
++/* ====== Tokens ====== */
++:root{
++  --brand:#0A5694; --ink:#1F2937; --bg:#fff; --muted:#6B7280;
++  --border:#E5E7EB; --radius:999px; --container:1100px;
++  --hdr-h:64px;        /* JS updates this */
++  --safe-b: env(safe-area-inset-bottom,0);
++}
++
++/* ====== Base ====== */
++*{box-sizing:border-box}
++html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
++  font:15.5px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
++img{max-width:100%;height:auto;display:block}
++a{color:var(--brand);text-decoration:none}
++.container{max-width:var(--container);margin:0 auto;padding:0 20px}
++.section{padding:56px 0;border-top:1px solid var(--border)}
++h1{font-size:clamp(28px,5vw,46px);line-height:1.15;margin:0 0 10px}
++h2{font-size:clamp(20px,3.2vw,30px);margin:0 0 6px}
++h3{margin:8px 0 6px;font-size:19px}
++.subtitle,.muted{color:var(--muted)}
++.small{font-size:.92rem;color:#4B5563}
++
++/* Buttons */
++.btn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;
++  border:1px solid var(--brand);padding:11px 16px;border-radius:var(--radius);
++  font-weight:600;cursor:pointer;transition:transform .06s ease,opacity .18s}
++.btn:hover{opacity:.94}
++.btn:active{transform:translateY(1px)}
++.btn.alt{background:#fff;color:var(--brand)}
++.btn.burger{display:none}
++
++/* Topbar / Header */
++.topbar{background:#043E6A;color:#dce8f5;font-size:.9rem}
++.topbar .container{display:flex;align-items:center;gap:10px;justify-content:center;padding:6px 20px}
++
++header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.98);
++  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
++.nav{min-height:64px;display:flex;align-items:center;gap:12px}
++.logo{display:inline-flex;align-items:center;height:32px}
++.logo img{height:32px;width:auto}
++.nav .right{margin-left:auto;display:flex;align-items:center;gap:10px}
++
++/* Desktop primary nav */
++.nav .primary{display:flex;align-items:center;gap:20px;margin-left:22px}
++.nav .primary a{color:var(--ink);font-weight:600;padding:10px 6px;border-radius:999px}
++.nav .primary a:hover{background:#F6F7F9}
++
++/* Cards */
++.cards{display:grid;grid-template-columns: repeat(3,1fr);gap:18px}
++figure.card{border:1px solid var(--border);border-radius:18px;overflow:hidden;background:#fff}
++figure.card img{height:200px;width:100%;object-fit:cover}
++figure.card .content{padding:14px 14px 18px}
++
++/* Footer */
++footer{background:#0b2744;color:#d1d7de;padding:36px 0;margin-top:40px}
++footer a{color:#cfe6ff}
++footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:18px}
++
++/* ====== Responsive ====== */
++@media (max-width:980px){ .cards{grid-template-columns:1fr 1fr} }
++@media (max-width:780px){
++  .logo img{height:30px}
++  .nav .primary{display:none}               /* Hide desktop links */
++  .btn.burger{display:inline-flex}          /* Show burger */
++  .nav .right .btn:not(.burger){display:none} /* Hide big CTA on mobile */
++  footer .cols{grid-template-columns:1fr}
++  .section{padding:44px 0}
++}
++
++/* ====== Mobile Drawer (smaller, tighter) ======
++   – Sits right below the header (JS sets --hdr-h precisely)
++   – 14–15px text, compact padding, clear affordances
++   – No giant empty top space
++================================================== */
++.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;
++  z-index:999;transition:opacity .15s}
++.scrim.open{opacity:1;pointer-events:auto}
++
++.mobile{
++  position:fixed;left:0;right:0;width:100vw;top:var(--hdr-h);
++  background:#fff;border-top:1px solid var(--border);
++  padding:6px 10px 10px; /* tighter */
++  max-height:calc(100dvh - var(--hdr-h));overflow:auto;-webkit-overflow-scrolling:touch;
++  z-index:1000;transform:translateY(-8px);opacity:0;transition:transform .16s ease,opacity .16s ease;
++  display:none;
++}
++.mobile.open{display:block;transform:none;opacity:1}
++.mobile .mhead{display:flex;justify-content:space-between;align-items:center;padding:6px 8px 4px}
++.mobile .mhead .title{font-size:.9rem;color:#6B7280;letter-spacing:.02em}
++.mobile .mnav{list-style:none;margin:4px 0 0;padding:0}
++.mobile .mnav li+li{margin-top:2px}
++.mobile .mnav a{
++  display:flex;align-items:center;gap:10px;
++  padding:10px 12px;border-radius:10px;font-size:15px;line-height:1.2;color:#111;
++}
++.mobile .mnav a:active{background:#F2F5F8}
++
++/* Prevent body scroll when drawer is open */
++.nav-open{overflow:hidden;touch-action:none}
++
++/* ====== Action bar (mobile CTAs) ====== */
++.action-bar{position:fixed;left:0;right:0;bottom:0;display:none;background:#fff;border-top:1px solid var(--border);
++  padding:10px 12px calc(10px + var(--safe-b));z-index:950;gap:10px}
++@media (max-width:780px){ .action-bar{display:flex} }
++.action-bar .btn{flex:1 1 0;justify-content:center}
++
++/* ====== Phone-first Contact & Careers ======
++   Apply body classes: .contact or .careers
++   – stacks columns earlier
++   – trims paddings, button sizes
++   – keeps forms readable without “squeezed” feel
++================================================ */
++body.contact main, body.careers main{padding-bottom:72px} /* for action bar */
++.compact{max-width:860px;margin:0 auto}
++.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
++.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
++.card{border:1px solid var(--border);border-radius:14px;padding:14px;background:#fff}
++
++form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
++form .row .full{grid-column:1 / -1}
++input,select,textarea{
++  width:100%;padding:12px 12px;border:1px solid var(--border);border-radius:10px;
++  font:inherit;line-height:1.3;background:#fff
++}
++textarea{min-height:110px;resize:vertical}
++label{font-weight:600;font-size:.95rem;margin-bottom:6px;display:block}
++
++/* phone tweaks */
++@media (max-width:780px){
++  .grid-2,.grid-3{grid-template-columns:1fr}
++  form .row{grid-template-columns:1fr}
++  .btn{padding:11px 14px}
++  h1{font-size:clamp(24px,7vw,36px)}
++  h2{font-size:clamp(18px,5.5vw,24px)}
++}
++
++/* ====== Utilities ====== */
++.hr{height:1px;background:var(--border);margin:12px 0}
++.mt-0{margin-top:0}.mt-6{margin-top:6px}.mt-12{margin-top:12px}.mt-20{margin-top:20px}
++.mb-0{margin-bottom:0}.mb-6{margin-bottom:6px}.mb-12{margin-bottom:12px}.mb-20{margin-bottom:20px}
+ 
+diff --git a/assets/script.js b/assets/script.js
+index 0000000..2222222 100644
+--- a/assets/script.js
++++ b/assets/script.js
+@@ -1,3 +1,132 @@
+-// (empty previously)
++/* DMAR Mobile Drawer: tiny, safe, no dependencies */
++(function () {
++  const root  = document.documentElement;
++
++  // Elements (create scrim if missing)
++  let scrim = document.querySelector('.scrim');
++  if (!scrim) {
++    scrim = document.createElement('div');
++    scrim.className = 'scrim';
++    document.body.appendChild(scrim);
++  }
++  const nav  = document.getElementById('mobileNav') || document.querySelector('.mobile');
++  const btn  = document.getElementById('menuToggle') ||
++               document.querySelector('.btn.burger') ||
++               document.querySelector('[data-menu]');
++
++  // Build drawer head + list if developer used bare <nav> links
++  if (nav && !nav.querySelector('.mnav')) {
++    const links = Array.from(nav.children).filter(n => n.matches('a,li,ul'));
++    const wrap  = document.createElement('ul');
++    wrap.className = 'mnav';
++    links.forEach(a => {
++      const li = document.createElement('li');
++      if (a.tagName === 'A') { li.appendChild(a); }
++      else li.append(...a.children);
++      wrap.appendChild(li);
++    });
++    const head = document.createElement('div');
++    head.className = 'mhead';
++    head.innerHTML = '<span class="title">Menu</span>';
++    nav.innerHTML = '';
++    nav.append(head, wrap);
++  }
++
++  function setOffsets(){
++    const header = document.querySelector('header, .site-header');
++    const h = header ? Math.round(header.getBoundingClientRect().height) : 64;
++    root.style.setProperty('--hdr-h', h + 'px');
++  }
++
++  function openNav(){
++    if(!nav) return;
++    nav.classList.add('open');  scrim.classList.add('open');
++    root.classList.add('nav-open');
++    // Focus first link
++    const first = nav.querySelector('a,button,input,select,textarea');
++    first && first.focus({preventScroll:true});
++  }
++  function closeNav(){
++    if(!nav) return;
++    nav.classList.remove('open'); scrim.classList.remove('open');
++    root.classList.remove('nav-open');
++    btn && btn.focus({preventScroll:true});
++  }
++
++  // Toggle
++  btn && btn.addEventListener('click', e => {
++    e.preventDefault();
++    nav && nav.classList.contains('open') ? closeNav() : openNav();
++  });
++
++  // Close on scrim or ESC or link tap
++  scrim.addEventListener('click', closeNav);
++  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
++  nav && nav.addEventListener('click', e => { if (e.target.closest('a')) closeNav(); });
++
++  // Keep header height accurate
++  setOffsets();
++  window.addEventListener('resize', setOffsets);
++  window.addEventListener('orientationchange', setOffsets);
++})();
++
++// Tip: include this file before </body> on every page.
+ 
+diff --git a/.github/workflows/deploy.yml b/.github/workflows/deploy.yml
+new file mode 100644
+index 0000000..3333333
+--- /dev/null
++++ b/.github/workflows/deploy.yml
+@@ -0,0 +1,44 @@
++name: Deploy to Cloudflare Pages
++on:
++  push:
++    branches: [main]
++  workflow_dispatch:
++
++jobs:
++  deploy:
++    runs-on: ubuntu-latest
++    permissions:
++      contents: read
++      deployments: write
++    steps:
++      - uses: actions/checkout@v4
++      - name: Build (skip if pure static)
++        run: |
++          if [ -f package.json ]; then
++            npm ci
++            npm run build || true
++          fi
++      - name: Publish
++        uses: cloudflare/pages-action@v1
++        with:
++          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
++          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
++          projectName: dmarinternational   # change if needed
++          directory: ./                    # change to ./dist if you build
++          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
++
+-- 
+2.43.0
