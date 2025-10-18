@@ -1,0 +1,253 @@
+From 3333333333333333333333333333333333333333 Mon Sep 17 00:00:00 2001
+From: DMAR Site Assistant <bot@dmarinternational.com>
+Date: Sat, 18 Oct 2025 16:20:00 +0100
+Subject: [PATCH] Topbar (green→black, animated) + right-aligned mobile Menu +
+ sheet-style drawer (no scroll)
+
+diff --git a/assets/styles.css b/assets/styles.css
+index 3b7a6fd..9a0c0cb 100644
+--- a/assets/styles.css
++++ b/assets/styles.css
+@@ -1,14 +1,26 @@
+-/* DMAR PRO THEME v2 (Netlify) */
++/* DMAR PRO THEME v2 — refined topbar & mobile sheet drawer (2025-10-18) */
+ *{box-sizing:border-box}html,body{margin:0;padding:0}
+ :root{--bg:#fff;--text:#333;--muted:#566070;--brand:#0A5694;--border:#E6EAF0;--radius:16px;--shadow:0 10px 30px rgba(0,0,0,.07);--max:1200px;--green:#0b8a4a;--notice-text:#9a3412}
+ body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:var(--bg);line-height:1.6}
+@@ -20,14 +32,34 @@
+ hr.sep{border:none;height:1px;background:var(--border);margin:20px 0}
+ 
+-/* Announcement bar */
+-.topbar{position:sticky;top:0;z-index:70;background:linear-gradient(90deg,var(--brand),#0b8a4a);color:#fff}
+-.topbar .row{display:flex;gap:14px;align-items:center;justify-content:center;min-height:38px;padding:6px 20px}
+-.topbar .dot{width:8px;height:8px;border-radius:999px;background:#fff;animation:pulse 1.4s infinite ease-in-out}
+-@keyframes pulse{0%{opacity:.4;transform:scale(.7)}50%{opacity:1;transform:scale(1)}100%{opacity:.4;transform:scale(.7)}}
+-.topbar .close{position:absolute;right:10px;top:6px;background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer}
++/* ===== Announcement bar (green→near-black, subtle motion) ===== */
++.topbar{
++  position:sticky;top:0;z-index:1002;
++  background:linear-gradient(90deg,#0b8a4a 0%, #0a4730 45%, #0a0f14 100%);
++  color:#fff;overflow:hidden;isolation:isolate
++}
++.topbar .row{
++  display:flex;gap:14px;align-items:center;justify-content:center;
++  min-height:38px;padding:6px 20px;position:relative
++}
++.topbar .dot{width:8px;height:8px;border-radius:999px;background:#fff;animation:pulse 1.6s infinite ease-in-out}
++@keyframes pulse{0%{opacity:.45;transform:scale(.75)}50%{opacity:1;transform:scale(1)}100%{opacity:.45;transform:scale(.75)}}
++/* slide the text a tiny bit for life */
++.topbar .marquee{
++  display:flex;gap:10px;align-items:center;white-space:nowrap;
++  animation:slideHint 14s linear infinite;opacity:.98
++}
++@keyframes slideHint{
++  0%{transform:translateX(0)}
++  50%{transform:translateX(-6px)}
++  100%{transform:translateX(0)}
++}
++.topbar .close{position:absolute;right:10px;top:6px;background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer}
+ 
+ /* Header (refined) */
+-header{position:sticky;top:0;z-index:61;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
++header{
++  position:sticky;top:0;z-index:1001;
++  background:rgba(255,255,255,.95);backdrop-filter:blur(8px);
++  border-bottom:1px solid var(--border)
++}
+ .nav{display:flex;align-items:center;gap:18px;min-height:72px}
+-.nav .left{display:flex;align-items:center;gap:16px}
++.nav .left{display:flex;align-items:center;gap:16px}
++.nav .right{margin-left:auto;display:flex;gap:10px;align-items:center}
+ .logo{height:38px}
+-.nav .mid{flex:1 1 auto;display:flex;justify-content:center}
++.nav .mid{flex:1 1 auto;display:flex;justify-content:center}
+ .nav .mid ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+ .nav .mid a{color:#111;font-weight:600;opacity:.85}
+ .nav .mid a:hover{opacity:1}
+-.nav .right{display:flex;gap:10px;align-items:center}
+ .burger{display:none}
+ @media (max-width:1020px){
+   .nav .mid{display:none}
+   .burger{display:inline-flex}
+ }
+ 
+-/* Mobile drawer */
+-.mobile{
+-  position: fixed;
+-  left: 0;
+-  right: 0;
+-  top: var(--hdr-h, 64px);   /* start right below the header */
+-  bottom: 0;                 /* extend to bottom */
+-  background: #fff;
+-  border-top: 1px solid var(--border);
+-  padding: 16px;             /* a bit more breathing room */
+-  display: none;
+-  z-index: 1000;             /* sit above header/content */
+-  max-height: calc(100dvh - var(--hdr-h, 64px));
+-  overflow: auto;            /* allow scrolling if long */
+-  -webkit-overflow-scrolling: touch;
+-}
+-
+-.mobile.open{ display:block; }
+-
+-/* Menu items: bigger tap targets + clearer text */
+-.mobile a{
+-  display: block;
+-  padding: 14px 16px;        /* larger tap area */
+-  color: #111;
+-  font-weight: 700;
+-  font-size: 16px;           /* make text readable */
+-  border-bottom: 1px solid var(--border);
+-}
++/* ===== Mobile “sheet” drawer (white bar under header; no internal scroll) ===== */
++.mobile{
++  position:fixed;left:0;right:0;top:var(--hdr-h,64px);
++  background:#fff;border-top:1px solid var(--border);
++  display:none;z-index:1000;
++  padding:10px 14px;
++  border-radius:0 0 16px 16px;
++  box-shadow:0 10px 28px rgba(0,0,0,.14);
++  /* fit to content, not full height */
++  max-height:none;overflow:hidden;
++  opacity:0;transform:translateY(-10px);
++  transition:transform .22s cubic-bezier(.4,0,.2,1),opacity .22s cubic-bezier(.4,0,.2,1)
++}
++.mobile.open{display:block;opacity:1;transform:translateY(0)}
++.mobile a{
++  display:block;padding:10px 12px;border-bottom:1px solid var(--border);
++  color:#111;font-weight:600;font-size:15px;line-height:1.2
++}
++.mobile a:last-child{border-bottom:none}
+ 
+ /* Hero */
+ .hero{position:relative;padding:90px 0 40px;background:linear-gradient(180deg,#f6f9fc 0%,#ffffff 66%)}
+@@ -107,7 +129,9 @@
+ /* --- Mobile stability + overlay --- */
+ html,body{overflow-x:hidden}
+-.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .15s ease;z-index:59}
++.scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .18s ease;z-index:999}
+ .scrim.open{opacity:1;pointer-events:auto}
+-.mobile{position:fixed;left:0;right:0;top:110px;background:#fff;border-top:1px solid var(--border);padding:18px;display:none;z-index:60;max-height:calc(100dvh - 110px);overflow:auto;-webkit-overflow-scrolling:touch}
+-.mobile.open{display:block}
++/* (drawer is now sized by content; no internal scroll) */
++.mobile{ /* keep the version above as the source of truth */ }
++.mobile.open{display:block}
+ @media (max-width:780px){
+   .topbar{position:static}
+   .sticky-cta{display:none}
+ }
+ html.nav-open, body.nav-open{overflow:hidden;touch-action:none}
+ 
+ /* ===== Mobile compact header + action bar (v5) ===== */
+ @media (max-width: 780px){
+   .logo{ height:30px }
+   .nav{ min-height:64px }
+-  .nav .right .btn{ display:none }       /* hide big CTAs on phone */
+-  .nav .right .btn.burger{ display:inline-flex; } /* keep burger visible */
++  .nav .right .btn{ display:none }              /* hide big CTAs on phone */
++  .nav .right .btn.burger{ display:inline-flex; margin-left:auto } /* push Menu to the far right */
+   .btn.burger{ padding:8px 12px; font-size:14px }
+   .hero h1{ font-size: clamp(26px, 7.5vw, 42px); }
+   .subtitle{ font-size: 1rem }
+@@ -116,34 +140,6 @@
+   position:fixed;left:0;right:0;
+   bottom:0;
+   background:#fff;border-top:1px solid var(--border);
+   padding:10px 12px calc(10px + env(safe-area-inset-bottom, 0));
+   display:none;z-index:70;gap:10px;align-items:center;justify-content:center
+ }
+ @media (max-width:780px){ .action-bar{ display:flex } }
+ .action-bar .btn{ flex:1 1 0; justify-content:center; min-height:44px }
+-
+-/* NAV SLIDE */
+-.mobile{transform:translateY(-8px);opacity:0;transition:transform .18s ease, opacity .18s ease}
+-.mobile.open{transform:translateY(0);opacity:1}
+-.scrim{transition:opacity .15s ease}
+-
+-
+-/* ===== v7 mobile drawer & header polish ===== */
+-header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.98);backdrop-filter:blur(8px)}
+-.nav{min-height:64px}
+-
+-.mobile{
+-  position:fixed;left:0;right:0;top: var(--hdr-h,64px);
+-  padding-top: 16px;
+-  background:#fff;border-top:1px solid var(--border);
+-  display:none;z-index:999;max-height: calc(100dvh - var(--hdr-h,64px));overflow:auto;
+-  -webkit-overflow-scrolling:touch;
+-  box-shadow:0 8px 24px rgba(0,0,0,.12);
+-}
+-.mobile.open{display:block}
+-.mobile a{display:block;padding:12px 18px;border-bottom:1px solid var(--border);font-weight:600;color:#111}
+-
+-.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;z-index:998}
+-.scrim.open{opacity:1;pointer-events:auto}
+-
+-.btn.burger{pointer-events:auto}
+-
+-/* Slide animation */
+-.mobile{transform:translateY(-8px);opacity:0;transition:transform .18s ease,opacity .18s ease}
+-.mobile.open{transform:translateY(0);opacity:1}
+-
+-@media (max-width:780px){
+-  .nav .right .btn{display:none}
+-  .btn.burger{display:inline-flex;padding:8px 12px;font-size:14px}
+-  .logo{height:30px}
+-}
+-
+-/* v8: ensure header is always clickable and above all */
+-header, .nav, .nav .right, .btn.burger{ position:relative; z-index: 1001; }
+-.mobile{ z-index: 1000; }
+-.scrim{ z-index: 999; }
+-
+-/* Protect from any accidental overlay from first section */
+-main > section:first-child{ position:relative; z-index: 0; }
+-
+-/* Improved mobile drawer for visibility */
+-.mobile {
+-  position: fixed;
+-  left: 0;
+-  right: 0;
+-  top: var(--hdr-h, 64px);
+-  background: #fff;
+-  border-top: 1px solid var(--border);
+-  display: none;
+-  z-index: 1000;
+-  max-height: calc(100dvh - var(--hdr-h, 64px));
+-  overflow: auto;
+-  -webkit-overflow-scrolling: touch;
+-  box-shadow: 0 8px 32px rgba(0,0,0,.18);
+-  padding: 32px 24px 24px 24px;
+-  border-radius: 0 0 18px 18px;
+-  opacity: 0;
+-  transform: translateY(-12px);
+-  transition: transform .22s cubic-bezier(.4,0,.2,1), opacity .22s cubic-bezier(.4,0,.2,1);
+-}
+-.mobile.open {
+-  display: block;
+-  opacity: 1;
+-  transform: translateY(0);
+-}
+-.mobile a {
+-  display: block;
+-  padding: 18px 12px;
+-  border-bottom: 1px solid var(--border);
+-  font-weight: 600;
+-  color: #111;
+-  font-size: 1.15rem;
+-}
+-
+-/* Improved scrim overlay for mobile nav */
+-.scrim {
+-  position: fixed;
+-  inset: 0;
+-  background: rgba(0,0,0,.45);
+-  opacity: 0;
+-  pointer-events: none;
+-  z-index: 999;
+-  transition: opacity .18s cubic-bezier(.4,0,.2,1);
+-}
+-.scrim.open {
+-  opacity: 1;
+-  pointer-events: auto;
+-}
