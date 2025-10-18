@@ -150,5 +150,78 @@
 </body>
 </html>
 
+<script>
+/* DMAR Mobile Drawer: tiny, safe, no dependencies */
+(function () {
+  const root  = document.documentElement;
+
+  // Elements (create scrim if missing)
+  let scrim = document.querySelector('.scrim');
+  if (!scrim) {
+    scrim = document.createElement('div');
+    scrim.className = 'scrim';
+    document.body.appendChild(scrim);
+  }
+  const nav  = document.getElementById('mobileNav') || document.querySelector('.mobile');
+  const btn  = document.getElementById('menuToggle') ||
+               document.querySelector('.btn.burger') ||
+               document.querySelector('[data-menu]');
+
+  // Build drawer head + list if developer used bare <nav> links
+  if (nav && !nav.querySelector('.mnav')) {
+    const links = Array.from(nav.children).filter(n => n.matches('a,li,ul'));
+    const wrap  = document.createElement('ul');
+    wrap.className = 'mnav';
+    links.forEach(a => {
+      const li = document.createElement('li');
+      if (a.tagName === 'A') { li.appendChild(a); }
+      else li.append(...a.children);
+      wrap.appendChild(li);
+    });
+    const head = document.createElement('div');
+    head.className = 'mhead';
+    head.innerHTML = '<span class="title">Menu</span>';
+    nav.innerHTML = '';
+    nav.append(head, wrap);
+  }
+
+  function setOffsets(){
+    const header = document.querySelector('header, .site-header');
+    const h = header ? Math.round(header.getBoundingClientRect().height) : 64;
+    root.style.setProperty('--hdr-h', h + 'px');
+  }
+
+  function openNav(){
+    if(!nav) return;
+    nav.classList.add('open');  scrim.classList.add('open');
+    root.classList.add('nav-open');
+    // Focus first link
+    const first = nav.querySelector('a,button,input,select,textarea');
+    first && first.focus({preventScroll:true});
+  }
+  function closeNav(){
+    if(!nav) return;
+    nav.classList.remove('open'); scrim.classList.remove('open');
+    root.classList.remove('nav-open');
+    btn && btn.focus({preventScroll:true});
+  }
+
+  // Toggle
+  btn && btn.addEventListener('click', e => {
+    e.preventDefault();
+    nav && nav.classList.contains('open') ? closeNav() : openNav();
+  });
+
+  // Close on scrim or ESC or link tap
+  scrim.addEventListener('click', closeNav);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+  nav && nav.addEventListener('click', e => { if (e.target.closest('a')) closeNav(); });
+
+  // Keep header height accurate
+  setOffsets();
+  window.addEventListener('resize', setOffsets);
+  window.addEventListener('orientationchange', setOffsets);
+})();
+</script>
 </body>
 </html>
