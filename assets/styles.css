@@ -1,118 +1,116 @@
-/* DMAR International • Compact Mobile Drawer & Phone Layouts (2025-10-18) */
+/* DMAR International – Final polished theme (2025-10-18)
+   - Announcement bar (green→near-black) with subtle motion
+   - Sticky header, logo left / Menu right on phones
+   - Mobile "sheet" drawer (white bar under header, no internal scroll)
+   - Phone-first grids & forms for Contact/Careers
+   - Clean cards/sections/footers, neutral typography
+*/
 
-/* ====== Tokens ====== */
+/* ===== Tokens ===== */
 :root{
-  --brand:#0A5694; --ink:#1F2937; --bg:#fff; --muted:#6B7280;
-  --border:#E5E7EB; --radius:999px; --container:1100px;
-  --hdr-h:64px;        /* JS updates this */
-  --safe-b: env(safe-area-inset-bottom,0);
+  --brand:#0A5694; --ink:#111; --muted:#566070; --bg:#fff;
+  --border:#E6EAF0; --radius:16px; --container:1200px;
+  --hdr-h:64px; --safe-b:env(safe-area-inset-bottom,0);
 }
 
-/* ====== Base ====== */
+/* ===== Base ===== */
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
-  font:15.5px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+html,body{margin:0;padding:0;background:var(--bg);color:#333;
+  font:15.5px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
 img{max-width:100%;height:auto;display:block}
 a{color:var(--brand);text-decoration:none}
 .container{max-width:var(--container);margin:0 auto;padding:0 20px}
 .section{padding:56px 0;border-top:1px solid var(--border)}
-h1{font-size:clamp(28px,5vw,46px);line-height:1.15;margin:0 0 10px}
-h2{font-size:clamp(20px,3.2vw,30px);margin:0 0 6px}
-h3{margin:8px 0 6px;font-size:19px}
-.subtitle,.muted{color:var(--muted)}
+h1{font-size:clamp(28px,5vw,46px);line-height:1.15;margin:0 0 8px;color:#111}
+h2{font-size:clamp(22px,3.4vw,32px);margin:0 0 6px;color:#111}
+h3{margin:8px 0 6px;font-size:19px;color:#111}
+.subtitle,.muted{color:#566070}
 .small{font-size:.92rem;color:#4B5563}
+.lead{font-size:1.08rem;color:#2b3442}
 
 /* Buttons */
 .btn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;
-  border:1px solid var(--brand);padding:11px 16px;border-radius:var(--radius);
-  font-weight:600;cursor:pointer;transition:transform .06s ease,opacity .18s}
+  border:1px solid var(--brand);padding:11px 16px;border-radius:999px;font-weight:700;
+  cursor:pointer;transition:transform .06s ease,opacity .18s}
 .btn:hover{opacity:.94}
 .btn:active{transform:translateY(1px)}
 .btn.alt{background:#fff;color:var(--brand)}
 .btn.burger{display:none}
 
-/* Topbar / Header */
-.topbar{background:#043E6A;color:#dce8f5;font-size:.9rem}
-.topbar .container{display:flex;align-items:center;gap:10px;justify-content:center;padding:6px 20px}
+/* ===== Announcement bar (green→near-black) ===== */
+.topbar{
+  position:sticky;top:0;z-index:1002;
+  background:linear-gradient(90deg,#0b8a4a 0%, #0a4730 45%, #0a0f14 100%);
+  color:#fff;overflow:hidden;isolation:isolate
+}
+.topbar .row{display:flex;gap:12px;align-items:center;justify-content:center;min-height:38px;padding:6px 20px;position:relative}
+.topbar .dot{width:8px;height:8px;border-radius:999px;background:#fff;animation:pulse 1.6s infinite ease-in-out}
+@keyframes pulse{0%{opacity:.45;transform:scale(.75)}50%{opacity:1;transform:scale(1)}100%{opacity:.45;transform:scale(.75)}}
+.topbar .marquee{display:flex;gap:8px;align-items:center;white-space:nowrap;animation:slideHint 14s linear infinite;opacity:.98}
+@keyframes slideHint{0%{transform:translateX(0)}50%{transform:translateX(-6px)}100%{transform:translateX(0)}}
+.topbar .close{position:absolute;right:10px;top:6px;background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer}
 
-header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.98);
-  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-.nav{min-height:64px;display:flex;align-items:center;gap:12px}
-.logo{display:inline-flex;align-items:center;height:32px}
-.logo img{height:32px;width:auto}
-.nav .right{margin-left:auto;display:flex;align-items:center;gap:10px}
+/* ===== Header ===== */
+header{position:sticky;top:0;z-index:1001;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.nav{min-height:72px;display:flex;align-items:center;gap:18px}
+.logo{height:38px}
+.nav .mid{flex:1 1 auto;display:flex;justify-content:center}
+.nav .mid ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+.nav .mid a{color:#111;font-weight:600;opacity:.85}
+.nav .mid a:hover{opacity:1}
+.nav .right{margin-left:auto;display:flex;gap:10px;align-items:center}
 
-/* Desktop primary nav */
-.nav .primary{display:flex;align-items:center;gap:20px;margin-left:22px}
-.nav .primary a{color:var(--ink);font-weight:600;padding:10px 6px;border-radius:999px}
-.nav .primary a:hover{background:#F6F7F9}
+@media (max-width:1020px){
+  .nav .mid{display:none}
+  .btn.burger{display:inline-flex}
+}
 
-/* Cards */
+/* ===== Mobile sheet drawer (no internal scroll) ===== */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .18s;z-index:999}
+.scrim.open{opacity:1;pointer-events:auto}
+.mobile{
+  position:fixed;left:0;right:0;top:var(--hdr-h,64px);
+  background:#fff;border-top:1px solid var(--border);
+  display:none;z-index:1000;padding:10px 14px;border-radius:0 0 16px 16px;
+  box-shadow:0 10px 28px rgba(0,0,0,.14);max-height:none;overflow:hidden;
+  opacity:0;transform:translateY(-10px);transition:transform .22s cubic-bezier(.4,0,.2,1),opacity .22s cubic-bezier(.4,0,.2,1)
+}
+.mobile.open{display:block;opacity:1;transform:translateY(0)}
+.mobile a{display:block;padding:10px 12px;border-bottom:1px solid var(--border);color:#111;font-weight:600;font-size:15px;line-height:1.2}
+.mobile a:last-child{border-bottom:none}
+
+/* Keep Menu on the right on phones */
+@media (max-width:780px){
+  .logo{height:30px}
+  .nav{min-height:64px}
+  .nav .right .btn{display:none}
+  .nav .right .btn.burger{display:inline-flex;margin-left:auto}
+  .btn.burger{padding:8px 12px;font-size:14px}
+}
+
+/* ===== Sections / cards ===== */
+.hero{position:relative;padding:90px 0 40px;background:linear-gradient(180deg,#f6f9fc 0%,#ffffff 66%)}
+.badge{display:inline-block;background:#eef5fb;color:#035aa6;border:1px solid #cae1f6;border-radius:999px;padding:8px 12px;font-weight:700}
 .cards{display:grid;grid-template-columns: repeat(3,1fr);gap:18px}
 figure.card{border:1px solid var(--border);border-radius:18px;overflow:hidden;background:#fff}
 figure.card img{height:200px;width:100%;object-fit:cover}
 figure.card .content{padding:14px 14px 18px}
+@media (max-width:980px){ .cards{grid-template-columns:1fr 1fr} }
+@media (max-width:640px){ .cards{grid-template-columns:1fr} figure.card img{height:180px} }
 
-/* Footer */
+/* Logos strip */
+.logo-strip{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.logo-strip img{height:44px;width:auto}
+
+/* ===== Footer ===== */
 footer{background:#0b2744;color:#d1d7de;padding:36px 0;margin-top:40px}
 footer a{color:#cfe6ff}
 footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:18px}
+@media (max-width:780px){ footer .cols{grid-template-columns:1fr} }
+.hr{height:1px;background:var(--border);margin:12px 0}
+.sep{border:none;height:1px;background:var(--border);margin:14px 0}
 
-/* ====== Responsive ====== */
-@media (max-width:980px){ .cards{grid-template-columns:1fr 1fr} }
-@media (max-width:780px){
-  .logo img{height:30px}
-  .nav .primary{display:none}               /* Hide desktop links */
-  .btn.burger{display:inline-flex}          /* Show burger */
-  .nav .right .btn:not(.burger){display:none} /* Hide big CTA on mobile */
-  footer .cols{grid-template-columns:1fr}
-  .section{padding:44px 0}
-}
-
-/* ====== Mobile Drawer (smaller, tighter) ======
-   – Sits right below the header (JS sets --hdr-h precisely)
-   – 14–15px text, compact padding, clear affordances
-   – No giant empty top space
-================================================== */
-.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;
-  z-index:999;transition:opacity .15s}
-.scrim.open{opacity:1;pointer-events:auto}
-
-.mobile{
-  position:fixed;left:0;right:0;width:100vw;top:var(--hdr-h);
-  background:#fff;border-top:1px solid var(--border);
-  padding:6px 10px 10px; /* tighter */
-  max-height:calc(100dvh - var(--hdr-h));overflow:auto;-webkit-overflow-scrolling:touch;
-  z-index:1000;transform:translateY(-8px);opacity:0;transition:transform .16s ease,opacity .16s ease;
-  display:none;
-}
-.mobile.open{display:block;transform:none;opacity:1}
-.mobile .mhead{display:flex;justify-content:space-between;align-items:center;padding:6px 8px 4px}
-.mobile .mhead .title{font-size:.9rem;color:#6B7280;letter-spacing:.02em}
-.mobile .mnav{list-style:none;margin:4px 0 0;padding:0}
-.mobile .mnav li+li{margin-top:2px}
-.mobile .mnav a{
-  display:flex;align-items:center;gap:10px;
-  padding:10px 12px;border-radius:10px;font-size:15px;line-height:1.2;color:#111;
-}
-.mobile .mnav a:active{background:#F2F5F8}
-
-/* Prevent body scroll when drawer is open */
-.nav-open{overflow:hidden;touch-action:none}
-
-/* ====== Action bar (mobile CTAs) ====== */
-.action-bar{position:fixed;left:0;right:0;bottom:0;display:none;background:#fff;border-top:1px solid var(--border);
-  padding:10px 12px calc(10px + var(--safe-b));z-index:950;gap:10px}
-@media (max-width:780px){ .action-bar{display:flex} }
-.action-bar .btn{flex:1 1 0;justify-content:center}
-
-/* ====== Phone-first Contact & Careers ======
-   Apply body classes: .contact or .careers
-   – stacks columns earlier
-   – trims paddings, button sizes
-   – keeps forms readable without “squeezed” feel
-================================================ */
-body.contact main, body.careers main{padding-bottom:72px} /* for action bar */
+/* ===== Phone-first helpers (Contact & Careers) ===== */
 .compact{max-width:860px;margin:0 auto}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
@@ -125,18 +123,11 @@ input,select,textarea{
   font:inherit;line-height:1.3;background:#fff
 }
 textarea{min-height:110px;resize:vertical}
-label{font-weight:600;font-size:.95rem;margin-bottom:6px;display:block}
+label{font-weight:700;font-size:.95rem;margin-bottom:6px;display:block}
 
-/* phone tweaks */
 @media (max-width:780px){
   .grid-2,.grid-3{grid-template-columns:1fr}
   form .row{grid-template-columns:1fr}
-  .btn{padding:11px 14px}
   h1{font-size:clamp(24px,7vw,36px)}
   h2{font-size:clamp(18px,5.5vw,24px)}
 }
-
-/* ====== Utilities ====== */
-.hr{height:1px;background:var(--border);margin:12px 0}
-.mt-0{margin-top:0}.mt-6{margin-top:6px}.mt-12{margin-top:12px}.mt-20{margin-top:20px}
-.mb-0{margin-bottom:0}.mb-6{margin-bottom:6px}.mb-12{margin-bottom:12px}.mb-20{margin-bottom:20px}

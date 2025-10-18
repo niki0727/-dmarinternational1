@@ -4,23 +4,26 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#0A5694"/>
-  <title>Services • DMAR International</title>
+  <title>Services — DMAR International</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/styles.css"/>
   <meta name="description" content="DMAR International — Offshore Marine Warranty & Marine Operations for offshore energy projects."/>
-  <meta property="og:title" content="Services • DMAR International" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/assets/images/hero-port.jpg" />
 </head>
 <body>
-  
+<!-- Announcement bar -->
 <div class="topbar" role="region" aria-label="announcement">
   <div class="row container">
     <span class="dot" aria-hidden="true"></span>
-    <span>We’re hiring Marine Warranty Surveyors & Naval Architects — <a style="color:#fff;text-decoration:underline" href="/careers.html">upload your CV</a></span>
-    <button class="close" aria-label="Dismiss">×</button>
+    <div class="marquee">
+      <strong>Careers:</strong>&nbsp;We’re expanding our network —
+      <a class="badge" href="/careers.html">Open roles</a>&nbsp;·&nbsp;
+      <a class="badge" href="/careers.html#apply">Upload your CV</a>
+    </div>
+    <button class="close" aria-label="Hide announcement" onclick="this.closest('.topbar').style.display='none'">×</button>
   </div>
 </div>
 
@@ -31,22 +34,25 @@
     </div>
     <div class="mid" role="navigation" aria-label="Primary">
       <ul>
-        <li><a href="/services.html" style="color:var(--brand);font-weight:700">Services</a></li>
-        <li><a href="/sectors.html" >Sectors</a></li>
-        <li><a href="/projects.html" >Projects</a></li>
-        <li><a href="/sustainability.html" >Sustainability</a></li>
-        <li><a href="/about.html" >About</a></li>
-        <li><a href="/careers.html" >Careers</a></li>
-        <li><a href="/contact.html" >Contact</a></li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/sectors.html">Sectors</a></li>
+        <li><a href="/projects.html">Projects</a></li>
+        <li><a href="/sustainability.html">Sustainability</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/careers.html">Careers</a></li>
+        <li><a href="/contact.html">Contact</a></li>
       </ul>
     </div>
     <div class="right">
       <a class="btn alt" href="/assets/DMAR-brochure-2024.pptx" download>Download brochure</a>
       <a class="btn" href="/contact.html">Request a call</a>
-      <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0" aria-label="Menu">Menu</button>
+      <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" aria-label="Menu">Menu</button>
     </div>
   </div>
-  <div id="mobileNav" class="mobile" role="navigation" aria-label="Mobile">
+
+  <!-- Mobile sheet drawer -->
+  <div class="scrim" aria-hidden="true"></div>
+  <nav id="mobileNav" class="mobile" role="navigation" aria-label="Mobile">
     <a href="/services.html">Services</a>
     <a href="/sectors.html">Sectors</a>
     <a href="/projects.html">Projects</a>
@@ -54,73 +60,16 @@
     <a href="/about.html">About</a>
     <a href="/careers.html">Careers</a>
     <a href="/contact.html">Contact</a>
-  </div>
+  </nav>
 </header>
 
-  <main>
-    
-<section class="section">
-  <div class="container">
-    <h2>Services</h2>
-    <p class="lead">Independent support across the campaign lifecycle — documents, engineering review and offshore attendance through to approvals and close‑out.</p>
-    <div class="grid cards">
-      <div class="card">
-        <h3>Marine Warranty</h3>
-        <ul>
-          <li>RAMS & method statement review</li>
-          <li>Lifting, rigging, CoG and motion checks</li>
-          <li>Sea‑fastening, stability and ballasting verification</li>
-          <li>Certificates of Approval (when appointed by client or insurer)</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Vessel & DP Assurance</h3>
-        <ul>
-          <li>Suitability & condition surveys for barges, tugs, HLV/HCV, JUs, semi‑subs, flotels</li>
-          <li>DP capability review, FMEA recommendations, trials attendance</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Transport & Installation</h3>
-        <ul>
-          <li>Jackets, monopiles, TP/OSS, nacelles and modules</li>
-          <li>Route, weather and port interface management</li>
-          <li>Barge moves, towage planning, anchor patterns</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Naval Architecture & Temporary Works</h3>
-        <ul>
-          <li>Intact/damage stability & strength assessments</li>
-          <li>Mooring analyses, seakeeping, and temporary works design checks</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Subsea Cables</h3>
-        <ul>
-          <li>Shallow water methods consistent with DNV‑RP‑0360</li>
-          <li>CBRA approach and repair spreads</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Decommissioning</h3>
-        <ul>
-          <li>Lift and removal planning and verification</li>
-          <li>Waste streams, logistics and port interface</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-  </main>
-  
+<main><section class='section'><div class='container'><h2>Content coming soon</h2></div></section></main>
 <footer>
   <div class="container cols">
     <div>
       <img src="/assets/logo.png" alt="DMAR International" width="180" height="48" />
       <p class="small" style="max-width:60ch;margin-top:10px">
-        Offshore Marine Warranty & Marine Operations consultancy serving offshore wind, subsea cables and oil & gas. We provide independent review and on‑site attendance so operations run safely and on schedule.
+        Offshore Marine Warranty & Marine Operations consultancy serving offshore wind, subsea cables and oil & gas. We provide independent review and on-site attendance so operations run safely and on schedule.
       </p>
       <p class="small notice">Standards & trademarks note: References to DNV and Lloyd’s Register are for information about widely used industry standards and do not imply endorsement or certification by those organisations.</p>
     </div>
@@ -143,132 +92,13 @@
     © 2025 DMAR International. All rights reserved.
   </div>
 </footer>
+
 <div class="action-bar">
   <a class="btn" href="tel:+447404810279">Call</a>
   <a class="btn alt" href="/contact.html">Contact</a>
 </div>
-<div class="sticky-cta">
-  <a class="btn" href="/contact.html">Talk to an expert</a>
-</div>
+
 <script src="/assets/script.js"></script>
-  <!-- Mobile drawer positioning & toggle -->
-  <script>
-  (function () {
-    const root  = document.documentElement;
-    const nav   = document.querySelector('.mobile');
-    const scrim = document.querySelector('.scrim');
-    const btn   = document.getElementById('menuToggle') ||
-                  document.querySelector('.btn.burger') ||
-                  document.querySelector('[data-menu]');
 
-    function setOffsets(){
-      const header = document.querySelector('header, .site-header');
-      const topbar = document.querySelector('.hiring-banner, .announcement, .notice');
-      const h = header ? header.getBoundingClientRect().height : 64;
-      const t = (topbar && topbar.offsetParent !== null) ? topbar.getBoundingClientRect().height : 0;
-      root.style.setProperty('--hdr-h',  h + 'px');
-      root.style.setProperty('--topbar-h', t + 'px');
-    }
-
-    function openNav(){
-      if(!nav) return;
-      nav.classList.add('open');
-      scrim && scrim.classList.add('open');
-      root.classList.add('nav-open');
-    }
-    function closeNav(){
-      if(!nav) return;
-      nav.classList.remove('open');
-      scrim && scrim.classList.remove('open');
-      root.classList.remove('nav-open');
-    }
-
-    btn && btn.addEventListener('click', e => {
-      e.preventDefault();
-      nav && nav.classList.contains('open') ? closeNav() : openNav();
-    });
-    scrim && scrim.addEventListener('click', closeNav);
-
-    setOffsets();
-    window.addEventListener('resize', setOffsets);
-    window.addEventListener('orientationchange', setOffsets);
-  })();
-  </script>
-</body>
-</html>
-
-<script>
-/* DMAR Mobile Drawer: tiny, safe, no dependencies */
-(function () {
-  const root  = document.documentElement;
-
-  // Elements (create scrim if missing)
-  let scrim = document.querySelector('.scrim');
-  if (!scrim) {
-    scrim = document.createElement('div');
-    scrim.className = 'scrim';
-    document.body.appendChild(scrim);
-  }
-  const nav  = document.getElementById('mobileNav') || document.querySelector('.mobile');
-  const btn  = document.getElementById('menuToggle') ||
-               document.querySelector('.btn.burger') ||
-               document.querySelector('[data-menu]');
-
-  // Build drawer head + list if developer used bare <nav> links
-  if (nav && !nav.querySelector('.mnav')) {
-    const links = Array.from(nav.children).filter(n => n.matches('a,li,ul'));
-    const wrap  = document.createElement('ul');
-    wrap.className = 'mnav';
-    links.forEach(a => {
-      const li = document.createElement('li');
-      if (a.tagName === 'A') { li.appendChild(a); }
-      else li.append(...a.children);
-      wrap.appendChild(li);
-    });
-    const head = document.createElement('div');
-    head.className = 'mhead';
-    head.innerHTML = '<span class="title">Menu</span>';
-    nav.innerHTML = '';
-    nav.append(head, wrap);
-  }
-
-  function setOffsets(){
-    const header = document.querySelector('header, .site-header');
-    const h = header ? Math.round(header.getBoundingClientRect().height) : 64;
-    root.style.setProperty('--hdr-h', h + 'px');
-  }
-
-  function openNav(){
-    if(!nav) return;
-    nav.classList.add('open');  scrim.classList.add('open');
-    root.classList.add('nav-open');
-    // Focus first link
-    const first = nav.querySelector('a,button,input,select,textarea');
-    first && first.focus({preventScroll:true});
-  }
-  function closeNav(){
-    if(!nav) return;
-    nav.classList.remove('open'); scrim.classList.remove('open');
-    root.classList.remove('nav-open');
-    btn && btn.focus({preventScroll:true});
-  }
-
-  // Toggle
-  btn && btn.addEventListener('click', e => {
-    e.preventDefault();
-    nav && nav.classList.contains('open') ? closeNav() : openNav();
-  });
-
-  // Close on scrim or ESC or link tap
-  scrim.addEventListener('click', closeNav);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
-  nav && nav.addEventListener('click', e => { if (e.target.closest('a')) closeNav(); });
-
-  // Keep header height accurate
-  setOffsets();
-  window.addEventListener('resize', setOffsets);
-  window.addEventListener('orientationchange', setOffsets);
-})();
-</script>
 </body>
 </html>
