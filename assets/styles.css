@@ -127,7 +127,7 @@ html,body{overflow-x:hidden}
 .scrim.open{opacity:1;pointer-events:auto}
 .mobile{position:fixed;left:0;right:0;top:110px;background:#fff;border-top:1px solid var(--border);padding:18px;display:none;z-index:60;max-height:calc(100dvh - 110px);overflow:auto;-webkit-overflow-scrolling:touch}
 .mobile.open{display:block}
-@media (max-width:780px){
+@media (max-width:760px){
   .topbar{position:static}
   .sticky-cta{display:none}
 }
