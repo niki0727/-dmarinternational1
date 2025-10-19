@@ -62,14 +62,69 @@ header{position:sticky;top:0;z-index:1001;background:rgba(255,255,255,.95);backd
 
 @media (max-width:1020px){
   .nav .mid{display:none}
-  .btn.burger{display:inline-flex}
+  .burger{display:inline-flex}
+}
+/* Mobile drawer */
+.mobile{position:fixed;inset:110px 0 0;background:#fff;border-top:1px solid var(--border);padding:18px;display:none}
+.mobile.open{display:block}
+.mobile a{display:block;padding:12px 6px;border-bottom:1px solid var(--border);color:#111;font-weight:600}
+
+/* Hero */
+.hero{position:relative;padding:90px 0 40px;background:linear-gradient(180deg,#f6f9fc 0%,#ffffff 66%)}
+.hero .wrap{display:grid;gap:24px;grid-template-columns:1.1fr .9fr;align-items:center}
+.hero h1{font-size:clamp(32px,4.5vw,54px)}
+.subtitle{color:var(--muted);max-width:80ch}
+.hero .art{min-height:300px;border-radius:22px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow)}
+.hero .art img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Sections */
+.section{padding:60px 0}.section h2{font-size:clamp(24px,3.2vw,34px);margin:0 0 10px}.section p.lead{color:var(--muted);max-width:80ch}
+.grid{display:grid;gap:24px}
+.cards{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.kpi{display:flex;gap:14px;align-items:center;color:#566070;font-size:.95rem;flex-wrap:wrap}
+.table{width:100%;border-collapse:collapse}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--border);text-align:left}.table th{color:#0A5694;font-weight:700}
+.faq dt{font-weight:700;margin-top:14px}.faq dd{margin:6px 0 16px 0;color:#556070}
+
+/* Sustainability wave */
+.s-hero{position:relative;isolation:isolate;padding:80px 0 40px;background:linear-gradient(180deg,rgba(11,138,74,.12),#fff 60%)}
+.wave{position:absolute;inset:auto 0 0;height:160px;overflow:hidden;z-index:-1}
+.wave svg{display:block;width:100%;height:160px}
+#flow1{animation:flow 14s linear infinite}#flow2{animation:flow 18s linear infinite reverse;opacity:.6}@keyframes flow{to{transform:translateX(-50%)}}
+.brand-row{display:flex;gap:20px;align-items:center;flex-wrap:wrap;opacity:.9}.brand-row img{height:38px;filter:grayscale(10%) saturate(110%)}
+
+/* Footer & sticky CTA */
+footer{border-top:1px solid var(--border);background:#f7f9fc;padding:30px 0;color:#334155;font-size:.95rem}
+footer .cols{display:grid;gap:20px;grid-template-columns:2fr 1fr 1fr}@media (max-width:900px){footer .cols{grid-template-columns:1fr}}
+.sticky-cta{position:fixed;right:16px;bottom:16px;z-index:80}
+.notice{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:12px;padding:10px 12px;font-size:.9rem}
+
+/* Utilities */
+.hidden{display:none!important}
+
+/* ==== Mobile polish (v3) ==== */
+
+/* Form controls (mobile-friendly, 16px+ to avoid iOS zoom) */
+input, textarea, select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  background: #fff;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(10,86,148,.15);
 }
 
 /* ===== Mobile sheet drawer (no internal scroll) ===== */
 .scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .18s;z-index:999}
 .scrim.open{opacity:1;pointer-events:auto}
 .mobile{
-  position:fixed;left:0;right:0;top:var(--hdr-h,64px);
+  position:fixed;left:0;right:0;top: var(--hdr-h,64px);
+  padding-top: 0;
   background:#fff;border-top:1px solid var(--border);
   display:none;z-index:1000;padding:10px 14px;border-radius:0 0 16px 16px;
   box-shadow:0 10px 28px rgba(0,0,0,.14);max-height:none;overflow:hidden;
@@ -125,9 +180,10 @@ input,select,textarea{
 textarea{min-height:110px;resize:vertical}
 label{font-weight:700;font-size:.95rem;margin-bottom:6px;display:block}
 
-@media (max-width:780px){
-  .grid-2,.grid-3{grid-template-columns:1fr}
-  form .row{grid-template-columns:1fr}
-  h1{font-size:clamp(24px,7vw,36px)}
-  h2{font-size:clamp(18px,5.5vw,24px)}
-}
+/* v8: ensure header is always clickable and above all */
+header, .nav, .nav .right, .btn.burger{ position:relative; z-index: 1001; }
+.mobile{ z-index: 1000; }
+.scrim{ z-index: 999; }
+
+/* Protect from any accidental overlay from first section */
+main > section:first-child{ position:relative; z-index: 0; }
