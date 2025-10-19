@@ -4,23 +4,26 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#0A5694"/>
-  <title>Projects • DMAR International</title>
+  <title>Projects — DMAR International</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/styles.css"/>
   <meta name="description" content="DMAR International — Offshore Marine Warranty & Marine Operations for offshore energy projects."/>
-  <meta property="og:title" content="Projects • DMAR International" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/assets/images/hero-port.jpg" />
 </head>
 <body>
-  
+<!-- Announcement bar -->
 <div class="topbar" role="region" aria-label="announcement">
   <div class="row container">
     <span class="dot" aria-hidden="true"></span>
-    <span>We’re hiring Marine Warranty Surveyors & Naval Architects — <a style="color:#fff;text-decoration:underline" href="/careers.html">upload your CV</a></span>
-    <button class="close" aria-label="Dismiss">×</button>
+    <div class="marquee">
+      <strong>Careers:</strong>&nbsp;We’re expanding our network —
+      <a class="badge" href="/careers.html">Open roles</a>&nbsp;·&nbsp;
+      <a class="badge" href="/careers.html#apply">Upload your CV</a>
+    </div>
+    <button class="close" aria-label="Hide announcement" onclick="this.closest('.topbar').style.display='none'">×</button>
   </div>
 </div>
 
@@ -31,22 +34,25 @@
     </div>
     <div class="mid" role="navigation" aria-label="Primary">
       <ul>
-        <li><a href="/services.html" >Services</a></li>
-        <li><a href="/sectors.html" >Sectors</a></li>
-        <li><a href="/projects.html" style="color:var(--brand);font-weight:700">Projects</a></li>
-        <li><a href="/sustainability.html" >Sustainability</a></li>
-        <li><a href="/about.html" >About</a></li>
-        <li><a href="/careers.html" >Careers</a></li>
-        <li><a href="/contact.html" >Contact</a></li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/sectors.html">Sectors</a></li>
+        <li><a href="/projects.html">Projects</a></li>
+        <li><a href="/sustainability.html">Sustainability</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/careers.html">Careers</a></li>
+        <li><a href="/contact.html">Contact</a></li>
       </ul>
     </div>
     <div class="right">
       <a class="btn alt" href="/assets/DMAR-brochure-2024.pptx" download>Download brochure</a>
       <a class="btn" href="/contact.html">Request a call</a>
-      <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0" aria-label="Menu">Menu</button>
+      <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" aria-label="Menu">Menu</button>
     </div>
   </div>
-  <div id="mobileNav" class="mobile" role="navigation" aria-label="Mobile">
+
+  <!-- Mobile sheet drawer -->
+  <div class="scrim" aria-hidden="true"></div>
+  <nav id="mobileNav" class="mobile" role="navigation" aria-label="Mobile">
     <a href="/services.html">Services</a>
     <a href="/sectors.html">Sectors</a>
     <a href="/projects.html">Projects</a>
@@ -54,34 +60,16 @@
     <a href="/about.html">About</a>
     <a href="/careers.html">Careers</a>
     <a href="/contact.html">Contact</a>
-  </div>
+  </nav>
 </header>
 
-  <main>
-    
-<section class="section">
-  <div class="container">
-    <h2>Projects</h2>
-    <p class="lead">A snapshot of operations we’ve supported. Detailed references available under NDA.</p>
-    <div class="grid cards">
-      <figure class="card"><img src="/assets/images/project-1.jpg" alt="Module transfer on SPMTs" style="width:100%;height:220px;object-fit:cover;border-radius:12px"/><figcaption>Module transfer & sea‑fastening checks with SPMT interface.</figcaption></figure>
-      <figure class="card"><img src="/assets/images/project-2.jpg" alt="Large offshore module quayside" style="width:100%;height:220px;object-fit:cover;border-radius:12px"/><figcaption>Quayside integration — lifts and rigging verification.</figcaption></figure>
-      <figure class="card"><img src="/assets/images/project-3.jpg" alt="Transport engineering" style="width:100%;height:220px;object-fit:cover;border-radius:12px"/><figcaption>Transport engineering review — barge selection & accelerations.</figcaption></figure>
-      <figure class="card"><img src="/assets/images/project-4.jpg" alt="Wind nacelle heavy lift" style="width:100%;height:220px;object-fit:cover;border-radius:12px"/><figcaption>WTG nacelle heavy lift — method review and HLV assurance.</figcaption></figure>
-      <figure class="card"><img src="/assets/images/project-5.jpg" alt="Jack-up rig" style="width:100%;height:220px;object-fit:cover;border-radius:12px"/><figcaption>Jack‑up mobilisation — suitability survey and DP checks.</figcaption></figure>
-      <figure class="card"><img src="/assets/images/project-6.jpg" alt="Towage / spread" style="width:100%;height:220px;object-fit:cover;border-radius:12px"/><figcaption>Towage plan & motions review for long transit.</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-  </main>
-  
+<main><section class='section'><div class='container'><h2>Content coming soon</h2></div></section></main>
 <footer>
   <div class="container cols">
     <div>
       <img src="/assets/logo.png" alt="DMAR International" width="180" height="48" />
       <p class="small" style="max-width:60ch;margin-top:10px">
-        Offshore Marine Warranty & Marine Operations consultancy serving offshore wind, subsea cables and oil & gas. We provide independent review and on‑site attendance so operations run safely and on schedule.
+        Offshore Marine Warranty & Marine Operations consultancy serving offshore wind, subsea cables and oil & gas. We provide independent review and on-site attendance so operations run safely and on schedule.
       </p>
       <p class="small notice">Standards & trademarks note: References to DNV and Lloyd’s Register are for information about widely used industry standards and do not imply endorsement or certification by those organisations.</p>
     </div>
@@ -104,13 +92,12 @@
     © 2025 DMAR International. All rights reserved.
   </div>
 </footer>
+
 <div class="action-bar">
   <a class="btn" href="tel:+447404810279">Call</a>
   <a class="btn alt" href="/contact.html">Contact</a>
 </div>
-<div class="sticky-cta">
-  <a class="btn" href="/contact.html">Talk to an expert</a>
-</div>
+
 <script src="/assets/script.js"></script>
 
 </body>
