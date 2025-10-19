@@ -1,4 +1,3 @@
-// Mobile menu (robust for iOS/Android)
 (function(){
   const btn = document.getElementById('menuToggle');
   const drawer = document.getElementById('mobileNav');
@@ -17,7 +16,6 @@
   setHdr();
 })();
 
-// Reveal on scroll
 (function(){
   const els=[...document.querySelectorAll('.reveal')];
   if(!('IntersectionObserver' in window) || !els.length){ els.forEach(e=>e.classList.add('in')); return; }

@@ -1,7 +1,6 @@
-/* DMAR International — final build */
 :root{
   --brand:#0A5694; --ink:#333333; --bg:#ffffff; --muted:#6b7280;
-  --border:#e5e7eb; --radius:12px; --container:1100px; --hdr-h:64px;
+  --border:#e5e7eb; --radius:999px; --container:1100px; --hdr-h:64px;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
@@ -28,10 +27,19 @@ header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.98);backd
 .logo img{height:32px;width:auto}
 .nav .right{margin-left:auto;display:flex;align-items:center;gap:10px}
 
+/* Desktop primary nav shown by default */
+.nav .primary{display:flex;align-items:center;gap:22px;margin-left:24px}
+.nav .primary a{color:var(--ink);font-weight:600;padding:10px 6px;border-radius:999px}
+.nav .primary a:hover{background:#f6f7f9}
+
+/* Burger hidden on desktop */
+.btn.burger{display:none}
+
 @media (max-width:780px){
   .logo img{height:30px}
-  .nav .right .btn:not(.burger){display:none}
-  .btn.burger{margin-left:auto;padding:8px 12px;font-size:14px}
+  .nav .primary{display:none}           /* hide desktop menu */
+  .btn.burger{display:inline-flex}      /* show burger */
+  .nav .right .btn:not(.burger){display:none} /* hide big CTA */
 }
 
 .hero{padding:40px 0 20px}
@@ -52,7 +60,7 @@ footer a{color:#cfe6ff}
 footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:18px}
 @media (max-width:780px){ footer .cols{grid-template-columns:1fr} }
 
-/* Mobile drawer */
+/* Mobile drawer (unchanged from r1) */
 .mobile{
   position:fixed;left:0;right:0;width:100vw;
   top: var(--hdr-h);
