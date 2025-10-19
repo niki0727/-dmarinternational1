@@ -1,5 +1,0 @@
-Shrinks mobile drawer (15px font, tight padding), removes excess top gap, anchors to header height.
-Adds scrim, focus handling, and body scroll lock.
-Phone-first helpers (.compact, .grid-2, .card, form rows) so Contact/Careers look clean on phones.
-Adds Cloudflare Pages deploy workflow stub (inactive until repo secrets set).
-No desktop regressions.
