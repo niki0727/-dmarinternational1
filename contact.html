@@ -4,101 +4,74 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#0A5694"/>
-  <title>Contact — DMAR International</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Contact • DMAR International</title>
   <link rel="stylesheet" href="/assets/styles.css"/>
-  <meta name="description" content="DMAR International — Offshore Marine Warranty & Marine Operations for offshore energy projects."/>
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/assets/images/hero-port.jpg" />
 </head>
 <body>
-<!-- Announcement bar -->
-<div class="topbar" role="region" aria-label="announcement">
-  <div class="row container">
-    <span class="dot" aria-hidden="true"></span>
-    <div class="marquee">
-      <strong>Careers:</strong>&nbsp;We’re expanding our network —
-      <a class="badge" href="/careers.html">Open roles</a>&nbsp;·&nbsp;
-      <a class="badge" href="/careers.html#apply">Upload your CV</a>
-    </div>
-    <button class="close" aria-label="Hide announcement" onclick="this.closest('.topbar').style.display='none'">×</button>
-  </div>
+
+<div class="topbar">
+  <div class="container">We’re hiring Marine Warranty Surveyors & Naval Architects — <a href="/careers.html">see roles</a></div>
 </div>
-
 <header>
-  <div class="container nav">
-    <div class="left">
-      <a href="/index.html" aria-label="DMAR home"><img class="logo" src="/assets/logo.png" alt="DMAR International logo"/></a>
-    </div>
-    <div class="mid" role="navigation" aria-label="Primary">
-      <ul>
-        <li><a href="/services.html">Services</a></li>
-        <li><a href="/sectors.html">Sectors</a></li>
-        <li><a href="/projects.html">Projects</a></li>
-        <li><a href="/sustainability.html">Sustainability</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/careers.html">Careers</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-      </ul>
-    </div>
+  <div class="nav container">
+    <a href="/" class="logo"><img src="/assets/logos/logo.png" alt="DMAR International"></a>
     <div class="right">
-      <a class="btn alt" href="/assets/DMAR-brochure-2024.pptx" download>Download brochure</a>
-      <a class="btn" href="/contact.html">Request a call</a>
-      <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" aria-label="Menu">Menu</button>
+      <a href="/contact.html" class="btn alt">Request a call</a>
+      <a id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0">Menu</a>
     </div>
   </div>
-
-  <!-- Mobile sheet drawer -->
-  <div class="scrim" aria-hidden="true"></div>
-  <nav id="mobileNav" class="mobile" role="navigation" aria-label="Mobile">
-    <a href="/services.html">Services</a>
-    <a href="/sectors.html">Sectors</a>
-    <a href="/projects.html">Projects</a>
-    <a href="/sustainability.html">Sustainability</a>
-    <a href="/about.html">About</a>
-    <a href="/careers.html">Careers</a>
-    <a href="/contact.html">Contact</a>
+  <nav id="mobileNav" class="mobile" aria-label="Mobile">
+    <ul class="mnav">
+      <li><a href="/services.html">Services</a></li>
+      <li><a href="/sectors.html">Sectors</a></li>
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/sustainability.html">Sustainability</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/careers.html">Careers</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
   </nav>
+  <div class="scrim"></div>
 </header>
 
-<main><section class='section'><div class='container'><h2>Content coming soon</h2></div></section></main>
+<main>
+<section class="section reveal">
+  <div class="container">
+    <h1>Contact</h1>
+    <p><strong>Email:</strong> <a href="mailto:info@dmarinternational.com">info@dmarinternational.com</a><br/>
+       <strong>Phone:</strong> <a href="tel:+447404810279">+44 7404 810279</a></p>
+    <form action="#" onsubmit="alert('Thanks — we will get back to you.'); return false;" style="display:grid;gap:10px;max-width:560px">
+      <input type="text" placeholder="Your name" required/>
+      <input type="email" placeholder="Email" required/>
+      <textarea rows="5" placeholder="Message"></textarea>
+      <button class="btn" type="submit">Send</button>
+    </form>
+  </div>
+</section>
+</main>
+
 <footer>
   <div class="container cols">
     <div>
-      <img src="/assets/logo.png" alt="DMAR International" width="180" height="48" />
-      <p class="small" style="max-width:60ch;margin-top:10px">
-        Offshore Marine Warranty & Marine Operations consultancy serving offshore wind, subsea cables and oil & gas. We provide independent review and on-site attendance so operations run safely and on schedule.
-      </p>
-      <p class="small notice">Standards & trademarks note: References to DNV and Lloyd’s Register are for information about widely used industry standards and do not imply endorsement or certification by those organisations.</p>
+      <strong>DMAR International</strong><br/>
+      Independent. Practical. Insurable.<br/><br/>
+      <small>© DMAR International — All rights reserved.</small>
     </div>
     <div>
-      <strong>Offices</strong>
-      <hr class="sep"/>
-      <div class="small">United Kingdom — London</div>
-      <div class="small">Lithuania — Klaipėda</div>
+      <strong>Services</strong><br/>
+      Marine Warranty<br/>Heavy Lift & Float-over<br/>Towage & Rig Moves<br/>Pipelay & Cable Lay<br/>Port & Yard Ops
     </div>
     <div>
-      <strong>Contact</strong>
-      <hr class="sep"/>
-      <div class="small">info@dmarinternational.com</div>
-      <div class="small">+44 7404 810279</div>
-      <div class="small">+370 699 28380</div>
-      <div class="small"><a href="/privacy.html">Privacy</a></div>
+      <strong>Contact</strong><br/>
+      <a href="mailto:info@dmarinternational.com">info@dmarinternational.com</a><br/>
+      <a href="tel:+447404810279">+44 7404 810279</a>
     </div>
-  </div>
-  <div class="container" style="margin-top:14px">
-    © 2025 DMAR International. All rights reserved.
   </div>
 </footer>
-
 <div class="action-bar">
   <a class="btn" href="tel:+447404810279">Call</a>
   <a class="btn alt" href="/contact.html">Contact</a>
 </div>
-
 <script src="/assets/script.js"></script>
 
-</body>
-</html>
+</body></html>
