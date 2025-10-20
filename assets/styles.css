@@ -281,3 +281,21 @@ main > section:first-child{ position:relative; z-index: 0; }
   opacity: 1;
   pointer-events: auto;
 }
+
+/* Menu on the right (mobile) */
+@media (max-width:780px){
+  .nav .right .btn{display:none}
+  .nav .right .btn.burger{display:inline-flex; margin-left:auto}
+  .btn.burger{padding:8px 12px; font-size:14px}
+}
+
+/* Sheet drawer (no internal scroll) */
+.mobile{
+  position:fixed;left:0;right:0;top:var(--hdr-h,64px);
+  background:#fff;border-top:1px solid var(--border);
+  display:none;z-index:1000;padding:10px 14px;border-radius:0 0 16px 16px;
+  box-shadow:0 10px 28px rgba(0,0,0,.14);
+  max-height:none;overflow:hidden;opacity:0;transform:translateY(-10px);
+  transition:transform .22s cubic-bezier(.4,0,.2,1),opacity .22s cubic-bezier(.4,0,.2,1);
+}
+.mobile.open{display:block;opacity:1;transform:translateY(0)}
