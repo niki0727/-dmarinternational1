@@ -28,7 +28,7 @@ hr.sep{border:none;height:1px;background:var(--border);margin:20px 0}
 
 
 /* Header (refined) */
-header{position:sticky;top:0;z-index:61;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+header{position:sticky;top:0;z-index:1001;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
 .nav{display:flex;align-items:center;gap:18px;min-height:72px}
 .nav .left{display:flex;align-items:center;gap:16px}
 .logo{height:38px}
