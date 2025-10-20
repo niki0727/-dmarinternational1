@@ -5,90 +5,144 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#0A5694"/>
   <title>Careers • DMAR International</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/styles.css"/>
+  <meta name="description" content="DMAR International — Offshore Marine Warranty & Marine Operations for offshore energy projects."/>
+  <meta property="og:title" content="Careers • DMAR International" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/images/hero-port.jpg" />
 </head>
 <body>
-
-<link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml"/>
-<meta name="description" content="DMAR International — Marine Warranty & Marine Operations for offshore energy. Independent. Practical. Insurable.">
-<meta property="og:title" content="DMAR International">
-<meta property="og:description" content="Marine Warranty & Marine Operations for offshore energy.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="/assets/images/hero-port.jpg">
-<div class="topbar">
-  <div class="container">We’re hiring Marine Warranty Surveyors & Naval Architects — <a href="/careers.html">see roles</a></div>
+  
+<div class="topbar" role="region" aria-label="announcement">
+  <div class="row container">
+    <span class="dot" aria-hidden="true"></span>
+    <span>We’re hiring Marine Warranty Surveyors & Naval Architects — <a style="color:#fff;text-decoration:underline" href="/careers.html">upload your CV</a></span>
+    <button class="close" aria-label="Dismiss">×</button>
+  </div>
 </div>
+
 <header>
-  <div class="nav container">
-    <a href="/index.html" class="logo" aria-label="DMAR International home"><img src="/assets/logos/logo.png" alt="DMAR International"></a>
-    <nav class="primary" aria-label="Primary">
-      <a href="/services.html">Services</a>
-      <a href="/sectors.html">Sectors</a>
-      <a href="/projects.html">Projects</a>
-      <a href="/sustainability.html">Sustainability</a>
-      <a href="/about.html">About</a>
-      <a href="/careers.html">Careers</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
+  <div class="container nav">
+    <div class="left">
+      <a href="/index.html" aria-label="DMAR home"><img class="logo" src="/assets/logo.png" alt="DMAR International logo"/></a>
+    </div>
+    <div class="mid" role="navigation" aria-label="Primary">
+      <ul>
+        <li><a href="/services.html" >Services</a></li>
+        <li><a href="/sectors.html" >Sectors</a></li>
+        <li><a href="/projects.html" >Projects</a></li>
+        <li><a href="/sustainability.html" >Sustainability</a></li>
+        <li><a href="/about.html" >About</a></li>
+        <li><a href="/careers.html" style="color:var(--brand);font-weight:700">Careers</a></li>
+        <li><a href="/contact.html" >Contact</a></li>
+      </ul>
+    </div>
     <div class="right">
-      <a href="/contact.html" class="btn alt">Request a call</a>
-      <a id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0">Menu</a>
+      <a class="btn alt" href="/assets/DMAR-brochure-2024.pptx" download>Download brochure</a>
+      <a class="btn" href="/contact.html">Request a call</a>
+      <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0" aria-label="Menu">Menu</button>
     </div>
   </div>
-  <nav id="mobileNav" class="mobile" aria-label="Mobile">
-    <ul class="mnav">
-      <li><a href="/services.html">Services</a></li>
-      <li><a href="/sectors.html">Sectors</a></li>
-      <li><a href="/projects.html">Projects</a></li>
-      <li><a href="/sustainability.html">Sustainability</a></li>
-      <li><a href="/about.html">About</a></li>
-      <li><a href="/careers.html">Careers</a></li>
-      <li><a href="/contact.html">Contact</a></li>
-    </ul>
-  </nav>
-  <div class="scrim"></div>
+  <div id="mobileNav" class="mobile" role="navigation" aria-label="Mobile">
+    <a href="/services.html">Services</a>
+    <a href="/sectors.html">Sectors</a>
+    <a href="/projects.html">Projects</a>
+    <a href="/sustainability.html">Sustainability</a>
+    <a href="/about.html">About</a>
+    <a href="/careers.html">Careers</a>
+    <a href="/contact.html">Contact</a>
+  </div>
 </header>
 
-<main>
-<section class="section reveal">
+  <main>
+    
+<section class="section">
   <div class="container">
-    <h1>Careers</h1>
-    <p>We’re open to strong communicators who bring initiative and client focus. If you’re committed to developing in shipbroking, MWS or marine operations, we’d like to hear from you.</p>
-    <form data-enhanced="true" style="display:grid;gap:10px;max-width:640px">
-      <input name="name" type="text" placeholder="Your name" required/>
-      <input name="email" type="email" placeholder="Email" required/>
-      <input name="role" type="text" placeholder="Role of interest (e.g., MWS, Naval Architect)"/>
-      <textarea name="message" rows="5" placeholder="Short message"></textarea>
-      <label>Attach CV (PDF/DOC)<br><input name="cv" type="file" accept=".pdf,.doc,.docx" /></label>
-      <button class="btn" type="submit">Send application</button>
-    </form>
-    <p class="subtitle">Or email us directly: <a href="mailto:info@dmarinternational.com">info@dmarinternational.com</a></p>
+    <h2>Careers — join our network</h2>
+    <p class="lead">We’re building a network of surveyors, naval architects, DP and operations specialists. Upload your CV below or email <a href="mailto:careers@dmarinternational.com">careers@dmarinternational.com</a>.</p>
+    <div class="grid" style="grid-template-columns:1.2fr .8fr">
+      <div class="card">
+        <form data-careers enctype="multipart/form-data">
+          <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px">
+            <input name="name" placeholder="Your name"/>
+            <input name="email" placeholder="you@company.com"/>
+          </div>
+          <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+            <select name="role">
+              <option>Marine Warranty Surveyor</option>
+              <option>Naval Architect</option>
+              <option>Project/Operations</option>
+            </select>
+            <input name="location" placeholder="e.g., London / Klaipėda / Remote"/>
+          </div>
+          <div style="margin-top:12px"><input name="cv" type="file" accept=".pdf,.doc,.docx"/></div>
+          <div style="margin-top:12px"><textarea name="message" rows="5" placeholder="Availability and relevant experience"></textarea></div>
+          <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+            <button class="btn" type="submit">Upload CV</button>
+            <span id="careers-msg" class="small"></span>
+          </div>
+        </form>
+      </div>
+      <div class="card">
+        <h3>What we look for</h3>
+        <ul>
+          <li>Clear communication and concise reporting</li>
+          <li>Practical offshore experience and safety mindset</li>
+          <li>Familiarity with DNV / IMCA / IEC guidance and underwriter expectations</li>
+        </ul>
+        <hr class="sep"/>
+        <h3>Benefits</h3>
+        <ul>
+          <li>Flexible, project‑based work</li>
+          <li>UK & EU opportunities</li>
+          <li>Direct support from senior consultants</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
-</main>
 
+  </main>
+  
 <footer>
   <div class="container cols">
     <div>
-      <strong>DMAR International</strong><br/>
-      Independent. Practical. Insurable.<br/><br/>
-      <small>© DMAR International — All rights reserved.</small>
+      <img src="/assets/logo.png" alt="DMAR International" width="180" height="48" />
+      <p class="small" style="max-width:60ch;margin-top:10px">
+        Offshore Marine Warranty & Marine Operations consultancy serving offshore wind, subsea cables and oil & gas. We provide independent review and on‑site attendance so operations run safely and on schedule.
+      </p>
+      <p class="small notice">Standards & trademarks note: References to DNV and Lloyd’s Register are for information about widely used industry standards and do not imply endorsement or certification by those organisations.</p>
     </div>
     <div>
-      <strong>Services</strong><br/>
-      Marine Warranty<br/>Heavy Lift & Float-over<br/>Towage & Rig Moves<br/>Pipelay & Cable Lay<br/>Port & Yard Ops
+      <strong>Offices</strong>
+      <hr class="sep"/>
+      <div class="small">United Kingdom — London</div>
+      <div class="small">Lithuania — Klaipėda</div>
     </div>
     <div>
-      <strong>Contact</strong><br/>
-      <a href="mailto:info@dmarinternational.com">info@dmarinternational.com</a><br/>
-      <a href="tel:+447404810279">+44 7404 810279</a>
+      <strong>Contact</strong>
+      <hr class="sep"/>
+      <div class="small">info@dmarinternational.com</div>
+      <div class="small">+44 7404 810279</div>
+      <div class="small">+370 699 28380</div>
+      <div class="small"><a href="/privacy.html">Privacy</a></div>
     </div>
+  </div>
+  <div class="container" style="margin-top:14px">
+    © 2025 DMAR International. All rights reserved.
   </div>
 </footer>
 <div class="action-bar">
   <a class="btn" href="tel:+447404810279">Call</a>
   <a class="btn alt" href="/contact.html">Contact</a>
 </div>
+<div class="sticky-cta">
+  <a class="btn" href="/contact.html">Talk to an expert</a>
+</div>
 <script src="/assets/script.js"></script>
 
-</body></html>
+</body>
+</html>
