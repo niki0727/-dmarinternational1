@@ -310,3 +310,18 @@ main > section:first-child{ position:relative; z-index: 0; }
 }
 .topbar .dot{width:8px;height:8px;border-radius:999px;background:#fff;opacity:.9}
 .topbar .close{position:absolute;right:10px;top:6px;background:transparent;border:0;color:#fff;font-size:18px;cursor:pointer}
+/* Header (refined) */
+header{position:sticky;top:0;z-index:1001;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;gap:18px;min-height:72px}
+.nav .left{display:flex;align-items:center;gap:16px}
+.logo{height:38px}
+.nav .mid{flex:1 1 auto;display:flex;justify-content:center}
+.nav .mid ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+.nav .mid a{color:#111;font-weight:600;opacity:.85}
+.nav .mid a:hover{opacity:1}
+.nav .right{display:flex;gap:10px;align-items:center}
+.burger{display:none}
+@media (max-width:1020px){
+  .nav .mid{display:none}
+  .burger{display:inline-flex}
+}
