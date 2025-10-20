@@ -1,1 +1,9 @@
-
+/              /index.html        200
+/services      /services.html     200
+/sectors       /sectors.html      200
+/projects      /projects.html     200
+/sustainability /sustainability.html 200
+/about         /about.html        200
+/careers       /careers.html      200
+/contact       /contact.html      200
+/*             /404.html          404
