@@ -184,7 +184,19 @@ html.nav-open, body.nav-open{overflow:hidden;touch-action:none}
   .btn.burger{ padding:8px 12px; font-size:14px }
   .hero h1{ font-size: clamp(26px, 7.5vw, 42px); }
   .subtitle{ font-size: 1rem }
-}
+}+  .grid-2,.grid-3{grid-template-columns:1fr}
+ form .row{grid-template-columns:1fr}
+ h1{font-size:clamp(24px,7vw,36px)}
+h2{font-size:clamp(18px,5.5vw,24px)}
+ /* Compact the Contact & Careers pages on phones (visually ~20–25% tighter) */
+body.contact .container.compact,
+body.careers .container.compact { font-size:0.94rem }
+body.contact .card, body.careers .card { padding:10px }
+body.contact .grid-2, body.careers .grid-2 { gap:12px }
+ body.contact input, body.contact select, body.contact textarea,
+ body.careers input, body.careers select, body.careers textarea { padding:9px 11px }
+  /* keep inputs at 16px+ for accessibility (avoid iOS zoom); size reduction is spacing-focused */
+ }
 
 /* Mobile bottom action bar (safe-area aware) */
 .action-bar{
@@ -290,23 +302,3 @@ main > section:first-child{ position:relative; z-index: 0; }
   opacity: 1;
   pointer-events: auto;
 }
-@@
- @media (max-width:780px){
--  .grid-2,.grid-3{grid-template-columns:1fr}
--  form .row{grid-template-columns:1fr}
--  h1{font-size:clamp(24px,7vw,36px)}
--  h2{font-size:clamp(18px,5.5vw,24px)}
-+  .grid-2,.grid-3{grid-template-columns:1fr}
-+  form .row{grid-template-columns:1fr}
-+  h1{font-size:clamp(24px,7vw,36px)}
-+  h2{font-size:clamp(18px,5.5vw,24px)}
-+
-+  /* Compact the Contact & Careers pages on phones (visually ~20–25% tighter) */
-+  body.contact .container.compact,
-+  body.careers .container.compact { font-size:0.94rem }
-+  body.contact .card, body.careers .card { padding:10px }
-+  body.contact .grid-2, body.careers .grid-2 { gap:12px }
-+  body.contact input, body.contact select, body.contact textarea,
-+  body.careers input, body.careers select, body.careers textarea { padding:9px 11px }
-+  /* keep inputs at 16px+ for accessibility (avoid iOS zoom); size reduction is spacing-focused */
- }
