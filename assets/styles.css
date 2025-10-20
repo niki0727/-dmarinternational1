@@ -51,6 +51,17 @@ header{position:sticky;top:0;z-index:61;background:rgba(255,255,255,.95);backdro
 }
 
 .mobile.open{ display:block; }
+/* Roomier, more open drawer */
+.mobile.wide{
+  padding:16px 18px;                 /* more breathing room */
+  border-radius:0 0 20px 20px;       /* slightly softer edge */
+  box-shadow:0 14px 34px rgba(0,0,0,.16);
+}
+.mobile.wide .mnav a{
+  padding:14px 14px;                 /* bigger tap targets */
+  font-size:16px;                    /* a touch larger text */
+  line-height:1.25;
+}
 
 /* Menu items: bigger tap targets + clearer text */
 .mobile a{
@@ -282,20 +293,4 @@ main > section:first-child{ position:relative; z-index: 0; }
   pointer-events: auto;
 }
 
-/* Menu on the right (mobile) */
-@media (max-width:780px){
-  .nav .right .btn{display:none}
-  .nav .right .btn.burger{display:inline-flex; margin-left:auto}
-  .btn.burger{padding:8px 12px; font-size:14px}
-}
 
-/* Sheet drawer (no internal scroll) */
-.mobile{
-  position:fixed;left:0;right:0;top:var(--hdr-h,64px);
-  background:#fff;border-top:1px solid var(--border);
-  display:none;z-index:1000;padding:10px 14px;border-radius:0 0 16px 16px;
-  box-shadow:0 10px 28px rgba(0,0,0,.14);
-  max-height:none;overflow:hidden;opacity:0;transform:translateY(-10px);
-  transition:transform .22s cubic-bezier(.4,0,.2,1),opacity .22s cubic-bezier(.4,0,.2,1);
-}
-.mobile.open{display:block;opacity:1;transform:translateY(0)}
