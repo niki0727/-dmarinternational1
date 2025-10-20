@@ -5,80 +5,132 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#0A5694"/>
   <title>Sustainability • DMAR International</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/styles.css"/>
+  <meta name="description" content="DMAR International — Offshore Marine Warranty & Marine Operations for offshore energy projects."/>
+  <meta property="og:title" content="Sustainability • DMAR International" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/images/hero-port.jpg" />
 </head>
 <body>
-
-<div class="topbar">
-  <div class="container">We’re hiring Marine Warranty Surveyors & Naval Architects — <a href="/careers.html">see roles</a></div>
+  
+<div class="topbar" role="region" aria-label="announcement">
+  <div class="row container">
+    <span class="dot" aria-hidden="true"></span>
+    <span>We’re hiring Marine Warranty Surveyors & Naval Architects — <a style="color:#fff;text-decoration:underline" href="/careers.html">upload your CV</a></span>
+    <button class="close" aria-label="Dismiss">×</button>
+  </div>
 </div>
+
 <header>
-  <div class="nav container">
-    <a href="/" class="logo"><img src="/assets/logos/logo.png" alt="DMAR International"></a>
-    <nav class="primary" aria-label="Primary">
-      <a href="/services.html">Services</a>
-      <a href="/sectors.html">Sectors</a>
-      <a href="/projects.html">Projects</a>
-      <a href="/sustainability.html">Sustainability</a>
-      <a href="/about.html">About</a>
-      <a href="/careers.html">Careers</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
+  <div class="container nav">
+    <div class="left">
+      <a href="/index.html" aria-label="DMAR home"><img class="logo" src="/assets/logo.png" alt="DMAR International logo"/></a>
+    </div>
+    <div class="mid" role="navigation" aria-label="Primary">
+      <ul>
+        <li><a href="/services.html" >Services</a></li>
+        <li><a href="/sectors.html" >Sectors</a></li>
+        <li><a href="/projects.html" >Projects</a></li>
+        <li><a href="/sustainability.html" style="color:var(--brand);font-weight:700">Sustainability</a></li>
+        <li><a href="/about.html" >About</a></li>
+        <li><a href="/careers.html" >Careers</a></li>
+        <li><a href="/contact.html" >Contact</a></li>
+      </ul>
+    </div>
     <div class="right">
-      <a href="/contact.html" class="btn alt">Request a call</a>
-      <a id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0">Menu</a>
+      <a class="btn alt" href="/assets/DMAR-brochure-2024.pptx" download>Download brochure</a>
+      <a class="btn" href="/contact.html">Request a call</a>
+      <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0" aria-label="Menu">Menu</button>
     </div>
   </div>
-  <nav id="mobileNav" class="mobile" aria-label="Mobile">
-    <ul class="mnav">
-      <li><a href="/services.html">Services</a></li>
-      <li><a href="/sectors.html">Sectors</a></li>
-      <li><a href="/projects.html">Projects</a></li>
-      <li><a href="/sustainability.html">Sustainability</a></li>
-      <li><a href="/about.html">About</a></li>
-      <li><a href="/careers.html">Careers</a></li>
-      <li><a href="/contact.html">Contact</a></li>
-    </ul>
-  </nav>
-  <div class="scrim"></div>
+  <div id="mobileNav" class="mobile" role="navigation" aria-label="Mobile">
+    <a href="/services.html">Services</a>
+    <a href="/sectors.html">Sectors</a>
+    <a href="/projects.html">Projects</a>
+    <a href="/sustainability.html">Sustainability</a>
+    <a href="/about.html">About</a>
+    <a href="/careers.html">Careers</a>
+    <a href="/contact.html">Contact</a>
+  </div>
 </header>
 
-<main>
-<section class="section reveal">
+  <main>
+    
+<section class="s-hero">
   <div class="container">
-    <h1>Our approach to sustainability</h1>
-    <p>We apply best‑practice frameworks from globally respected organisations as guidance for safe operations and risk control. We focus on:</p>
+    <h2>Sustainability & our approach</h2>
+    <p class="lead">We reduce operational risk and emissions by careful weather window planning, minimising offshore re‑works, optimising tows/transits, and favouring re‑use of sea‑fastening and temporary works.</p>
     <ul>
-      <li>Reducing re‑work and fuel use by robust planning and clear go/no‑go criteria</li>
-      <li>Minimising disturbance during near‑shore cable landfalls and port operations</li>
-      <li>Data‑driven lessons learned to improve future campaigns</li>
+      <li><strong>Standards‑led:</strong> Reviews reference DNV‑ST‑N001, DNV‑RP‑0360 and IEC 61400‑3‑1.</li>
+      <li><strong>Operational efficiency:</strong> Early assurance prevents aborts and standby — less fuel burn and HSE exposure.</li>
+      <li><strong>Material stewardship:</strong> Preference for modular, re‑usable gear and documented lifting/rigging plans (IMCA guidance).</li>
+      <li><strong>People & safety:</strong> Clear RAMS and toolbox talks that reduce incidents and improve outcomes.</li>
     </ul>
   </div>
+  <div class="wave" aria-hidden="true">
+    <svg viewBox="0 0 1200 160" preserveAspectRatio="none">
+      <g fill="none" stroke="rgba(11,138,74,.4)" stroke-width="2">
+        <path id="flow1" d="M0,80 C200,20 400,140 600,80 C800,20 1000,140 1200,80" />
+        <path id="flow2" d="M0,110 C200,50 400,170 600,110 C800,50 1000,170 1200,110" />
+      </g>
+    </svg>
+  </div>
 </section>
-</main>
 
+<section class="section">
+  <div class="container">
+    <h2>Field photos</h2>
+    <div class="grid cards">
+      <figure class="card"><img src="/assets/images/field-1.jpg" alt="Offshore spread at sunset" style="width:100%;height:200px;object-fit:cover;border-radius:12px"/><figcaption class="small">Optimised work windows reduce fuel and downtime.</figcaption></figure>
+      <figure class="card"><img src="/assets/images/field-2.jpg" alt="Offshore spread wide angle" style="width:100%;height:200px;object-fit:cover;border-radius:12px"/><figcaption class="small">Careful sequencing prevents re‑work offshore.</figcaption></figure>
+      <figure class="card"><img src="/assets/images/field-3.jpg" alt="Barge at sunset" style="width:100%;height:200px;object-fit:cover;border-radius:12px"/><figcaption class="small">Standardised sea‑fastening and re‑use.</figcaption></figure>
+      <figure class="card"><img src="/assets/images/field-4.jpg" alt="Shore pull" style="width:100%;height:200px;object-fit:cover;border-radius:12px"/><figcaption class="small">Shore pull with documented environmental controls.</figcaption></figure>
+      <figure class="card"><img src="/assets/images/field-5.jpg" alt="Conference room toolbox talk" style="width:100%;height:200px;object-fit:cover;border-radius:12px"/><figcaption class="small">Clear toolbox talks and safety culture.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+  </main>
+  
 <footer>
   <div class="container cols">
     <div>
-      <strong>DMAR International</strong><br/>
-      Independent. Practical. Insurable.<br/><br/>
-      <small>© DMAR International — All rights reserved.</small>
+      <img src="/assets/logo.png" alt="DMAR International" width="180" height="48" />
+      <p class="small" style="max-width:60ch;margin-top:10px">
+        Offshore Marine Warranty & Marine Operations consultancy serving offshore wind, subsea cables and oil & gas. We provide independent review and on‑site attendance so operations run safely and on schedule.
+      </p>
+      <p class="small notice">Standards & trademarks note: References to DNV and Lloyd’s Register are for information about widely used industry standards and do not imply endorsement or certification by those organisations.</p>
     </div>
     <div>
-      <strong>Services</strong><br/>
-      Marine Warranty<br/>Heavy Lift & Float-over<br/>Towage & Rig Moves<br/>Pipelay & Cable Lay<br/>Port & Yard Ops
+      <strong>Offices</strong>
+      <hr class="sep"/>
+      <div class="small">United Kingdom — London</div>
+      <div class="small">Lithuania — Klaipėda</div>
     </div>
     <div>
-      <strong>Contact</strong><br/>
-      <a href="mailto:info@dmarinternational.com">info@dmarinternational.com</a><br/>
-      <a href="tel:+447404810279">+44 7404 810279</a>
+      <strong>Contact</strong>
+      <hr class="sep"/>
+      <div class="small">info@dmarinternational.com</div>
+      <div class="small">+44 7404 810279</div>
+      <div class="small">+370 699 28380</div>
+      <div class="small"><a href="/privacy.html">Privacy</a></div>
     </div>
+  </div>
+  <div class="container" style="margin-top:14px">
+    © 2025 DMAR International. All rights reserved.
   </div>
 </footer>
 <div class="action-bar">
   <a class="btn" href="tel:+447404810279">Call</a>
   <a class="btn alt" href="/contact.html">Contact</a>
 </div>
+<div class="sticky-cta">
+  <a class="btn" href="/contact.html">Talk to an expert</a>
+</div>
 <script src="/assets/script.js"></script>
 
-</body></html>
+</body>
+</html>
