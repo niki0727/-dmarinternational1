@@ -25,28 +25,51 @@
 </div>
 
 <header>
+<!-- Announcement bar -->
+<div class="topbar" role="region" aria-label="announcement">
+  <div class="row container">
+    <span class="dot" aria-hidden="true"></span>
+    <div class="marquee">
+      <strong>Careers:</strong>&nbsp;We’re expanding our network —
+      <a class="badge" href="/careers.html">Open roles</a>&nbsp;·&nbsp;
+      <a class="badge" href="/careers.html#apply">Upload your CV</a>
+    </div>
+    <button class="close" aria-label="Hide announcement" onclick="this.closest('.topbar').style.display='none'">×</button>
+  </div>
+</div>
+
+<header>
   <div class="container nav">
     <div class="left">
-      <a href="/index.html" aria-label="DMAR home"><img class="logo" src="/assets/logo.png" alt="DMAR International logo"/></a>
+      <a href="/index.html" aria-label="DMAR home">
+        <img class="logo" src="assets/logo.png" alt="DMAR International logo"/>
+      </a>
     </div>
+
+    <!-- Desktop nav (hidden on mobile) -->
     <div class="mid" role="navigation" aria-label="Primary">
       <ul>
-        <li><a href="/services.html" >Services</a></li>
-        <li><a href="/sectors.html" >Sectors</a></li>
-        <li><a href="/projects.html" >Projects</a></li>
-        <li><a href="/sustainability.html" >Sustainability</a></li>
-        <li><a href="/about.html" >About</a></li>
-        <li><a href="/careers.html" >Careers</a></li>
-        <li><a href="/contact.html" >Contact</a></li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/sectors.html">Sectors</a></li>
+        <li><a href="/projects.html">Projects</a></li>
+        <li><a href="/sustainability.html">Sustainability</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/careers.html">Careers</a></li>
+        <li><a href="/contact.html">Contact</a></li>
       </ul>
     </div>
+
+    <!-- Right side: CTAs and Menu button -->
     <div class="right">
       <a class="btn alt" href="/assets/DMAR-brochure-2024.pptx" download>Download brochure</a>
       <a class="btn" href="/contact.html">Request a call</a>
-      <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0" aria-label="Menu">Menu</button>
+      <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" aria-label="Menu">Menu</button>
     </div>
   </div>
-  <div id="mobileNav" class="mobile" role="navigation" aria-label="Mobile">
+
+  <!-- Mobile sheet drawer (opens under header, no scrolling) -->
+  <div class="scrim" aria-hidden="true"></div>
+  <nav id="mobileNav" class="mobile" role="navigation" aria-label="Mobile">
     <a href="/services.html">Services</a>
     <a href="/sectors.html">Sectors</a>
     <a href="/projects.html">Projects</a>
@@ -54,8 +77,9 @@
     <a href="/about.html">About</a>
     <a href="/careers.html">Careers</a>
     <a href="/contact.html">Contact</a>
-  </div>
+  </nav>
 </header>
+
 
   <main>
     
