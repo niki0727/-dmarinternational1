@@ -33,34 +33,43 @@ header{position:sticky;top:0;z-index:61;background:rgba(255,255,255,.95);backdro
   .nav .mid{display:none}
   .burger{display:inline-flex}
 }
-/* Mobile drawer */
+/* Mobile drawer: full viewport below header */
 .mobile{
   position: fixed;
   left: 0;
   right: 0;
-  top: var(--hdr-h, 64px);   /* start right below the header */
-  bottom: 0;                 /* extend to bottom */
+  top: var(--hdr-h, 64px);                 /* starts below header */
+  height: calc(100dvh - var(--hdr-h, 64px));/* fills rest of screen */
   background: #fff;
-  border-top: 1px solid var(--border);
-  padding: 16px;             /* a bit more breathing room */
-  display: none;
-  z-index: 1000;             /* sit above header/content */
-  max-height: calc(100dvh - var(--hdr-h, 64px));
-  overflow: auto;            /* allow scrolling if long */
+  border-top: 1px solid var(--border, #e5e7eb);
+  padding: 16px;
+  display: none;                            /* hidden by default */
+  z-index: 1000;                            /* above page */
+  overflow: auto;                           /* scroll if long */
   -webkit-overflow-scrolling: touch;
 }
 
-.mobile.open{ display:block; }
+.mobile.open{ display: block; }
 
-/* Menu items: bigger tap targets + clearer text */
 .mobile a{
   display: block;
-  padding: 14px 16px;        /* larger tap area */
+  padding: 14px 16px;                       /* large tap targets */
   color: #111;
   font-weight: 700;
-  font-size: 16px;           /* make text readable */
-  border-bottom: 1px solid var(--border);
+  font-size: 16px;
+  border-bottom: 1px solid var(--border, #e5e7eb);
 }
+
+/* Dimmed background behind the drawer */
+.scrim{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 999;                             /* just under drawer */
+  opacity: 0; pointer-events: none;
+  transition: opacity .15s ease;
+}
+.scrim.open{ opacity: 1; pointer-events: auto; }
+
 
 
 /* Hero */
