@@ -319,8 +319,4 @@ body.home .hero .art{
   max-width: 780px;  /* optional: keeps the image from spanning too wide */
   margin: 12px auto; /* centers the art block nicely */
 }
-/* Phone size */
-@media (max-width:780px){
-  body.home .hero .art{
-    height: 220px;   /* smaller than the current 300px mobile height */
-  }
+
