@@ -1,3 +1,4 @@
+
 /* DMAR PRO THEME v2 (Netlify) */
 *{box-sizing:border-box}html,body{margin:0;padding:0}
 :root{--bg:#fff;--text:#333;--muted:#566070;--brand:#0A5694;--border:#E6EAF0;--radius:16px;--shadow:0 10px 30px rgba(0,0,0,.07);--max:1200px;--green:#0b8a4a;--notice-text:#9a3412}
@@ -311,3 +312,15 @@ header{position:sticky;top:0;z-index:1001;background:rgba(255,255,255,.95);backd
   .nav .mid{display:none}
   .burger{display:inline-flex}
 }
+/* Home-only: make the hero (port) photo smaller */
+body.home .hero .art{
+  min-height: 0;     /* override the existing min-height:300px */
+  height: 320px;     /* smaller on desktop */
+  max-width: 780px;  /* optional: keeps the image from spanning too wide */
+  margin: 12px auto; /* centers the art block nicely */
+}
+/* Phone size */
+@media (max-width:780px){
+  body.home .hero .art{
+    height: 220px;   /* smaller than the current 300px mobile height */
+  }
