@@ -319,4 +319,10 @@ body.home .hero .art{
   max-width: 780px;  /* optional: keeps the image from spanning too wide */
   margin: 12px auto; /* centers the art block nicely */
 }
-
+/* opt-in extra compact, if desired */
+@media (max-width:780px){
+  .compact-xs .card{ padding:8px }
+  .compact-xs .grid-2{ gap:10px }
+  .compact-xs input, .compact-xs select, .compact-xs textarea{ padding:8px 10px }
+  .compact-xs .lead{ font-size:1rem }
+}
