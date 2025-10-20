@@ -239,39 +239,3 @@ if(careers){
 
   setHdrH();
 })();
-<script>
-(function () {
-  const btn   = document.getElementById('menuToggle'); // your burger
-  const nav   = document.getElementById('mobileNav');
-  const scrim = document.querySelector('.scrim');
-
-  function setHdr() {
-    const h = (document.querySelector('header')?.getBoundingClientRect().height) || 64;
-    document.documentElement.style.setProperty('--hdr-h', h + 'px');
-  }
-
-  function openNav(on) {
-    if (!nav) return;
-    setHdr();
-    nav.classList.toggle('open', on);
-    scrim?.classList.toggle('open', on);
-    if (scrim) scrim.hidden = !on;
-    document.body.style.overflow = on ? 'hidden' : '';
-    document.body.style.touchAction = on ? 'none' : '';
-    btn?.setAttribute('aria-expanded', String(on));
-  }
-
-  btn?.addEventListener('click', (e) => {
-    e.preventDefault();
-    openNav(!nav.classList.contains('open'));
-  });
-
-  scrim?.addEventListener('click', () => openNav(false));
-
-  ['load','resize','orientationchange','visibilitychange'].forEach(ev =>
-    window.addEventListener(ev, setHdr)
-  );
-
-  setHdr();
-})();
-</script>
