@@ -1,5 +1,5 @@
 
-const FORM_ENDPOINT = ""; // add your Formspree/Make endpoint when ready
+const FORM_ENDPOINT = "/submit-contact"; // add your Formspree/Make endpoint when ready
 
 // Announcement bar dismiss
 (function(){
