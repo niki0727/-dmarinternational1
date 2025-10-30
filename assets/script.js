@@ -122,34 +122,6 @@ const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   window.addEventListener('orientationchange', setHeaderOffset);
 })();
 
-/* ---------- forms (Contact + Careers) ---------- */
-(function initForms(){
-  // CAREERS (supports file upload)
-  const careersForm = $('form[data-careers]');
-  if (careersForm) {
-    const msg = $('#careers-msg');
-    careersForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (msg) msg.textContent = 'Uploading…';
-
-      try {
-        const res = await fetch(CAREERS_ENDPOINT, {
-          method: 'POST',
-          body: new FormData(careersForm)
-        });
-        if (res.ok) {
-          if (msg) msg.textContent = 'Thanks — received. We’ll review your CV.';
-          careersForm.reset();
-        } else {
-          if (msg) msg.textContent = 'Upload failed — email careers@dmarinternational.com';
-        }
-      } catch {
-        if (msg) msg.textContent = 'Network error — email careers@dmarinternational.com';
-      }
-    });
-  }
-})();
-
 /* ---------- optional niceties ---------- */
 // prevent iOS double-tap zoom on buttons (by ensuring active state)
 document.addEventListener('touchstart', () => {}, { passive: true });

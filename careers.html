@@ -150,19 +150,21 @@
       e.preventDefault();
       const form = e.target;
       const data = new FormData(form);
+      const msg = document.getElementById('careers-msg');
     
+      msg.textContent = 'Uploading…';
+
       const res = await fetch('https://restless-band-2939.piazenko-n.workers.dev', {
         method: 'POST',
         body: data
       });
-    
-      const msg = document.getElementById('careers-msg');
+     
       if (res.ok) {
-        msg.textContent = 'CV uploaded successfully!';
+        msg.textContent = 'Thanks — received. We’ll review your CV.';
         form.reset();
       } else {
         const text = await res.text().catch(()=> 'Error');
-        msg.textContent = 'Failed to upload CV: ' + text;
+        msg.textContent = 'Upload failed — email careers@dmarinternational.com';
       }
     });
 </script>
