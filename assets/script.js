@@ -1,241 +1,181 @@
+/* DMAR International — final site script (mobile drawer + forms)
+   - Mobile drawer: open/close + scrim + focus lock + ESC
+   - Topbar close button
+   - Forms: POST FormData to endpoints (supports file for Careers)
+*/
 
-const FORM_ENDPOINT = "/submit-contact"; // add your Formspree/Make endpoint when ready
+/* ---------- CONFIG: endpoints ---------- */
+/* If you use Cloudflare Pages Functions, keep as-is:
+     /functions/submit-contact.js  =>  POST /submit-contact
+     /functions/submit-careers.js  =>  POST /submit-careers
+   Or replace with a form provider URL (Formspree/Getform/Basin).
+*/
+const CONTACT_ENDPOINT = "/submit-contact";
+const CAREERS_ENDPOINT = "/submit-careers";
 
-// Announcement bar dismiss
-(function(){
-  const bar = document.querySelector('.topbar');
-  if(!bar) return;
-  const k = 'dmar_topbar_dismissed_until';
-  const until = localStorage.getItem(k);
-  const now = Date.now();
-  if(until && Number(until) > now){ bar.style.display='none'; return; }
-  const btn = bar.querySelector('.close');
-  btn && btn.addEventListener('click', ()=>{
-    localStorage.setItem(k, String(now + 7*24*60*60*1000));
-    bar.style.display='none';
-  });
+/* ---------- helpers ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+/* ---------- topbar ---------- */
+(function initTopbar(){
+  const closeBtn = $('.topbar .close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      const bar = closeBtn.closest('.topbar');
+      if (bar) bar.style.display = 'none';
+    });
+  }
 })();
 
-// Mobile menu
-const menuBtn = document.querySelector('.burger'); 
-const mobile = document.querySelector('.mobile');
-if(menuBtn && mobile){
-  menuBtn.addEventListener('click', ()=> mobile.classList.toggle('open'));
-}
+/* ---------- mobile drawer ---------- */
+(function initMobileNav(){
+  const root = document.documentElement;
+  const header = $('header, .site-header');
+  let nav = $('#mobileNav') || $('.mobile');
+  let btn = $('#menuToggle') || $('.btn.burger') || $('[data-menu]');
+  let scrim = $('.scrim');
 
-// Create scrim overlay for mobile nav
-let scrim = document.querySelector('.scrim');
-if(!scrim){
-  scrim = document.createElement('div');
-  scrim.className = 'scrim';
-  document.body.appendChild(scrim);
-}
+  // Ensure scrim exists
+  if (!scrim) {
+    scrim = document.createElement('div');
+    scrim.className = 'scrim';
+    scrim.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(scrim);
+  }
 
-function positionMobile(){
-  if(!mobile) return;
-  const hdr = document.querySelector('header');
-  const top = (hdr ? hdr.offsetHeight : 110);
-  mobile.style.top = top + 'px';
-  mobile.style.maxHeight = `calc(100dvh - ${top}px)`;
-}
+  function setHeaderOffset(){
+    const h = header ? Math.round(header.getBoundingClientRect().height) : 64;
+    root.style.setProperty('--hdr-h', `${h}px`);
+  }
 
-function setNav(open){
-  mobile.classList.toggle('open', open);
-  scrim.classList.toggle('open', open);
-  document.documentElement.classList.toggle('nav-open', open);
-  document.body.classList.toggle('nav-open', open);
-  positionMobile();
-}
+  // Focus trap within the drawer
+  let trapHandler = null;
+  function enableFocusTrap(panel){
+    const focusables = $$(
+      'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      panel
+    ).filter(el => el.offsetParent !== null);
+    if (!focusables.length) return;
 
-if(menuBtn && mobile){
-  menuBtn.addEventListener('click', ()=> setNav(!mobile.classList.contains('open')));
-  scrim.addEventListener('click', ()=> setNav(false));
-  window.addEventListener('resize', positionMobile);
-  window.addEventListener('load', positionMobile);
-  document.addEventListener('visibilitychange', positionMobile);
-}
+    const first = focusables[0];
+    const last  = focusables[focusables.length - 1];
 
-// Simple form wiring
-function wireSimpleForm(form, msgSel){
-  if(!form) return;
-  form.addEventListener('submit', async (e)=>{
+    trapHandler = (e) => {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    };
+    document.addEventListener('keydown', trapHandler);
+    first.focus({ preventScroll: true });
+  }
+  function disableFocusTrap(){
+    if (trapHandler) document.removeEventListener('keydown', trapHandler);
+    trapHandler = null;
+  }
+
+  function openNav(){
+    if (!nav) return;
+    nav.classList.add('open');
+    scrim.classList.add('open');
+    root.classList.add('nav-open');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+    enableFocusTrap(nav);
+  }
+  function closeNav(){
+    if (!nav) return;
+    nav.classList.remove('open');
+    scrim.classList.remove('open');
+    root.classList.remove('nav-open');
+    if (btn) {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.focus({ preventScroll: true });
+    }
+    disableFocusTrap();
+  }
+
+  // Attach events
+  if (btn) btn.addEventListener('click', (e) => {
     e.preventDefault();
-    const out = form.querySelector(msgSel);
-    const data = new FormData(form);
-    const name = data.get('name'), email = data.get('email');
-    const errs = [];
-    if(!name || String(name).trim().length < 2) errs.push('name');
-    if(!/[^\s@]+@[^\s@]+\.[^\s@]+/.test(email||'')) errs.push('email');
-    if(errs.length){ out.textContent = 'Please check: '+errs.join(', '); out.style.color='#b42318'; return; }
-    if(!FORM_ENDPOINT){
-      out.textContent = 'Thanks — submitted locally (add FORM_ENDPOINT in /assets/script.js to deliver real emails).';
-      out.style.color = '#067647'; form.reset(); return;
-    }
-    try{
-      const resp = await fetch(FORM_ENDPOINT, { method:'POST', body:data });
-      if(resp.ok){ out.textContent = 'Thanks — submitted.'; out.style.color = '#067647'; form.reset(); }
-      else{ out.textContent = 'Submit failed. Please email info@dmarinternational.com'; out.style.color='#b42318'; }
-    }catch(err){
-      out.textContent = 'Network error. Please email info@dmarinternational.com'; out.style.color = '#b42318';
-    }
+    nav && nav.classList.contains('open') ? closeNav() : openNav();
   });
-}
-wireSimpleForm(document.querySelector('form[data-contact]'), '#form-msg');
-wireSimpleForm(document.querySelector('form[data-quote]'), '#quote-msg');
-
-const careers = document.querySelector('form[data-careers]');
-if(careers){
-  careers.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    const out = careers.querySelector('#careers-msg');
-    const data = new FormData(careers);
-    const file = data.get('cv');
-    if(!data.get('name') || !data.get('email') || !file || !file.name){
-      out.textContent = 'Please add your name, email and CV.'; out.style.color = '#b42318'; return;
-    }
-    if(!FORM_ENDPOINT){
-      out.textContent = 'Ready to send. Set FORM_ENDPOINT in /assets/script.js to enable real upload.'; out.style.color = '#067647'; careers.reset(); return;
-    }
-    try{
-      const resp = await fetch(FORM_ENDPOINT, { method:'POST', body:data });
-      if(resp.ok){ out.textContent = 'Thanks — CV submitted.'; out.style.color = '#067647'; careers.reset(); }
-      else{ out.textContent = 'Upload failed. Please email careers@dmarinternational.com'; out.style.color='#b42318'; }
-    }catch(err){
-      out.textContent = 'Network error. Please email careers@dmarinternational.com'; out.style.color = '#b42318';
-    }
+  if (scrim) scrim.addEventListener('click', closeNav);
+  if (nav) {
+    nav.addEventListener('click', (e) => {
+      if (e.target.closest('a')) closeNav();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav && nav.classList.contains('open')) closeNav();
   });
-}
 
-
-// ---- Robust mobile nav (v6) ----
-(function(){
-  const menuBtn = document.querySelector('[aria-label="Menu"], .burger');
-  const mobile = document.querySelector('.mobile');
-  if(!menuBtn || !mobile) return;
-  // Create scrim if missing
-  let scrim = document.querySelector('.scrim');
-  if(!scrim){
-    scrim = document.createElement('div');
-    scrim.className = 'scrim';
-    document.body.appendChild(scrim);
-  }
-  function getHeaderTop(){
-    const hdr = document.querySelector('header');
-    return hdr ? hdr.getBoundingClientRect().height : 88;
-  }
-  function lockScroll(on){
-    document.documentElement.classList.toggle('nav-open', on);
-    document.body.classList.toggle('nav-open', on);
-  }
-  function openNav(on){
-    if(on){
-      mobile.style.top = getHeaderTop() + 'px';
-      mobile.style.maxHeight = `calc(100dvh - ${getHeaderTop()}px)`;
-    }
-    mobile.classList.toggle('open', on);
-    scrim.classList.toggle('open', on);
-    menuBtn.setAttribute('aria-expanded', String(on));
-    lockScroll(on);
-  }
-  // Toggle on tap
-  menuBtn.addEventListener('click', function(e){ e.preventDefault(); openNav(!mobile.classList.contains('open')); }, {passive:false});
-  // Close on overlay or escape
-  scrim.addEventListener('click', ()=> openNav(false));
-  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') openNav(false); });
-  // Recalc on resize/visibility changes
-  ['resize','load','orientationchange','visibilitychange'].forEach(ev=> window.addEventListener(ev, ()=>{
-    if(mobile.classList.contains('open')){
-      mobile.style.top = getHeaderTop() + 'px';
-      mobile.style.maxHeight = `calc(100dvh - ${getHeaderTop()}px)`;
-    }
-  }));
+  // Keep drawer positioned under header
+  setHeaderOffset();
+  let t;
+  window.addEventListener('resize', () => {
+    clearTimeout(t);
+    t = setTimeout(setHeaderOffset, 100);
+  });
+  window.addEventListener('orientationchange', setHeaderOffset);
 })();
 
+/* ---------- forms (Contact + Careers) ---------- */
+(function initForms(){
+  // CONTACT
+  const contactForm = $('form[data-contact]');
+  if (contactForm) {
+    const msg = $('#form-msg');
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (msg) msg.textContent = 'Sending…';
 
-// ===== v7 robust mobile nav =====
-(function(){
-  const btn = document.querySelector('.btn.burger,[aria-label="Menu"]');
-  const drawer = document.querySelector('.mobile');
-  if(!btn || !drawer) return;
-  // create scrim if missing
-  let scrim = document.querySelector('.scrim');
-  if(!scrim){
-    scrim = document.createElement('div');
-    scrim.className = 'scrim';
-    document.body.appendChild(scrim);
+      try {
+        const res = await fetch(CONTACT_ENDPOINT, {
+          method: 'POST',
+          body: new FormData(contactForm)
+        });
+        if (res.ok) {
+          if (msg) msg.textContent = 'Thanks — we’ll reply shortly.';
+          contactForm.reset();
+        } else {
+          if (msg) msg.textContent = 'Sorry — could not send. Please email info@dmarinternational.com';
+        }
+      } catch {
+        if (msg) msg.textContent = 'Network error — email info@dmarinternational.com';
+      }
+    });
   }
-  function setHdrVar(){
-    const h = (document.querySelector('header')?.getBoundingClientRect().height) || 64;
-    document.documentElement.style.setProperty('--hdr-h', h+'px');
+
+  // CAREERS (supports file upload)
+  const careersForm = $('form[data-careers]');
+  if (careersForm) {
+    const msg = $('#careers-msg');
+    careersForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (msg) msg.textContent = 'Uploading…';
+
+      try {
+        const res = await fetch(CAREERS_ENDPOINT, {
+          method: 'POST',
+          body: new FormData(careersForm)
+        });
+        if (res.ok) {
+          if (msg) msg.textContent = 'Thanks — received. We’ll review your CV.';
+          careersForm.reset();
+        } else {
+          if (msg) msg.textContent = 'Upload failed — email careers@dmarinternational.com';
+        }
+      } catch {
+        if (msg) msg.textContent = 'Network error — email careers@dmarinternational.com';
+      }
+    });
   }
-  function lock(on){
-    document.documentElement.classList.toggle('nav-open', on);
-    document.body.classList.toggle('nav-open', on);
-    if(on){
-      document.body.style.overflow='hidden';
-      document.body.style.touchAction='none';
-    }else{
-      document.body.style.overflow='';
-      document.body.style.touchAction='';
-    }
-  }
-  function toggle(open){
-    setHdrVar();
-    drawer.classList.toggle('open', open);
-    scrim.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', String(open));
-    lock(open);
-  }
-  btn.addEventListener('click', (e)=>{ e.preventDefault(); toggle(!drawer.classList.contains('open')); }, {passive:false});
-  scrim.addEventListener('click', ()=> toggle(false));
-  ['load','resize','orientationchange','visibilitychange'].forEach(ev => window.addEventListener(ev, setHdrVar));
-  setHdrVar();
 })();
 
+/* ---------- optional niceties ---------- */
+// prevent iOS double-tap zoom on buttons (by ensuring active state)
+document.addEventListener('touchstart', () => {}, { passive: true });
 
-// ===== v8: single reliable mobile menu handler =====
-(function(){
-  const btn = document.getElementById('menuToggle');
-  const drawer = document.getElementById('mobileNav');
-  if(!btn || !drawer) return;
-
-  // Create scrim if missing
-  let scrim = document.querySelector('.scrim');
-  if(!scrim){
-    scrim = document.createElement('div');
-    scrim.className = 'scrim';
-    document.body.appendChild(scrim);
-  }
-
-  function setHdrH(){
-    const h = (document.querySelector('header')?.getBoundingClientRect().height) || 64;
-    document.documentElement.style.setProperty('--hdr-h', h + 'px');
-  }
-  function lock(on){
-    document.body.style.overflow = on ? 'hidden' : '';
-    document.body.style.touchAction = on ? 'none' : '';
-    document.documentElement.classList.toggle('nav-open', on);
-    document.body.classList.toggle('nav-open', on);
-  }
-  function openNav(on){
-    setHdrH();
-    drawer.classList.toggle('open', on);
-    scrim.classList.toggle('open', on);
-    if(on){ try{ drawer.scrollTop = 0; }catch(e){} }
-    btn.setAttribute('aria-expanded', String(on));
-    lock(on);
-  }
-  function toggle(){ openNav(!drawer.classList.contains('open')); }
-
-  // Click + keyboard
-  btn.addEventListener('click', (e)=>{ e.preventDefault(); toggle(); });
-  btn.addEventListener('keydown', (e)=>{
-    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
-  });
-  scrim.addEventListener('click', ()=> openNav(false));
-
-  // Keep position correct on rotate/resize
-  ['load','resize','orientationchange','visibilitychange'].forEach(ev => window.addEventListener(ev, setHdrH));
-
-  setHdrH();
-})();
