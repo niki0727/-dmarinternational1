@@ -124,31 +124,6 @@ const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
 /* ---------- forms (Contact + Careers) ---------- */
 (function initForms(){
-  // CONTACT
-  const contactForm = $('form[data-contact]');
-  if (contactForm) {
-    const msg = $('#form-msg');
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (msg) msg.textContent = 'Sending…';
-
-      try {
-        const res = await fetch(CONTACT_ENDPOINT, {
-          method: 'POST',
-          body: new FormData(contactForm)
-        });
-        if (res.ok) {
-          if (msg) msg.textContent = 'Thanks — we’ll reply shortly.';
-          contactForm.reset();
-        } else {
-          if (msg) msg.textContent = 'Sorry — could not send. Please email info@dmarinternational.com';
-        }
-      } catch {
-        if (msg) msg.textContent = 'Network error — email info@dmarinternational.com';
-      }
-    });
-  }
-
   // CAREERS (supports file upload)
   const careersForm = $('form[data-careers]');
   if (careersForm) {
