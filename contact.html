@@ -68,7 +68,7 @@
     <p class="lead">Tell us about your upcoming operation. We’ll reply within one business day.</p>
     <div class="grid contact-grid">
       <div class="card contact-card">
-        <form class="contact-form" data-contact>
+        <form class="contact-form" id="contactForm" data-contact>
           <div class="grid form-grid">
             <input name="name" placeholder="Your name"/>
             <input name="email" placeholder="you@company.com"/>
@@ -136,6 +136,15 @@
   <a class="btn" href="/contact.html">Talk to an expert</a>
 </div>
 <script src="/assets/script.js"></script>
+<script>
+document.getElementById('contactForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const res = await fetch('https://damp-frog-a167.piazenko-n.workers.devv', { method: 'POST', body: data });
+  if (res.ok) alert('Message sent!');
+  else alert('Failed to send message');
+});
+</script>
 
 </body>
 </html>
