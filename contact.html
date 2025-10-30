@@ -140,7 +140,7 @@
 document.getElementById('contactForm').addEventListener('submit', async e => {
   e.preventDefault();
   const data = new FormData(e.target);
-  const res = await fetch('https://damp-frog-a167.piazenko-n.workers.devv', { method: 'POST', body: data });
+  const res = await fetch('https://calm-block-7101.piazenko-n.workers.dev', { method: 'POST', body: data });
   if (res.ok) alert('Message sent!');
   else alert('Failed to send message');
 });
