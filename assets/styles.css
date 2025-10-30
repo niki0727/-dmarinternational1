@@ -326,3 +326,29 @@ body.home .hero .art{
   .compact-xs input, .compact-xs select, .compact-xs textarea{ padding:8px 10px }
   .compact-xs .lead{ font-size:1rem }
 }
+
+/* Contact page layout */
+body.contact main{ padding-bottom:60px }
+body.contact .section{ padding-top:48px }
+body.contact .contact-grid{
+  grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);
+  align-items:start;
+  gap:28px;
+}
+body.contact .contact-card{ padding:26px }
+body.contact .contact-form{ display:flex; flex-direction:column; gap:16px }
+body.contact .form-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px }
+body.contact .message-field textarea{ min-height:170px; resize:vertical }
+body.contact .form-actions{ display:flex; gap:12px; align-items:center; flex-wrap:wrap }
+body.contact .form-actions .btn{ flex:0 0 auto }
+body.contact .form-actions #form-msg{ flex:1 1 auto; min-width:160px }
+@media (max-width:960px){
+  body.contact .contact-grid{ grid-template-columns:minmax(0,1fr); }
+}
+@media (max-width:640px){
+  body.contact .section{ padding-top:32px }
+  body.contact .contact-card{ padding:20px }
+  body.contact .form-grid{ grid-template-columns:1fr }
+  body.contact .message-field textarea{ min-height:150px }
+  body.contact .form-actions{ align-items:flex-start }
+}
