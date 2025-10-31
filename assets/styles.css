@@ -182,12 +182,28 @@ body.contact .grid-2, body.careers .grid-2 { gap:12px }
 .action-bar{
   position:fixed;left:0;right:0;
   bottom:0;
-  background:#fff;border-top:1px solid var(--border);
-  padding:10px 12px calc(10px + env(safe-area-inset-bottom, 0));
-  display:none;z-index:70;gap:10px;align-items:center;justify-content:center
+  background:#f8fafc;border-top:1px solid rgba(148,163,184,.45);
+  padding:8px 12px calc(8px + env(safe-area-inset-bottom, 0));
+  display:none;z-index:70;gap:8px;align-items:center;justify-content:center
 }
 @media (max-width:780px){ .action-bar{ display:flex } }
-.action-bar .btn{ flex:1 1 0; justify-content:center; min-height:44px }
+.action-bar .btn{
+  flex:1 1 0;
+  justify-content:center;
+  min-height:36px;
+  padding:0.45rem 0.85rem;
+  font-size:0.9rem;
+  font-weight:600;
+  border-radius:10px;
+  border:1px solid rgba(148,163,184,.6);
+  background:#f1f5f9;
+  color:var(--brand);
+  box-shadow:none;
+  transform:none;
+}
+.action-bar .btn:hover{background:#e2e8f0;transform:none}
+.action-bar .btn:active{background:#cbd5f5}
+.action-bar .btn.alt{background:#fff;border-color:rgba(148,163,184,.6);color:var(--brand)}
 
 /* NAV SLIDE */
 .mobile{transform:translateY(-8px);opacity:0;transition:transform .18s ease, opacity .18s ease}
