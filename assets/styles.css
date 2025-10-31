@@ -77,6 +77,7 @@ hr.sep{border:none;height:1px;background:var(--border);margin:20px 0}
 .brand-row{display:flex;gap:20px;align-items:center;flex-wrap:wrap;opacity:.9}.brand-row img{height:38px;filter:grayscale(10%) saturate(110%)}
 
 /* Footer & sticky CTA */
+footer{padding-bottom: 70px !important;}
 footer{border-top:1px solid var(--border);background:#f7f9fc;padding:30px 0;color:#334155;font-size:.95rem}
 footer .cols{display:grid;gap:20px;grid-template-columns:2fr 1fr 1fr}@media (max-width:900px){footer .cols{grid-template-columns:1fr}}
 .sticky-cta{position:fixed;right:16px;bottom:16px;z-index:80}
