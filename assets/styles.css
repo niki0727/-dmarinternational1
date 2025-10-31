@@ -188,7 +188,8 @@ body.contact .grid-2, body.careers .grid-2 { gap:12px }
   display:none;z-index:70;gap:8px;align-items:center;justify-content:center
 }
 @media (max-width:780px){ .action-bar{ display:flex } }
-.action-bar .btn{ flex:1 1 0; justify-content:center; min-height:38px }
+.action-bar .btn{ flex:1 1 0; justify-content:center; min-height:38px; padding:0.3rem }
+
 
 .action-bar .btn:hover{background:#e2e8f0;transform:none}
 .action-bar .btn:active{background:#cbd5f5}
