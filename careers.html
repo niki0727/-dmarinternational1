@@ -147,29 +147,7 @@
   <a class="btn" href="/contact.html">Talk to an expert</a>
 </div>
 <script src="/assets/script.js"></script>
-<script>
-    document.querySelector('[data-careers]').addEventListener('submit', async e => {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-      const msg = document.getElementById('careers-msg');
-    
-      msg.textContent = 'Uploading…';
-
-      const res = await fetch('https://restless-band-2939.piazenko-n.workers.dev', {
-        method: 'POST',
-        body: data
-      });
-     
-      if (res.ok) {
-        msg.textContent = 'Thanks — received. We’ll review your CV.';
-        form.reset();
-      } else {
-        const text = await res.text().catch(()=> 'Error');
-        msg.textContent = 'Upload failed — email info@dmarinternational.com';
-      }
-    });
-</script>
+<script src="/function/submit-careers.js"></script>
 
   <body>
 </html>
