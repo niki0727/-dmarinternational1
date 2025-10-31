@@ -164,7 +164,8 @@ html.nav-open, body.nav-open{overflow:hidden;touch-action:none}
   .btn.burger{ padding:8px 12px; font-size:14px }
   .hero h1{ font-size: clamp(26px, 7.5vw, 42px); }
   .subtitle{ font-size: 1rem }
-}+  .grid-2,.grid-3{grid-template-columns:1fr}
+}
+ .grid-2,.grid-3{grid-template-columns:1fr}
  form .row{grid-template-columns:1fr}
  h1{font-size:clamp(24px,7vw,36px)}
 h2{font-size:clamp(18px,5.5vw,24px)}
@@ -176,7 +177,7 @@ body.contact .grid-2, body.careers .grid-2 { gap:12px }
  body.contact input, body.contact select, body.contact textarea,
  body.careers input, body.careers select, body.careers textarea { padding:9px 11px }
   /* keep inputs at 16px+ for accessibility (avoid iOS zoom); size reduction is spacing-focused */
- }
+ 
 
 /* Mobile bottom action bar (safe-area aware) */
 .action-bar{
@@ -188,11 +189,7 @@ body.contact .grid-2, body.careers .grid-2 { gap:12px }
 }
 @media (max-width:780px){ .action-bar{ display:flex } }
 .action-bar .btn{ flex:1 1 0; justify-content:center; min-height:38px }
-  background:#f1f5f9;
-  color:var(--brand);
-  box-shadow:none;
-  transform:none;
-}
+
 .action-bar .btn:hover{background:#e2e8f0;transform:none}
 .action-bar .btn:active{background:#cbd5f5}
 .action-bar .btn.alt{background:#fff;border-color:rgba(148,163,184,.6);color:var(--brand)}
