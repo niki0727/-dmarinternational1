@@ -10,6 +10,20 @@ a{color:var(--brand);text-decoration:none}
 .btn:hover{transform:translateY(-1px)}.btn.alt{background:#fff;color:var(--brand);border-color:var(--brand)}
 .badge{display:inline-block;padding:.28rem .6rem;border:1px solid var(--border);border-radius:999px;color:#0A5694;background:#eaf3fb;font-size:.8rem}
 .small{font-size:.95rem;color:#556070}
+.form-consent-block{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  max-width:420px;
+}
+.form-consent-block p{ margin:0 }
+.form-consent-block .consent-checkbox{
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+  line-height:1.4;
+}
+.form-consent-block .consent-checkbox input{ margin-top:3px }
 hr.sep{border:none;height:1px;background:var(--border);margin:20px 0}
 
 
