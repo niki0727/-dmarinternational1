@@ -10,6 +10,11 @@ a{color:var(--brand);text-decoration:none}
 .btn:hover{transform:translateY(-1px)}.btn.alt{background:#fff;color:var(--brand);border-color:var(--brand)}
 .badge{display:inline-block;padding:.28rem .6rem;border:1px solid var(--border);border-radius:999px;color:#0A5694;background:#eaf3fb;font-size:.8rem}
 .small{font-size:.95rem;color:#556070}
+.privacy-consent{margin-top:16px}
+.privacy-consent p{margin:0 0 8px}
+.privacy-consent .privacy-checkbox{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:flex-start;line-height:1.5}
+.privacy-consent .privacy-checkbox input{margin-top:3px}
+.privacy-consent .privacy-checkbox span{display:block}
 hr.sep{border:none;height:1px;background:var(--border);margin:20px 0}
 
 
