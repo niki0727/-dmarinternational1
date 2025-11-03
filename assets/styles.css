@@ -372,18 +372,18 @@ body.contact .form-actions #form-msg{ flex:1 1 auto; min-width:160px }
 }
 
 /* Cookie banner */
-.cookie-banner{position:fixed;inset:auto 0 0;background:rgba(15,25,35,.82);backdrop-filter:blur(6px);color:#fff;z-index:1200;opacity:0;pointer-events:none;transform:translateY(100%);transition:transform .3s ease,opacity .3s ease;padding:16px}
+.cookie-banner{position:fixed;inset:auto 12px 12px;background:rgba(15,25,35,.82);backdrop-filter:blur(6px);color:#fff;z-index:1200;opacity:0;pointer-events:none;transform:translateY(100%);transition:transform .3s ease,opacity .3s ease;padding:12px;border-radius:18px}
 .cookie-banner.open{opacity:1;pointer-events:auto;transform:translateY(0)}
-.cookie-banner__inner{max-width:var(--max);margin:0 auto;display:grid;gap:20px;grid-template-columns:minmax(0,2fr) minmax(0,1fr);align-items:center}
-.cookie-banner__content h2{margin:0 0 10px;font-size:1.3rem}
-.cookie-banner__content p{margin:0 0 10px;color:#f1f5f9}
-.cookie-banner__list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.cookie-banner__list li{background:rgba(15,25,35,.55);border:1px solid rgba(148,163,184,.35);border-radius:14px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.cookie-banner__inner{max-width:var(--max);margin:0 auto;display:grid;gap:16px;grid-template-columns:minmax(0,2fr) minmax(0,1fr);align-items:flex-start;max-height:calc(100dvh - 48px);overflow:auto}
+.cookie-banner__content h2{margin:0 0 8px;font-size:1.22rem}
+.cookie-banner__content p{margin:0 0 8px;color:#f1f5f9;font-size:.95rem}
+.cookie-banner__list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.cookie-banner__list li{background:rgba(15,25,35,.55);border:1px solid rgba(148,163,184,.35);border-radius:14px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:16px}
 .cookie-banner__list label{display:flex;justify-content:space-between;align-items:center;gap:20px;cursor:pointer}
 .cookie-banner__list strong{display:block;color:#fff}
-.cookie-banner__list p{margin:6px 0 0;font-size:.9rem;color:#e2e8f0}
-.cookie-banner__actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
-.cookie-banner__actions .btn{min-width:140px;justify-content:center}
+.cookie-banner__list p{margin:6px 0 0;font-size:.85rem;color:#e2e8f0}
+.cookie-banner__actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.cookie-banner__actions .btn{min-width:128px;justify-content:center}
 .cookie-banner .toggle{position:relative;width:46px;height:24px}
 .cookie-banner .toggle input{opacity:0;width:0;height:0}
 .cookie-banner .slider{position:absolute;inset:0;background:rgba(148,163,184,.45);border-radius:999px;transition:all .2s ease}
@@ -392,4 +392,4 @@ body.contact .form-actions #form-msg{ flex:1 1 auto; min-width:160px }
 .cookie-banner .toggle input:checked + .slider::after{transform:translateX(20px)}
 body.cookie-banner-open{overflow:hidden}
 @media (max-width:900px){.cookie-banner__inner{grid-template-columns:1fr}.cookie-banner__actions{justify-content:flex-start}}
-@media (max-width:600px){.cookie-banner{padding:12px}.cookie-banner__actions{flex-direction:column;align-items:stretch}.cookie-banner__actions .btn{width:100%}}
+@media (max-width:600px){.cookie-banner{padding:10px 12px 14px;inset:auto 8px 8px;border-radius:14px}.cookie-banner__inner{max-height:calc(100dvh - 32px)}.cookie-banner__content h2{font-size:1.08rem}.cookie-banner__actions{flex-direction:column;align-items:stretch}.cookie-banner__actions .btn{width:100%}.cookie-banner__list li{padding:9px 12px}.cookie-banner__list label{align-items:flex-start;gap:12px}}
