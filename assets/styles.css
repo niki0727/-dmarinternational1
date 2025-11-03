@@ -14,16 +14,21 @@ a{color:var(--brand);text-decoration:none}
   display:flex;
   flex-direction:column;
   gap:6px;
-  max-width:420px;
+  width:100%;
 }
 .form-consent-block p{ margin:0 }
 .form-consent-block .consent-checkbox{
   display:flex;
-  gap:8px;
+  gap:10px;
   align-items:flex-start;
-  line-height:1.4;
+  line-height:1.45;
 }
 .form-consent-block .consent-checkbox input{ margin-top:3px }
+.form-consent-block .consent-checkbox span{
+  display:block;
+  flex:1;
+  margin-top:1px;
+}
 hr.sep{border:none;height:1px;background:var(--border);margin:20px 0}
 
 
