@@ -1,10 +1,4 @@
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
-diff --git a/codex-dmar.js b/codex-dmar.js
-new file mode 100644
-index 0000000000000000000000000000000000000000..409dd581ae8d3549a9077c6fe7da985dadb4a6a9
---- /dev/null
-+++ b/codex-dmar.js
-@@ -0,0 +1,369 @@
+
 +#!/usr/bin/env node
 +/**
 + * DMAR Codex Automator
