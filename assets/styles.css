@@ -72,6 +72,9 @@ hr.sep{border:none;height:1px;background:var(--border);margin:20px 0}
 .card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
 .kpi{display:flex;gap:14px;align-items:center;color:#566070;font-size:.95rem;flex-wrap:wrap}
 .table{width:100%;border-collapse:collapse}.table th,.table td{padding:12px 10px;border-bottom:1px solid var(--border);text-align:left}.table th{color:#0A5694;font-weight:700}
+body.cookies .table{font-size:.95rem}
+body.cookies .table code{font-size:.9em}
+@media (max-width:640px){body.cookies .table th,body.cookies .table td{padding:8px 6px;font-size:.82rem;line-height:1.4}body.cookies .table th{font-size:.78rem}body.cookies .table td:first-child{min-width:135px}body.cookies .table td{word-break:break-word}}
 .faq dt{font-weight:700;margin-top:14px}.faq dd{margin:6px 0 16px 0;color:#556070}
 
 /* Sustainability wave */
