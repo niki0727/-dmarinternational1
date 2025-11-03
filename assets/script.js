@@ -1,196 +1,345 @@
-diff --git a/cookies.html b/cookies.html
-new file mode 100644
-index 0000000000000000000000000000000000000000..ab79433c0e72247b1d4f3bd1bcfe169d92325e42
---- /dev/null
-+++ b/cookies.html
-@@ -0,0 +1,190 @@
-+<!doctype html>
-+<html lang="en">
-+<head>
-+  <!-- Google Tag Manager (consent managed) -->
-+  <script type="text/plain" data-cookie-category="analytics marketing">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-+})(window,document,'script','dataLayer','GTM-M3Z5Z4PQ');</script>
-+  <!-- End Google Tag Manager -->
-+  <meta charset="utf-8"/>
-+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-+  <meta name="theme-color" content="#0A5694"/>
-+  <title>Cookies • DMAR International</title>
-+  <link rel="preconnect" href="https://fonts.googleapis.com">
-+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-+  <link rel="stylesheet" href="/assets/styles.css"/>
-+  <meta name="description" content="Find out how DMAR International uses cookies, analytics tags, and marketing pixels, and how to manage your preferences."/>
-+  <meta property="og:title" content="Cookies • DMAR International" />
-+  <meta property="og:type" content="website" />
-+  <meta property="og:image" content="/assets/images/hero-port.jpg" />
-+</head>
-+<body class="cookies">
-+<div class="topbar" role="region" aria-label="announcement">
-+  <div class="row container">
-+    <span class="dot" aria-hidden="true"></span>
-+    <span>We’re hiring Marine Warranty Surveyors & Naval Architects — <a style="color:#fff;text-decoration:underline" href="/careers.html">upload your CV</a></span>
-+    <button class="close" aria-label="Dismiss">×</button>
-+  </div>
-+</div>
-+
-+<header>
-+  <div class="container nav">
-+    <div class="left">
-+      <a href="/index.html" aria-label="DMAR home"><img class="logo" src="/assets/logo.png" alt="DMAR International logo"/></a>
-+    </div>
-+    <div class="mid" role="navigation" aria-label="Primary">
-+      <ul>
-+        <li><a href="/services.html" >Services</a></li>
-+        <li><a href="/sectors.html" >Sectors</a></li>
-+        <li><a href="/projects.html" >Projects</a></li>
-+        <li><a href="/sustainability.html" >Sustainability</a></li>
-+        <li><a href="/about.html" >About</a></li>
-+        <li><a href="/careers.html" >Careers</a></li>
-+        <li><a href="/contact.html" >Contact</a></li>
-+      </ul>
-+    </div>
-+    <div class="right">
-+      <a class="btn alt" href="/assets/DMAR-brochure-2024.pptx" download>Download brochure</a>
-+      <a class="btn" href="/contact.html">Request a call</a>
-+      <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0" aria-label="Menu">Menu</button>
-+    </div>
-+
-+</header>
-+
-+<nav id="mobileNav" class="mobile" aria-label="Mobile">
-+  <a href="/services.html">Services</a>
-+  <a href="/sectors.html">Sectors</a>
-+  <a href="/projects.html">Projects</a>
-+  <a href="/sustainability.html">Sustainability</a>
-+  <a href="/about.html">About</a>
-+  <a href="/careers.html">Careers</a>
-+  <a href="/contact.html">Contact</a>
-+</nav>
-+
-+<div class="scrim" hidden></div>
-+
-+  <main>
-+
-+<section class="section">
-+  <div class="container">
-+    <h1>Cookies & tracking technologies</h1>
-+    <p class="lead">This page explains which cookies and storage technologies are used on dmarinternational.com, why we use them, and how you can manage your preferences.</p>
-+
-+    <h2>How we categorise cookies</h2>
-+    <p>All cookies are grouped into the same categories you see in our banner:</p>
-+    <ul>
-+      <li><strong>Essential:</strong> Required for security, network management, and remembering your consent settings. These are always active because the site cannot operate correctly without them.</li>
-+      <li><strong>Analytics:</strong> Optional tags that help us understand how the site is used. We deploy Google Analytics via Google Tag Manager only after you give consent.</li>
-+      <li><strong>Marketing:</strong> Optional tags used for advertising and remarketing. At present we only load Google Ads remarketing tags after consent.</li>
-+    </ul>
-+
-+    <h2>Cookie and storage list</h2>
-+    <p>The table below summarises the cookies and local storage keys we currently set.</p>
-+    <div style="overflow-x:auto">
-+      <table class="table">
-+        <thead>
-+          <tr>
-+            <th>Name</th>
-+            <th>Provider</th>
-+            <th>Category</th>
-+            <th>Purpose</th>
-+            <th>Expiry</th>
-+          </tr>
-+        </thead>
-+        <tbody>
-+          <tr>
-+            <td><code>cookieConsent.v1</code> (localStorage)</td>
-+            <td>DMAR International</td>
-+            <td>Essential</td>
-+            <td>Stores your cookie preferences so that the banner remembers your choices.</td>
-+            <td>12 months from last update</td>
-+          </tr>
-+          <tr>
-+            <td><code>_ga</code></td>
-+            <td>Google Analytics</td>
-+            <td>Analytics</td>
-+            <td>Distinguishes unique visitors to help us measure site usage. Set only after analytics consent.</td>
-+            <td>2 years</td>
-+          </tr>
-+          <tr>
-+            <td><code>_ga_GTM-M3Z5Z4PQ</code></td>
-+            <td>Google Analytics</td>
-+            <td>Analytics</td>
-+            <td>Maintains session state for Google Analytics (used alongside <code>_ga</code>).</td>
-+            <td>2 years</td>
-+          </tr>
-+          <tr>
-+            <td><code>_gid</code></td>
-+            <td>Google Analytics</td>
-+            <td>Analytics</td>
-+            <td>Provides daily session counts. Set only after analytics consent.</td>
-+            <td>24 hours</td>
-+          </tr>
-+          <tr>
-+            <td><code>_gcl_au</code></td>
-+            <td>Google Ads</td>
-+            <td>Marketing</td>
-+            <td>Stores ad click information for conversion tracking. Set only after marketing consent.</td>
-+            <td>90 days</td>
-+          </tr>
-+        </tbody>
-+      </table>
-+    </div>
-+
-+    <h2>Managing your preferences</h2>
-+    <p>You can adjust your cookie choices at any time using the button below. Selecting “Essential only” will remove analytics and marketing consent and we will stop loading those tags on your next page refresh.</p>
-+    <p><a class="btn alt" href="#" data-cookie-open>Open cookie settings</a></p>
-+
-+    <h2>Third-party controls</h2>
-+    <p>If you wish, you can also manage cookies directly within your browser settings or install extensions that block analytics or advertising tags. Doing so may affect how our site functions or what content you see.</p>
-+
-+    <h2>Contact us</h2>
-+    <p>If you have any questions about cookies or privacy at DMAR International MB, email <a href="mailto:privacy@dmarinternational.com">privacy@dmarinternational.com</a>.</p>
-+  </div>
-+</section>
-+
-+  </main>
-+
-+<footer>
-+  <div class="container cols">
-+    <div>
-+      <img src="/assets/logo.png" alt="DMAR International" width="180" height="48" />
-+      <p class="small" style="max-width:60ch;margin-top:10px">
-+        Accredited Marine Warranty Surveyors (SOMWS-qualified or equivalent) and experienced marine consultants to support EPCIs, developers, and MWS companies during high-risk offshore operations.
-+      </p>
-+      <p class="small notice">Standards & trademarks note: References to DNV and Lloyd’s Register are for information about widely used industry standards and do not imply endorsement or certification by those organisations.</p>
-+    </div>
-+    <div>
-+      <strong>Offices</strong>
-+      <hr class="sep"/>
-+      <div class="small">United Kingdom — London</div>
-+      <div class="small">Lithuania — Klaipėda</div>
-+    </div>
-+    <div>
-+      <strong>Contact</strong>
-+      <hr class="sep"/>
-+      <div class="small">info@dmarinternational.com</div>
-+      <div class="small">+44 7404 810279</div>
-+      <div class="small">+370 699 28380</div>
-+      <div class="small"><a href="/privacy.html">Privacy</a> · <a href="/cookies.html">Cookies</a> · <a href="/contact.html">Contact</a></div>
-+      <div class="small"><a href="#" data-cookie-open>Cookie settings</a></div>
-+    </div>
-+  </div>
-+  <div class="container" style="margin-top:14px">
-+    © 2025 DMAR International. All rights reserved.
-+  </div>
-+</footer>
-+<div class="action-bar">
-+  <a class="btn" href="tel:+447404810279">Call</a>
-+  <a class="btn alt" href="/contact.html">Contact</a>
-+</div>
-+<div class="sticky-cta">
-+  <a class="btn" href="/contact.html">Talk to an expert</a>
-+</div>
-+<script src="/assets/script.js"></script>
-+
-+</body>
-+</html>
+@@ -6,50 +6,116 @@
+
+/* ---------- CONFIG: endpoints ---------- */
+/* If you use Cloudflare Pages Functions, keep as-is:
+     /functions/submit-contact.js  =>  POST /submit-contact
+     /functions/submit-careers.js  =>  POST /submit-careers
+   Or replace with a form provider URL (Formspree/Getform/Basin).
+*/
+const CONTACT_ENDPOINT = "/submit-contact";
+const CAREERS_ENDPOINT = "/submit-careers";
+
+/* ---------- helpers ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+/* ---------- topbar ---------- */
+(function initTopbar(){
+  const closeBtn = $('.topbar .close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      const bar = closeBtn.closest('.topbar');
+      if (bar) bar.style.display = 'none';
+    });
+  }
+})();
+
+/* ---------- project gallery cards ---------- */
+(function initProjectGalleries(){
+  const galleries = $$('[data-project-gallery]');
+  if (!galleries.length) return;
+
+  galleries.forEach((gallery) => {
+    const mainImage = $('.project-gallery__image', gallery);
+    const dots = $$('.project-gallery__dot', gallery);
+    if (!mainImage || !dots.length) return;
+
+    let current = dots.findIndex(dot => dot.classList.contains('is-active'));
+    if (current < 0) current = 0;
+    let loadToken = 0;
+    const fallbackAlt = mainImage.alt;
+
+    const initialDot = dots[current];
+    if (initialDot) {
+      const initialAlt = initialDot.dataset.alt;
+      if (initialAlt) mainImage.alt = initialAlt;
+      initialDot.classList.add('is-active');
+    }
+
+    function updateTo(index){
+      if (index === current) return;
+      const targetDot = dots[index];
+      if (!targetDot) return;
+      const nextSrc = targetDot.dataset.image;
+      if (!nextSrc) return;
+
+      gallery.classList.add('is-loading');
+      const token = ++loadToken;
+      const loader = new Image();
+      loader.onload = () => {
+        if (token !== loadToken) return;
+        mainImage.src = nextSrc;
+        mainImage.alt = targetDot.dataset.alt || fallbackAlt;
+        gallery.classList.remove('is-loading');
+      };
+      loader.onerror = () => {
+        if (token !== loadToken) return;
+        gallery.classList.remove('is-loading');
+      };
+      loader.src = nextSrc;
+
+      dots.forEach(dot => dot.classList.remove('is-active'));
+      targetDot.classList.add('is-active');
+      current = index;
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => updateTo(idx));
+      dot.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          updateTo(idx);
+        }
+      });
+    });
+
+    mainImage.addEventListener('click', () => {
+      const nextIndex = (current + 1) % dots.length;
+      updateTo(nextIndex);
+    });
+  });
+})();
+
+/* ---------- mobile drawer ---------- */
+(function initMobileNav(){
+  const root = document.documentElement;
+  const header = $('header, .site-header');
+  let nav = $('#mobileNav') || $('.mobile');
+  let btn = $('#menuToggle') || $('.btn.burger') || $('[data-menu]');
+  let scrim = $('.scrim');
+
+  // Ensure scrim exists
+  if (!scrim) {
+    scrim = document.createElement('div');
+    scrim.className = 'scrim';
+    scrim.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(scrim);
+  }
+
+  function setHeaderOffset(){
+    const h = header ? Math.round(header.getBoundingClientRect().height) : 64;
+    root.style.setProperty('--hdr-h', `${h}px`);
+  }
+
+  // Focus trap within the drawer
+  let trapHandler = null;
+  function enableFocusTrap(panel){
+    const focusables = $$(
+@@ -104,25 +170,228 @@ const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  });
+  if (scrim) scrim.addEventListener('click', closeNav);
+  if (nav) {
+    nav.addEventListener('click', (e) => {
+      if (e.target.closest('a')) closeNav();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav && nav.classList.contains('open')) closeNav();
+  });
+
+  // Keep drawer positioned under header
+  setHeaderOffset();
+  let t;
+  window.addEventListener('resize', () => {
+    clearTimeout(t);
+    t = setTimeout(setHeaderOffset, 100);
+  });
+  window.addEventListener('orientationchange', setHeaderOffset);
+})();
+
+/* ---------- optional niceties ---------- */
+// prevent iOS double-tap zoom on buttons (by ensuring active state)
+document.addEventListener('touchstart', () => {}, { passive: true });
+
+/* ---------- cookie consent banner ---------- */
+(function initCookieConsent(){
+  const STORAGE_KEY = 'dmar.cookieConsent.v1';
+  const DEFAULT_STATE = { essential: true, analytics: false, marketing: false, acknowledged: false };
+
+  function loadState(){
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return { ...DEFAULT_STATE };
+      const parsed = JSON.parse(raw);
+      return { ...DEFAULT_STATE, ...parsed };
+    } catch (err) {
+      console.warn('[cookie-consent] Failed to parse stored consent', err);
+      return { ...DEFAULT_STATE };
+    }
+  }
+
+  function persistState(state){
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        ...state,
+        essential: true,
+        acknowledged: true,
+        updatedAt: new Date().toISOString()
+      }));
+    } catch (err) {
+      console.warn('[cookie-consent] Failed to persist consent', err);
+    }
+  }
+
+  function splitCategories(str){
+    return (str || '')
+      .split(/[,\s]+/)
+      .map(s => s.trim().toLowerCase())
+      .filter(Boolean);
+  }
+
+  function categoriesAllowed(state, categories){
+    if (!categories.length) return true;
+    return categories.every(cat => cat === 'essential' ? true : !!state[cat]);
+  }
+
+  function activateScripts(state){
+    const placeholders = $$('script[type="text/plain"][data-cookie-category]:not([data-cookie-loaded])');
+    placeholders.forEach((placeholder) => {
+      const required = splitCategories(placeholder.dataset.cookieCategory);
+      if (!categoriesAllowed(state, required)) return;
+
+      const target = placeholder.dataset.cookieTarget === 'body' ? document.body : document.head || document.documentElement;
+      const newScript = document.createElement('script');
+
+      if (placeholder.dataset.cookieSrc) {
+        newScript.src = placeholder.dataset.cookieSrc;
+        if (placeholder.dataset.cookieAsync === 'true') newScript.async = true;
+        if (placeholder.dataset.cookieDefer === 'true') newScript.defer = true;
+      } else {
+        newScript.textContent = placeholder.textContent;
+      }
+
+      placeholder.dataset.cookieLoaded = 'true';
+      target.appendChild(newScript);
+    });
+  }
+
+  function ensureBanner(){
+    if (document.getElementById('cookie-banner')) return document.getElementById('cookie-banner');
+
+    const banner = document.createElement('div');
+    banner.id = 'cookie-banner';
+    banner.className = 'cookie-banner';
+    banner.innerHTML = `
+      <div class="cookie-banner__inner" role="dialog" aria-modal="true" aria-labelledby="cookie-banner-title">
+        <div class="cookie-banner__content">
+          <h2 id="cookie-banner-title">Manage cookie preferences</h2>
+          <p>We use cookies to operate our site (essential) and to measure performance or deliver marketing once you permit us. You can update your preferences at any time.</p>
+          <ul class="cookie-banner__list">
+            <li>
+              <div>
+                <strong>Essential cookies</strong>
+                <p>Required for security and basic functionality. Always active.</p>
+              </div>
+            </li>
+            <li>
+              <label>
+                <div>
+                  <strong>Analytics cookies</strong>
+                  <p>Help us understand visits and improve the website via Google Analytics (through Google Tag Manager).</p>
+                </div>
+                <div class="toggle">
+                  <input type="checkbox" name="analytics" />
+                  <span class="slider" aria-hidden="true"></span>
+                </div>
+              </label>
+            </li>
+            <li>
+              <label>
+                <div>
+                  <strong>Marketing cookies</strong>
+                  <p>Enable remarketing and advertising pixels delivered via Google Tag Manager.</p>
+                </div>
+                <div class="toggle">
+                  <input type="checkbox" name="marketing" />
+                  <span class="slider" aria-hidden="true"></span>
+                </div>
+              </label>
+            </li>
+          </ul>
+        </div>
+        <div class="cookie-banner__actions">
+          <a class="btn ghost" href="/cookies.html">View cookies</a>
+          <button type="button" class="btn alt" data-action="reject">Essential only</button>
+          <button type="button" class="btn" data-action="save">Save preferences</button>
+          <button type="button" class="btn" data-action="accept">Accept all</button>
+        </div>
+      </div>`;
+
+    document.body.appendChild(banner);
+    return banner;
+  }
+
+  const state = loadState();
+  activateScripts(state);
+
+  function openBanner(){
+    const banner = ensureBanner();
+    const analyticsToggle = banner.querySelector('input[name="analytics"]');
+    const marketingToggle = banner.querySelector('input[name="marketing"]');
+    if (analyticsToggle) analyticsToggle.checked = !!state.analytics;
+    if (marketingToggle) marketingToggle.checked = !!state.marketing;
+
+    banner.classList.add('open');
+    document.body.classList.add('cookie-banner-open');
+    banner.querySelector('[data-action="save"]').focus({ preventScroll: true });
+  }
+
+  function closeBanner(){
+    const banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+    banner.classList.remove('open');
+    document.body.classList.remove('cookie-banner-open');
+  }
+
+  function applyAndMaybeReload(prev, next){
+    activateScripts(next);
+    const removedAnalytics = prev.analytics && !next.analytics;
+    const removedMarketing = prev.marketing && !next.marketing;
+    if (removedAnalytics || removedMarketing) {
+      window.setTimeout(() => window.location.reload(), 150);
+    }
+  }
+
+  function attachEvents(){
+    const banner = ensureBanner();
+    const analyticsToggle = banner.querySelector('input[name="analytics"]');
+    const marketingToggle = banner.querySelector('input[name="marketing"]');
+
+    banner.addEventListener('click', (event) => {
+      const btn = event.target.closest('button[data-action]');
+      if (!btn) return;
+
+      const action = btn.dataset.action;
+      const previous = { ...state };
+      if (action === 'accept') {
+        state.analytics = true;
+        state.marketing = true;
+      } else if (action === 'reject') {
+        state.analytics = false;
+        state.marketing = false;
+      } else if (action === 'save') {
+        state.analytics = analyticsToggle ? analyticsToggle.checked : false;
+        state.marketing = marketingToggle ? marketingToggle.checked : false;
+      }
+
+      state.acknowledged = true;
+
+      persistState(state);
+      closeBanner();
+      applyAndMaybeReload(previous, state);
+    });
+
+    document.addEventListener('click', (event) => {
+      const trigger = event.target.closest('[data-cookie-open]');
+      if (!trigger) return;
+      event.preventDefault();
+      openBanner();
+    });
+
+    window.cookieConsent = {
+      open: openBanner,
+      state: () => ({ ...state })
+    };
+  }
+
+  if (!state.acknowledged) {
+    // No consent stored or only essential: show banner
+    attachEvents();
+    openBanner();
+  } else {
+    // Consent already granted for at least one optional category
+    attachEvents();
+  }
+})();
