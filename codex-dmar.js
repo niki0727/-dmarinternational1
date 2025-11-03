@@ -19,8 +19,8 @@
  *   --cookies = /cookies.html
  *   --banner = off
  *   --companyName = "DMAR International MB"
- *   --companyNumber = "[Insert company number]"
- *   --companyAddress = "[Insert full address]"
+ *   --companyNumber = "[306293837]"
+ *   --companyAddress = "[Litorinos g. 3, Kalotės k., LT-92275 Klaipėdos r.]"
  *   --privacyEmail = "privacy@dmarinternational.com"
  *   --contact = /contact.html
  *
