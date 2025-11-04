@@ -26,14 +26,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="row container">
     <span class="dot" aria-hidden="true"></span>
     <span>We’re hiring Marine Warranty Surveyors & Naval Architects — <a style="color:#fff;text-decoration:underline" href="/careers.html">upload your CV</a></span>
-    <button class="close" aria-label="Dismiss">×</button>
+    <button class="close" type="button" aria-label="Dismiss">×</button>
   </div>
 </div>
 
 <header>
   <div class="container nav">
     <div class="left">
-      <a href="/index.html" aria-label="DMAR home"><img class="logo" src="/assets/logo.png" alt="DMAR International logo"/></a>
+      <a href="/index.html" aria-label="DMAR home"><img class="logo" src="/assets/logo.png" alt="DMAR International logo" width="180" height="48"/></a>
     </div>
     <div class="mid" role="navigation" aria-label="Primary">
       <ul>
@@ -49,12 +49,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="right">
       <a class="btn alt" href="/assets/DMAR-brochure-2024.pptx" download>Download brochure</a>
       <a class="btn" href="/contact.html">Request a call</a>
-      <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0" aria-label="Menu">Menu</button>
+      <button type="button" id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0" aria-label="Menu">Menu</button>
     </div>
 
 </header>
 
-<nav id="mobileNav" class="mobile" aria-label="Mobile">
+<nav id="mobileNav" class="mobile" aria-label="Mobile" aria-hidden="true">
   <a href="/services.html">Services</a>
   <a href="/sectors.html">Sectors</a>
   <a href="/projects.html">Projects</a>
@@ -64,7 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <a href="/contact.html">Contact</a>
 </nav>
 
-<div class="scrim" hidden></div>
+<div class="scrim" hidden aria-hidden="true"></div>
 
   <main>
 
@@ -78,11 +78,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <ul>
       <li><strong>Essential:</strong> Required for security, network management, and remembering your consent settings. These are always active because the site cannot operate correctly without them.</li>
       <li><strong>Analytics:</strong> Optional tags that help us understand how the site is used. We deploy Google Analytics via Google Tag Manager only after you give consent.</li>
-      <li><strong>Marketing:</strong> Optional tags used for advertising and remarketing. At present we only load Google Ads remarketing tags after consent.</li>
+      <li><strong>Marketing:</strong> Optional tags used for advertising and remarketing. After consent we may load Google Ads remarketing tags, the Meta Pixel, and the LinkedIn Insight Tag.</li>
     </ul>
 
     <h2>Cookie and storage list</h2>
-    <p>The table below summarises the cookies and local storage keys we currently set.</p>
+    <p>The table below summarises the cookies and local storage keys we currently set or may set once you have opted in.</p>
     <div style="overflow-x:auto">
       <table class="table">
         <thead>
@@ -96,7 +96,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </thead>
         <tbody>
           <tr>
-            <td><code>cookieConsent.v1</code> (localStorage)</td>
+            <td><code>dmar.cookieConsent.v1</code> (localStorage)</td>
             <td>DMAR International</td>
             <td>Essential</td>
             <td>Stores your cookie preferences so that the banner remembers your choices.</td>
@@ -130,6 +130,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <td>Stores ad click information for conversion tracking. Set only after marketing consent.</td>
             <td>90 days</td>
           </tr>
+          <tr>
+            <td><code>_fbp</code></td>
+            <td>Meta Pixel</td>
+            <td>Marketing</td>
+            <td>Helps deliver relevant advertising on Meta platforms after you provide marketing consent.</td>
+            <td>90 days</td>
+          </tr>
+          <tr>
+            <td><code>liap</code>, <code>_guid</code></td>
+            <td>LinkedIn Insight Tag</td>
+            <td>Marketing</td>
+            <td>Enables LinkedIn ad reporting and analytics once marketing cookies are allowed.</td>
+            <td>90 days</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -139,7 +153,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p><a class="btn alt" href="#" data-cookie-open>Open cookie settings</a></p>
 
     <h2>Third-party controls</h2>
-    <p>If you wish, you can also manage cookies directly within your browser settings or install extensions that block analytics or advertising tags. Doing so may affect how our site functions or what content you see.</p>
+    <p>If you wish, you can also manage cookies directly within your browser settings or install extensions that block analytics or advertising tags. Doing so may affect how our site functions or what content you see. We load Google Tag Manager and any analytics or marketing tags only after you have enabled the relevant categories.</p>
 
     <h2>Contact us</h2>
     <p>If you have any questions about cookies or privacy at DMAR International MB, email <a href="mailto:privacy@dmarinternational.com">privacy@dmarinternational.com</a>.</p>

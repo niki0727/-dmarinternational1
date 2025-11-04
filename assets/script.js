@@ -14,33 +14,36 @@ const CONTACT_ENDPOINT = "/submit-contact";
 const CAREERS_ENDPOINT = "/submit-careers";
 
 /* ---------- helpers ---------- */
-const $ = (s, r = document) => r.querySelector(s);
-const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
 /* ---------- topbar ---------- */
 (function initTopbar(){
   const closeBtn = $('.topbar .close');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      const bar = closeBtn.closest('.topbar');
-      if (bar) bar.style.display = 'none';
-    });
-  }
+  if (!closeBtn) return;
+  closeBtn.addEventListener('click', () => {
+    const bar = closeBtn.closest('.topbar');
+    if (!bar) return;
+    bar.style.display = 'none';
+  });
 })();
 
 /* ---------- mobile drawer ---------- */
 (function initMobileNav(){
   const root = document.documentElement;
   const header = $('header, .site-header');
-  let nav = $('#mobileNav') || $('.mobile');
-  let btn = $('#menuToggle') || $('.btn.burger') || $('[data-menu]');
+  const nav = $('#mobileNav') || $('.mobile');
+  const btn = $('#menuToggle') || $('.btn.burger') || $('[data-menu]');
   let scrim = $('.scrim');
 
-  // Ensure scrim exists
+  if (!nav || !btn) return;
+
+  // Ensure scrim exists and is appended to the document
   if (!scrim) {
     scrim = document.createElement('div');
     scrim.className = 'scrim';
     scrim.setAttribute('aria-hidden', 'true');
+    scrim.hidden = true;
     document.body.appendChild(scrim);
   }
 
@@ -49,8 +52,19 @@ const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
     root.style.setProperty('--hdr-h', `${h}px`);
   }
 
-  // Focus trap within the drawer
+  function getFocusableElements(container){
+    return $$('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])', container)
+      .filter(el => !el.hasAttribute('aria-hidden') && el.getAttribute('tabindex') !== '-1' && (el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement));
+  }
+
   let trapHandler = null;
+  function disableFocusTrap(){
+    if (trapHandler && nav) {
+      nav.removeEventListener('keydown', trapHandler);
+      trapHandler = null;
+    }
+  }
+
   function enableFocusTrap(panel){
     const focusables = $$(
       'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
@@ -102,28 +116,38 @@ const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
     e.preventDefault();
     nav && nav.classList.contains('open') ? closeNav() : openNav();
   });
-  if (scrim) scrim.addEventListener('click', closeNav);
-  if (nav) {
-    nav.addEventListener('click', (e) => {
-      if (e.target.closest('a')) closeNav();
-    });
+
+  if (scrim) {
+    scrim.addEventListener('click', closeNav);
   }
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && nav && nav.classList.contains('open')) closeNav();
+
+  nav.addEventListener('click', (event) => {
+    if (event.target.closest('a')) {
+      closeNav();
+    }
   });
 
-  // Keep drawer positioned under header
-  setHeaderOffset();
-  let t;
-  window.addEventListener('resize', () => {
-    clearTimeout(t);
-    t = setTimeout(setHeaderOffset, 100);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeNav();
+    }
   });
-  window.addEventListener('orientationchange', setHeaderOffset);
+
+  function handleResize(){
+    setHeaderOffset();
+    if (window.innerWidth >= 1024) {
+      closeNav();
+    }
+  }
+
+  setHeaderOffset();
+  window.addEventListener('resize', () => {
+    window.requestAnimationFrame(handleResize);
+  });
+  window.addEventListener('orientationchange', handleResize);
 })();
 
 /* ---------- optional niceties ---------- */
-// prevent iOS double-tap zoom on buttons (by ensuring active state)
 document.addEventListener('touchstart', () => {}, { passive: true });
 
 /* ---------- cookie consent banner ---------- */
@@ -158,14 +182,14 @@ document.addEventListener('touchstart', () => {}, { passive: true });
 
   function splitCategories(str){
     return (str || '')
-      .split(/[,\s]+/)
+      .split(/[\s,]+/)
       .map(s => s.trim().toLowerCase())
       .filter(Boolean);
   }
 
   function categoriesAllowed(state, categories){
     if (!categories.length) return true;
-    return categories.every(cat => cat === 'essential' ? true : !!state[cat]);
+    return categories.every(cat => (cat === 'essential' ? true : !!state[cat]));
   }
 
   function activateScripts(state){
@@ -174,7 +198,7 @@ document.addEventListener('touchstart', () => {}, { passive: true });
       const required = splitCategories(placeholder.dataset.cookieCategory);
       if (!categoriesAllowed(state, required)) return;
 
-      const target = placeholder.dataset.cookieTarget === 'body' ? document.body : document.head || document.documentElement;
+      const target = placeholder.dataset.cookieTarget === 'body' ? document.body : (document.head || document.documentElement);
       const newScript = document.createElement('script');
 
       if (placeholder.dataset.cookieSrc) {
@@ -191,9 +215,10 @@ document.addEventListener('touchstart', () => {}, { passive: true });
   }
 
   function ensureBanner(){
-    if (document.getElementById('cookie-banner')) return document.getElementById('cookie-banner');
+    let banner = document.getElementById('cookie-banner');
+    if (banner) return banner;
 
-    const banner = document.createElement('div');
+    banner = document.createElement('div');
     banner.id = 'cookie-banner';
     banner.className = 'cookie-banner';
     banner.innerHTML = `
@@ -258,7 +283,10 @@ document.addEventListener('touchstart', () => {}, { passive: true });
 
     banner.classList.add('open');
     document.body.classList.add('cookie-banner-open');
-    banner.querySelector('[data-action="save"]').focus({ preventScroll: true });
+    const defaultBtn = banner.querySelector('[data-action="save"]');
+    if (defaultBtn instanceof HTMLElement) {
+      defaultBtn.focus({ preventScroll: true });
+    }
   }
 
   function closeBanner(){
@@ -268,10 +296,10 @@ document.addEventListener('touchstart', () => {}, { passive: true });
     document.body.classList.remove('cookie-banner-open');
   }
 
-  function applyAndMaybeReload(prev, next){
+  function applyAndMaybeReload(previous, next){
     activateScripts(next);
-    const removedAnalytics = prev.analytics && !next.analytics;
-    const removedMarketing = prev.marketing && !next.marketing;
+    const removedAnalytics = previous.analytics && !next.analytics;
+    const removedMarketing = previous.marketing && !next.marketing;
     if (removedAnalytics || removedMarketing) {
       window.setTimeout(() => window.location.reload(), 150);
     }
@@ -320,11 +348,9 @@ document.addEventListener('touchstart', () => {}, { passive: true });
   }
 
   if (!state.acknowledged) {
-    // No consent stored or only essential: show banner
     attachEvents();
     openBanner();
   } else {
-    // Consent already granted for at least one optional category
     attachEvents();
   }
 })();
