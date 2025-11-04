@@ -1,7 +1,11 @@
 <!doctype html>
 <html lang="en">
   <body class="contact">
-  
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3Z5Z4PQ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
 <div class="topbar" role="region" aria-label="announcement">
   <div class="row container">
     <span class="dot" aria-hidden="true"></span>
@@ -10,6 +14,13 @@
   </div>
 </div>
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3Z5Z4PQ');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#0A5694"/>
@@ -74,6 +85,13 @@
             <input name="email" placeholder="you@company.com"/>
           </div>
           <div class="message-field"><textarea name="message" rows="6" placeholder="Project, location, timeline, scope"></textarea></div>
+          <div class="privacy-consent small">
+            <p>We’ll use your personal data to process your enquiry/application. See our <a href="/privacy.html">Privacy Policy</a> for details.</p>
+            <label class="privacy-checkbox">
+              <input type="checkbox" name="privacyConsent" required />
+              <span>I have read and agree to the Privacy Policy</span>
+            </label>
+          </div>
           <div class="form-actions">
             <button class="btn" type="submit">Send message</button>
             <span id="form-msg" class="small"></span>
@@ -136,15 +154,6 @@
   <a class="btn" href="/contact.html">Talk to an expert</a>
 </div>
 <script src="/assets/script.js"></script>
-<script>
-document.getElementById('contactForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  const data = new FormData(e.target);
-  const res = await fetch('https://calm-block-7101.piazenko-n.workers.dev', { method: 'POST', body: data });
-  if (res.ok) alert('Message sent!');
-  else alert('Failed to send message');
-});
-</script>
-
+<script src="/function/submit-contact.js"></script>
 </body>
 </html>
