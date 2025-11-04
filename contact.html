@@ -28,7 +28,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="row container">
     <span class="dot" aria-hidden="true"></span>
     <span>We’re hiring Marine Warranty Surveyors & Naval Architects — <a style="color:#fff;text-decoration:underline" href="/careers.html">upload your CV</a></span>
-    <button class="close" aria-label="Dismiss">×</button>
+    <button class="close" type="button" aria-label="Dismiss">×</button>
   </div>
 </div>
 
@@ -51,12 +51,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="right">
       <a class="btn alt" href="/assets/DMAR-brochure-2024.pptx" download>Download brochure</a>
       <a class="btn" href="/contact.html">Request a call</a>
-      <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0" aria-label="Menu">Menu</button>
+      <button type="button" id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0" aria-label="Menu">Menu</button>
     </div>
 
 </header>
 
-<nav id="mobileNav" class="mobile" aria-label="Mobile">
+<nav id="mobileNav" class="mobile" aria-label="Mobile" aria-hidden="true">
   <a href="/services.html">Services</a>
   <a href="/sectors.html">Sectors</a>
   <a href="/projects.html">Projects</a>
@@ -66,7 +66,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <a href="/contact.html">Contact</a>
 </nav>
 
-<div class="scrim" hidden></div>
+<div class="scrim" hidden aria-hidden="true"></div>
 
   <main>
     
@@ -76,12 +76,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p class="lead">Tell us about your upcoming operation. We’ll reply within one business day.</p>
     <div class="grid contact-grid">
       <div class="card contact-card">
-        <form class="contact-form" id="contactForm" data-contact>
+        <form class="contact-form" id="contactForm" data-contact method="post" autocomplete="on">
           <div class="grid form-grid">
-            <input name="name" placeholder="Your name"/>
-            <input name="email" placeholder="you@company.com"/>
+            <input name="name" type="text" placeholder="Your name" autocomplete="name" minlength="2" required />
+            <input name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
           </div>
-          <div class="message-field"><textarea name="message" rows="6" placeholder="Project, location, timeline, scope"></textarea></div>
+          <div class="message-field"><textarea name="message" rows="6" placeholder="Project, location, timeline, scope" minlength="2" required></textarea></div>
           <div class="privacy-consent small">
             <p>We’ll use your personal data to process your enquiry/application. See our <a href="/privacy.html">Privacy Policy</a> for details.</p>
             <label class="privacy-checkbox">
@@ -91,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </div>
           <div class="form-actions">
             <button class="btn" type="submit">Send message</button>
-            <span id="form-msg" class="small"></span>
+            <span id="form-msg" class="small" role="status" aria-live="polite"></span>
           </div>
         </form>
       </div>
