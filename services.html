@@ -29,14 +29,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="row container">
     <span class="dot" aria-hidden="true"></span>
     <span>We’re hiring Marine Warranty Surveyors & Naval Architects — <a style="color:#fff;text-decoration:underline" href="/careers.html">upload your CV</a></span>
-    <button class="close" aria-label="Dismiss">×</button>
+    <button class="close" type="button" aria-label="Dismiss">×</button>
   </div>
 </div>
 
 <header>
   <div class="container nav">
     <div class="left">
-      <a href="/index.html" aria-label="DMAR home"><img class="logo" src="/assets/logo.png" alt="DMAR International logo"/></a>
+      <a href="/index.html" aria-label="DMAR home"><img class="logo" src="/assets/logo.png" alt="DMAR International logo" width="180" height="48"/></a>
     </div>
     <div class="mid" role="navigation" aria-label="Primary">
       <ul>
@@ -52,13 +52,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="right">
       <a class="btn alt" href="/assets/DMAR-brochure-2024.pptx" download>Download brochure</a>
       <a class="btn" href="/contact.html">Request a call</a>
-      <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0" aria-label="Menu">Menu</button>
+      <button type="button" id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0" aria-label="Menu">Menu</button>
     </div>
 
 </header>
 
 
-<nav id="mobileNav" class="mobile" aria-label="Mobile">
+<nav id="mobileNav" class="mobile" aria-label="Mobile" aria-hidden="true">
   <a href="/services.html">Services</a>
   <a href="/sectors.html">Sectors</a>
   <a href="/projects.html">Projects</a>
@@ -68,7 +68,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <a href="/contact.html">Contact</a>
 </nav>
 
-<div class="scrim" hidden></div>
+<div class="scrim" hidden aria-hidden="true"></div>
 
   <main>
     
@@ -146,6 +146,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </div>
         </figure>
       </div>
+    </div>
+  </section>
 
   </main>
   
