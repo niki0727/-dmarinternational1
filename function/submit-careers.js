@@ -32,6 +32,7 @@
     const email = form.elements['email'];
     const cv = form.elements['cv'];
     const message = form.elements['message'];
+    const consent = form.elements['privacyConsent'];
 
     const valName = name?.value?.trim() ?? '';
     const valEmail = email?.value?.trim() ?? '';
@@ -75,6 +76,11 @@
       if (!firstInvalid) firstInvalid = message;
     }
 
+    if (consent instanceof HTMLInputElement && !consent.checked) {
+      errors.push('Please confirm you have read and agree to the Privacy Policy.');
+      if (!firstInvalid) firstInvalid = consent;
+    }
+
     return { ok: errors.length === 0, errors, firstInvalid };
   };
 
@@ -109,7 +115,7 @@
       });
 
       if (res.ok) {
-        setMessage(msgEl, 'Thanks — received. We’ll review your CV.');
+        setMessage(msgEl, 'Thanks — we’ve received your CV.');
         form.reset();
       } else {
         const text = await res.text().catch(() => 'Error');

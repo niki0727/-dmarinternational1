@@ -1,10 +1,6 @@
 <!doctype html>
 <html lang="en">
   <body class="contact">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3Z5Z4PQ"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
 <div class="topbar" role="region" aria-label="announcement">
   <div class="row container">
@@ -14,13 +10,6 @@
   </div>
 </div>
 <head>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M3Z5Z4PQ');</script>
-  <!-- End Google Tag Manager -->
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#0A5694"/>
@@ -52,11 +41,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </ul>
     </div>
     <div class="right">
-      <a class="btn alt" href="/assets/DMAR-brochure-2024.pptx" download>Download brochure</a>
+      <a class="btn alt" href="#contactForm">Request brochure</a>
       <a class="btn" href="/contact.html">Request a call</a>
       <button id="menuToggle" class="btn burger" aria-controls="mobileNav" aria-expanded="false" role="button" tabindex="0" aria-label="Menu">Menu</button>
     </div>
-
+  </div>
 </header>
 
 <nav id="mobileNav" class="mobile" aria-label="Mobile">
@@ -85,6 +74,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <input name="email" placeholder="you@company.com"/>
           </div>
           <div class="message-field"><textarea name="message" rows="6" placeholder="Project, location, timeline, scope"></textarea></div>
+          <div class="privacy-consent">
+            <p>We’ll use your personal data to process your enquiry/application. See our <a href="/privacy.html">Privacy Policy</a> for details.</p>
+            <label for="contactPrivacy">
+              <input id="contactPrivacy" name="privacyConsent" type="checkbox" required />
+              <span>I have read and agree to the Privacy Policy</span>
+            </label>
+          </div>
           <div class="form-actions">
             <button class="btn" type="submit">Send message</button>
             <span id="form-msg" class="small"></span>
@@ -133,6 +129,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="small">+44 7404 810279</div>
       <div class="small">+370 699 28380</div>
       <div class="small"><a href="/privacy.html">Privacy</a></div>
+      <div class="small"><a href="/cookies.html">Cookies</a></div>
     </div>
   </div>
   <div class="container" style="margin-top:14px">
@@ -146,6 +143,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="sticky-cta">
   <a class="btn" href="/contact.html">Talk to an expert</a>
 </div>
+<div id="cookie-banner" data-cookie-banner class="cookie-banner" role="dialog" aria-modal="true" aria-live="polite" hidden>
+  <div class="cookie-banner__inner">
+    <h2>Cookie preferences</h2>
+    <p>We use essential cookies to make our site work. With your consent, we’ll also use analytics and marketing cookies to understand performance and tailor our services.</p>
+    <div class="cookie-banner__options">
+      <div class="cookie-banner__option">
+        <div>
+          <span class="cookie-banner__label">Essential cookies</span>
+          <p class="cookie-banner__description">Always active — required for security, network management, and accessibility.</p>
+        </div>
+        <span class="cookie-banner__tag">Always on</span>
+      </div>
+      <label class="cookie-banner__option" data-cookie-option="analytics">
+        <div>
+          <span class="cookie-banner__label">Analytics cookies</span>
+          <p class="cookie-banner__description">Help us measure traffic and improve the site.</p>
+        </div>
+        <input type="checkbox" data-cookie-toggle="analytics" />
+      </label>
+      <label class="cookie-banner__option" data-cookie-option="marketing">
+        <div>
+          <span class="cookie-banner__label">Marketing cookies</span>
+          <p class="cookie-banner__description">Enable Google Ads and LinkedIn Insights once consent is given.</p>
+        </div>
+        <input type="checkbox" data-cookie-toggle="marketing" />
+      </label>
+    </div>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn" data-cookie-action="accept">Accept all</button>
+      <button type="button" class="btn alt" data-cookie-action="save">Save choices</button>
+      <button type="button" class="btn ghost" data-cookie-action="reject">Essential only</button>
+    </div>
+    <p class="cookie-banner__link"><a href="/cookies.html">View cookie details</a></p>
+  </div>
+</div>
+<button type="button" class="cookie-manage" data-cookie-manage hidden>Cookie settings</button>
+
 <script src="/assets/script.js"></script>
 <script src="/function/submit-contact.js"></script>
 </body>
