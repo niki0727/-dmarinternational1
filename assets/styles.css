@@ -239,6 +239,19 @@ header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.98);backd
   .nav .right .btn{display:none}
   .btn.burger{display:inline-flex;padding:8px 12px;font-size:14px}
   .logo{height:22px}
+
+}
+/* Precise logo sizing */
+.logo img{
+  height: 26px;     /* desktop/tablet */
+  width: auto;
+  display: block;   /* removes extra inline-gap */
+}
+
+@media (max-width: 780px){
+  .logo img{
+    height: 20px;   /* phones */
+  }
 }
 
 
