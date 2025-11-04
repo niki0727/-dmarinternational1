@@ -238,7 +238,7 @@ header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.98);backd
 @media (max-width:780px){
   .nav .right .btn{display:none}
   .btn.burger{display:inline-flex;padding:8px 12px;font-size:14px}
-  .logo{height:30px}
+  .logo{height:22px}
 }
 
 
