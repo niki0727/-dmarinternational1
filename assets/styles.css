@@ -1,7 +1,7 @@
 
 /* DMAR PRO THEME v2 (Netlify) */
 *{box-sizing:border-box}html,body{margin:0;padding:0}
-:root{--bg:#fff;--text:#333;--muted:#566070;--brand:#0A5694;--border:#E6EAF0;--radius:16px;--shadow:0 10px 30px rgba(0,0,0,.07);--max:1200px;--green:#0b8a4a;--notice-text:#9a3412}
+:root{--bg:#fff;--text:#333;--muted:#566070;--brand:#0A5694;--border:#E6EAF0;--radius:16px;--shadow:0 10px 30px rgba(0,0,0,.07);--max:1200px;--green:#0b8a4a;--notice-text:#9a3412;--notice-border:#fed7aa}
 body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:var(--bg);line-height:1.6}
 h1,h2,h3{line-height:1.15;margin:0 0 8px}
 a{color:var(--brand);text-decoration:none}
@@ -40,10 +40,15 @@ hr.sep{border:none;height:1px;background:var(--border);margin:20px 0}
   display: block;
   padding: 14px 16px;                       /* large tap targets */
   color: #111;
-  position: fixed; inset: 0;
+}
+
+.scrim{
+  position: fixed;
+  inset: 0;
   background: rgba(0,0,0,.35);
   z-index: 999;                             /* just under drawer */
-  opacity: 0; pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
   transition: opacity .15s ease;
 }
 .scrim.open{ opacity: 1; pointer-events: auto; }
