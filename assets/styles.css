@@ -396,7 +396,7 @@ body.cookie-banner-open{overflow:hidden}
 /* Make the logo actually smaller */
 header .logo { 
   display: flex; align-items: center; 
-  height: 26px !important;            /* controls the link box */
+  height: 28px !important;            /* controls the link box */
 }
 header .logo img{
   height: 100% !important;             /* image follows the box */
@@ -406,5 +406,5 @@ header .logo img{
 
 /* Phone size */
 @media (max-width:780px){
-  header .logo{ height: 22px !important; }
+  header .logo{ height: 24px !important; }
 }
