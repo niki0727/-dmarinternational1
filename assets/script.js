@@ -148,6 +148,7 @@ const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selec
 })();
 
 /* ---------- optional niceties ---------- */
+// prevent iOS double-tap zoom on buttons (by ensuring active state)
 document.addEventListener('touchstart', () => {}, { passive: true });
 
 /* ---------- cookie consent banner ---------- */
@@ -182,14 +183,14 @@ document.addEventListener('touchstart', () => {}, { passive: true });
 
   function splitCategories(str){
     return (str || '')
-      .split(/[\s,]+/)
+      .split(/[,\s]+/)
       .map(s => s.trim().toLowerCase())
       .filter(Boolean);
   }
 
   function categoriesAllowed(state, categories){
     if (!categories.length) return true;
-    return categories.every(cat => (cat === 'essential' ? true : !!state[cat]));
+    return categories.every(cat => cat === 'essential' ? true : !!state[cat]);
   }
 
   function activateScripts(state){
@@ -198,7 +199,7 @@ document.addEventListener('touchstart', () => {}, { passive: true });
       const required = splitCategories(placeholder.dataset.cookieCategory);
       if (!categoriesAllowed(state, required)) return;
 
-      const target = placeholder.dataset.cookieTarget === 'body' ? document.body : (document.head || document.documentElement);
+      const target = placeholder.dataset.cookieTarget === 'body' ? document.body : document.head || document.documentElement;
       const newScript = document.createElement('script');
 
       if (placeholder.dataset.cookieSrc) {
@@ -215,10 +216,9 @@ document.addEventListener('touchstart', () => {}, { passive: true });
   }
 
   function ensureBanner(){
-    let banner = document.getElementById('cookie-banner');
-    if (banner) return banner;
+    if (document.getElementById('cookie-banner')) return document.getElementById('cookie-banner');
 
-    banner = document.createElement('div');
+    const banner = document.createElement('div');
     banner.id = 'cookie-banner';
     banner.className = 'cookie-banner';
     banner.innerHTML = `
@@ -283,10 +283,7 @@ document.addEventListener('touchstart', () => {}, { passive: true });
 
     banner.classList.add('open');
     document.body.classList.add('cookie-banner-open');
-    const defaultBtn = banner.querySelector('[data-action="save"]');
-    if (defaultBtn instanceof HTMLElement) {
-      defaultBtn.focus({ preventScroll: true });
-    }
+    banner.querySelector('[data-action="save"]').focus({ preventScroll: true });
   }
 
   function closeBanner(){
@@ -296,10 +293,10 @@ document.addEventListener('touchstart', () => {}, { passive: true });
     document.body.classList.remove('cookie-banner-open');
   }
 
-  function applyAndMaybeReload(previous, next){
+  function applyAndMaybeReload(prev, next){
     activateScripts(next);
-    const removedAnalytics = previous.analytics && !next.analytics;
-    const removedMarketing = previous.marketing && !next.marketing;
+    const removedAnalytics = prev.analytics && !next.analytics;
+    const removedMarketing = prev.marketing && !next.marketing;
     if (removedAnalytics || removedMarketing) {
       window.setTimeout(() => window.location.reload(), 150);
     }
@@ -348,10 +345,11 @@ document.addEventListener('touchstart', () => {}, { passive: true });
   }
 
   if (!state.acknowledged) {
+    // No consent stored or only essential: show banner
     attachEvents();
     openBanner();
   } else {
+    // Consent already granted for at least one optional category
     attachEvents();
   }
 })();
-
