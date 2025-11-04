@@ -167,7 +167,7 @@ html.nav-open, body.nav-open{overflow:hidden;touch-action:none}
 
 /* ===== Mobile compact header + action bar (v5) ===== */
 @media (max-width: 780px){
-  .logo{ height:30px }
+  .logo{ height:22px }
   .nav{ min-height:64px }
   .nav .right .btn{ display:none }       /* hide big CTAs on phone */
   .nav .right .btn.burger{ display:inline-flex; } /* keep burger visible */
@@ -320,7 +320,7 @@ main > section:first-child{ position:relative; z-index: 0; }
 header{position:sticky;top:0;z-index:1001;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
 .nav{display:flex;align-items:center;gap:18px;min-height:72px}
 .nav .left{display:flex;align-items:center;gap:16px}
-.logo{height:38px}
+.logo{height:28px}
 .nav .mid{flex:1 1 auto;display:flex;justify-content:center}
 .nav .mid ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
 .nav .mid a{color:#111;font-weight:600;opacity:.85}
