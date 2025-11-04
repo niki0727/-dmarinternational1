@@ -19,8 +19,8 @@
  *   --cookies = /cookies.html
  *   --banner = off
  *   --companyName = "DMAR International MB"
- *   --companyNumber = "[Insert company number]"
- *   --companyAddress = "[Insert full address]"
+ *   --companyNumber = "[306293837]"
+ *   --companyAddress = "[Litorinos g. 3, Kalotės k., LT-92275 Klaipėdos r.]"
  *   --privacyEmail = "privacy@dmarinternational.com"
  *   --contact = /contact.html
  *
@@ -54,9 +54,9 @@ const BANNER = String(getArg('banner', 'off')).toLowerCase() === 'on';
 const DRY_RUN = !!getArg('dry-run', false);
 
 const companyName = getArg('companyName', 'DMAR International MB');
-const companyNumber = getArg('companyNumber', '[Insert company number]');
-const companyAddress = getArg('companyAddress', '[Insert full address]');
-const privacyEmail = getArg('privacyEmail', 'privacy@dmarinternational.com');
+const companyNumber = getArg('companyNumber', '[306293837]');
+const companyAddress = getArg('companyAddress', '[Litorinos g. 3, Kalotės k., LT-92275 Klaipėdos r.]');
+const privacyEmail = getArg('privacyEmail', 'info@dmarinternational.com');
 
 const TODAY = new Date();
 const LAST_UPDATED = TODAY.toLocaleString('en-GB', {

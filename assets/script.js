@@ -1,4 +1,17 @@
-'use strict';
+/* DMAR International — final site script (mobile drawer + forms)
+   - Mobile drawer: open/close + scrim + focus lock + ESC
+   - Topbar close button
+   - Forms: POST FormData to endpoints (supports file for Careers)
+*/
+
+/* ---------- CONFIG: endpoints ---------- */
+/* If you use Cloudflare Pages Functions, keep as-is:
+     /functions/submit-contact.js  =>  POST /submit-contact
+     /functions/submit-careers.js  =>  POST /submit-careers
+   Or replace with a form provider URL (Formspree/Getform/Basin).
+*/
+const CONTACT_ENDPOINT = "/submit-contact";
+const CAREERS_ENDPOINT = "/submit-careers";
 
 /* ---------- helpers ---------- */
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -12,72 +25,6 @@ const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selec
     const bar = closeBtn.closest('.topbar');
     if (!bar) return;
     bar.style.display = 'none';
-  });
-})();
-
-/* ---------- project gallery cards ---------- */
-(function initProjectGalleries(){
-  const galleries = $$('[data-project-gallery]');
-  if (!galleries.length) return;
-
-  galleries.forEach((gallery) => {
-    const mainImage = $('.project-gallery__image', gallery);
-    const dots = $$('.project-gallery__dot', gallery);
-    if (!mainImage || !dots.length) return;
-
-    let current = dots.findIndex(dot => dot.classList.contains('is-active'));
-    if (current < 0) current = 0;
-    let loadToken = 0;
-    const fallbackAlt = mainImage.alt;
-
-    const initialDot = dots[current];
-    if (initialDot) {
-      const initialAlt = initialDot.dataset.alt;
-      if (initialAlt) mainImage.alt = initialAlt;
-      initialDot.classList.add('is-active');
-    }
-
-    function updateTo(index){
-      if (index === current) return;
-      const targetDot = dots[index];
-      if (!targetDot) return;
-      const nextSrc = targetDot.dataset.image;
-      if (!nextSrc) return;
-
-      gallery.classList.add('is-loading');
-      const token = ++loadToken;
-      const loader = new Image();
-      loader.onload = () => {
-        if (token !== loadToken) return;
-        mainImage.src = nextSrc;
-        mainImage.alt = targetDot.dataset.alt || fallbackAlt;
-        gallery.classList.remove('is-loading');
-      };
-      loader.onerror = () => {
-        if (token !== loadToken) return;
-        gallery.classList.remove('is-loading');
-      };
-      loader.src = nextSrc;
-
-      dots.forEach(dot => dot.classList.remove('is-active'));
-      targetDot.classList.add('is-active');
-      current = index;
-    }
-
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => updateTo(idx));
-      dot.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          updateTo(idx);
-        }
-      });
-    });
-
-    mainImage.addEventListener('click', () => {
-      const nextIndex = (current + 1) % dots.length;
-      updateTo(nextIndex);
-    });
   });
 })();
 
@@ -119,75 +66,55 @@ const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selec
   }
 
   function enableFocusTrap(panel){
-    disableFocusTrap();
-    const focusables = getFocusableElements(panel);
+    const focusables = $$(
+      'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      panel
+    ).filter(el => el.offsetParent !== null);
     if (!focusables.length) return;
-    const first = focusables[0];
-    const last = focusables[focusables.length - 1];
 
-    trapHandler = (event) => {
-      if (event.key !== 'Tab') return;
-      if (event.shiftKey) {
-        if (document.activeElement === first) {
-          event.preventDefault();
-          last.focus();
-        }
-      } else if (document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
+    const first = focusables[0];
+    const last  = focusables[focusables.length - 1];
+
+    trapHandler = (e) => {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
       }
     };
-
-    nav.addEventListener('keydown', trapHandler);
+    document.addEventListener('keydown', trapHandler);
+    first.focus({ preventScroll: true });
+  }
+  function disableFocusTrap(){
+    if (trapHandler) document.removeEventListener('keydown', trapHandler);
+    trapHandler = null;
   }
 
   function openNav(){
-    if (nav.classList.contains('open')) return;
+    if (!nav) return;
     nav.classList.add('open');
-    nav.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('has-mobile-nav');
-    btn.setAttribute('aria-expanded', 'true');
-
-    const focusables = getFocusableElements(nav);
-    if (focusables.length) {
-      focusables[0].focus({ preventScroll: true });
-    }
-
+    scrim.classList.add('open');
+    root.classList.add('nav-open');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
     enableFocusTrap(nav);
-
-    if (scrim) {
-      scrim.hidden = false;
-      scrim.classList.add('open');
-    }
   }
-
   function closeNav(){
-    if (!nav.classList.contains('open')) return;
+    if (!nav) return;
     nav.classList.remove('open');
-    nav.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('has-mobile-nav');
-    btn.setAttribute('aria-expanded', 'false');
+    scrim.classList.remove('open');
+    root.classList.remove('nav-open');
+    if (btn) {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.focus({ preventScroll: true });
+    }
     disableFocusTrap();
-
-    if (scrim) {
-      scrim.classList.remove('open');
-      scrim.hidden = true;
-    }
-
-    btn.focus({ preventScroll: true });
   }
 
-  function toggleNav(){
-    if (nav.classList.contains('open')) closeNav();
-    else openNav();
-  }
-
-  btn.addEventListener('click', toggleNav);
-  btn.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      toggleNav();
-    }
+  // Attach events
+  if (btn) btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    nav && nav.classList.contains('open') ? closeNav() : openNav();
   });
 
   if (scrim) {
@@ -427,3 +354,4 @@ document.addEventListener('touchstart', () => {}, { passive: true });
     attachEvents();
   }
 })();
+
