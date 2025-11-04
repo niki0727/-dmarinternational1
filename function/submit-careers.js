@@ -3,7 +3,7 @@
 
   const FORM_SELECTOR = '[data-careers]';
   const MSG_ID = 'careers-msg';
-  const ENDPOINT = 'https://career-sender.piazenko-n.workers.dev';
+  const ENDPOINT = '/submit-careers';
   const MAX_FILE_BYTES = 5 * 1024 * 1024; 
   const ALLOWED_EXT = ['pdf', 'doc', 'docx'];
 
@@ -108,13 +108,15 @@
         body: data
       });
 
-      if (res.ok) {
-        setMessage(msgEl, 'Thanks — received. We’ll review your CV.');
+      const result = await res.json().catch(() => ({}));
+
+      if (res.ok && result?.ok !== false) {
+        setMessage(msgEl, result?.message || 'Thanks — received. We’ll review your CV.');
         form.reset();
       } else {
-        const text = await res.text().catch(() => 'Error');
-        console.error('Upload failed response:', res.status, text);
-        setMessage(msgEl, 'Upload failed — email info@dmarinternational.com');
+        const errorMessage = result?.error || 'Upload failed — email info@dmarinternational.com';
+        console.error('Upload failed response:', res.status, result);
+        setMessage(msgEl, errorMessage);
       }
     } catch (err) {
       setMessage(msgEl, 'Upload failed — email info@dmarinternational.com');
