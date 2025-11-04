@@ -143,8 +143,15 @@ document.addEventListener('touchstart', () => {}, { passive: true });
 
 /* ---------- cookie consent banner ---------- */
 (function initCookieConsent(){
-  const STORAGE_KEY = 'dmar.cookieConsent.v1';
-  const DEFAULT_STATE = { essential: true, analytics: false, marketing: false, acknowledged: false };
+  const STORAGE_KEY = 'cookieConsent.v1';
+  const DEFAULT_STATE = {
+    essential: true,
+    analytics: false,
+    marketing: false,
+    acknowledged: false
+  };
+
+  const state = loadState();
 
   function loadState(){
     try {
@@ -153,116 +160,104 @@ document.addEventListener('touchstart', () => {}, { passive: true });
       const parsed = JSON.parse(raw);
       return { ...DEFAULT_STATE, ...parsed };
     } catch (err) {
-      console.warn('[cookie-consent] Failed to parse stored consent', err);
+      console.warn('[cookie-consent] invalid stored value', err);
       return { ...DEFAULT_STATE };
     }
   }
 
-  function persistState(state){
+  function persist(){
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({
-        ...state,
-        essential: true,
-        acknowledged: true,
-        updatedAt: new Date().toISOString()
-      }));
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          ...state,
+          essential: true,
+          acknowledged: true,
+          updatedAt: new Date().toISOString()
+        })
+      );
     } catch (err) {
-      console.warn('[cookie-consent] Failed to persist consent', err);
+      console.warn('[cookie-consent] unable to persist', err);
     }
   }
 
-  function splitCategories(str){
-    return (str || '')
-      .split(/[,\s]+/)
-      .map(s => s.trim().toLowerCase())
-      .filter(Boolean);
+  function loadGTM(){
+    if (window.__gtmLoaded || (!state.analytics && !state.marketing)) return;
+    window.__gtmLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'cookieConsent.update',
+      analytics: !!state.analytics,
+      marketing: !!state.marketing
+    });
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M3Z5Z4PQ');
   }
 
-  function categoriesAllowed(state, categories){
-    if (!categories.length) return true;
-    return categories.every(cat => cat === 'essential' ? true : !!state[cat]);
-  }
-
-  function activateScripts(state){
-    const placeholders = $$('script[type="text/plain"][data-cookie-category]:not([data-cookie-loaded])');
-    placeholders.forEach((placeholder) => {
-      const required = splitCategories(placeholder.dataset.cookieCategory);
-      if (!categoriesAllowed(state, required)) return;
-
-      const target = placeholder.dataset.cookieTarget === 'body' ? document.body : document.head || document.documentElement;
-      const newScript = document.createElement('script');
-
-      if (placeholder.dataset.cookieSrc) {
-        newScript.src = placeholder.dataset.cookieSrc;
-        if (placeholder.dataset.cookieAsync === 'true') newScript.async = true;
-        if (placeholder.dataset.cookieDefer === 'true') newScript.defer = true;
-      } else {
-        newScript.textContent = placeholder.textContent;
-      }
-
-      placeholder.dataset.cookieLoaded = 'true';
-      target.appendChild(newScript);
+  function removeOptionalCookies(){
+    ['_ga', '_ga_GTM-M3Z5Z4PQ', '_gid', '_gcl_au', '_fbp'].forEach((name) => {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
     });
   }
 
-  function ensureBanner(){
-    if (document.getElementById('cookie-banner')) return document.getElementById('cookie-banner');
+  function applyPreferences(previous){
+    if (state.analytics || state.marketing) {
+      loadGTM();
+    } else if (previous && (previous.analytics || previous.marketing)) {
+      removeOptionalCookies();
+      window.setTimeout(() => window.location.reload(), 150);
+    }
+  }
 
-    const banner = document.createElement('div');
+  function ensureStyles(){
+    if (document.getElementById('cookie-banner-styles')) return;
+    const style = document.createElement('style');
+    style.id = 'cookie-banner-styles';
+    style.textContent = `
+      .cookie-banner{position:fixed;inset:auto 0 0 0;background:#111;color:#fff;padding:16px 12px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;z-index:9999;box-shadow:0 -2px 12px rgba(0,0,0,.25);}
+      .cookie-banner p{margin:0;max-width:60ch;}
+      .cookie-banner a{color:#9cf;text-decoration:underline;}
+      .cookie-banner__actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;}
+      .cookie-banner button{background:#0A5694;color:#fff;border:0;border-radius:4px;padding:8px 14px;font:inherit;cursor:pointer;}
+      .cookie-banner button.secondary{background:#333;}
+      .cookie-banner__toggles{display:flex;gap:12px;flex-wrap:wrap;font-size:0.9em;}
+      .cookie-banner__toggles label{display:flex;align-items:center;gap:6px;}
+      @media (max-width:600px){.cookie-banner{flex-direction:column;align-items:flex-start;}.cookie-banner__actions{margin-left:0;width:100%;justify:flex-start;}}
+    `;
+    document.head.appendChild(style);
+  }
+
+  function ensureBanner(){
+    let banner = document.getElementById('cookie-banner');
+    if (banner) return banner;
+
+    ensureStyles();
+    banner = document.createElement('div');
     banner.id = 'cookie-banner';
     banner.className = 'cookie-banner';
     banner.innerHTML = `
-      <div class="cookie-banner__inner" role="dialog" aria-modal="true" aria-labelledby="cookie-banner-title">
-        <div class="cookie-banner__content">
-          <h2 id="cookie-banner-title">Manage cookie preferences</h2>
-          <p>We use cookies to operate our site (essential) and to measure performance or deliver marketing once you permit us. You can update your preferences at any time.</p>
-          <ul class="cookie-banner__list">
-            <li>
-              <div>
-                <strong>Essential cookies</strong>
-                <p>Required for security and basic functionality. Always active.</p>
-              </div>
-            </li>
-            <li>
-              <label>
-                <div>
-                  <strong>Analytics cookies</strong>
-                  <p>Help us understand visits and improve the website via Google Analytics (through Google Tag Manager).</p>
-                </div>
-                <div class="toggle">
-                  <input type="checkbox" name="analytics" />
-                  <span class="slider" aria-hidden="true"></span>
-                </div>
-              </label>
-            </li>
-            <li>
-              <label>
-                <div>
-                  <strong>Marketing cookies</strong>
-                  <p>Enable remarketing and advertising pixels delivered via Google Tag Manager.</p>
-                </div>
-                <div class="toggle">
-                  <input type="checkbox" name="marketing" />
-                  <span class="slider" aria-hidden="true"></span>
-                </div>
-              </label>
-            </li>
-          </ul>
-        </div>
-        <div class="cookie-banner__actions">
-          <a class="btn ghost" href="/cookies.html">View cookies</a>
-          <button type="button" class="btn alt" data-action="reject">Essential only</button>
-          <button type="button" class="btn" data-action="save">Save preferences</button>
-          <button type="button" class="btn" data-action="accept">Accept all</button>
-        </div>
-      </div>`;
-
+      <p>This site uses cookies. <a href="/cookies.html">Learn more</a></p>
+      <div class="cookie-banner__toggles" role="group" aria-label="Optional cookies">
+        <label><input type="checkbox" name="analytics"> Analytics</label>
+        <label><input type="checkbox" name="marketing"> Marketing</label>
+      </div>
+      <div class="cookie-banner__actions">
+        <button type="button" class="secondary" data-action="reject">Essential only</button>
+        <button type="button" data-action="save">Save preferences</button>
+        <button type="button" data-action="accept">Accept all</button>
+      </div>
+    `;
     document.body.appendChild(banner);
+    banner.hidden = true;
     return banner;
   }
-
-  const state = loadState();
-  activateScripts(state);
 
   function openBanner(){
     const banner = ensureBanner();
@@ -270,55 +265,45 @@ document.addEventListener('touchstart', () => {}, { passive: true });
     const marketingToggle = banner.querySelector('input[name="marketing"]');
     if (analyticsToggle) analyticsToggle.checked = !!state.analytics;
     if (marketingToggle) marketingToggle.checked = !!state.marketing;
-
-    banner.classList.add('open');
-    document.body.classList.add('cookie-banner-open');
-    banner.querySelector('[data-action="save"]').focus({ preventScroll: true });
+    banner.hidden = false;
+    banner.setAttribute('aria-live', 'polite');
   }
 
-  function closeBanner(){
+  function hideBanner(){
     const banner = document.getElementById('cookie-banner');
-    if (!banner) return;
-    banner.classList.remove('open');
-    document.body.classList.remove('cookie-banner-open');
+    if (banner) banner.hidden = true;
   }
 
-  function applyAndMaybeReload(prev, next){
-    activateScripts(next);
-    const removedAnalytics = prev.analytics && !next.analytics;
-    const removedMarketing = prev.marketing && !next.marketing;
-    if (removedAnalytics || removedMarketing) {
-      window.setTimeout(() => window.location.reload(), 150);
-    }
-  }
-
-  function attachEvents(){
-    const banner = ensureBanner();
-    const analyticsToggle = banner.querySelector('input[name="analytics"]');
-    const marketingToggle = banner.querySelector('input[name="marketing"]');
-
-    banner.addEventListener('click', (event) => {
-      const btn = event.target.closest('button[data-action]');
-      if (!btn) return;
-
-      const action = btn.dataset.action;
-      const previous = { ...state };
-      if (action === 'accept') {
-        state.analytics = true;
-        state.marketing = true;
-      } else if (action === 'reject') {
-        state.analytics = false;
-        state.marketing = false;
-      } else if (action === 'save') {
+  function handleAction(action){
+    const previous = { ...state };
+    if (action === 'accept') {
+      state.analytics = true;
+      state.marketing = true;
+    } else if (action === 'reject') {
+      state.analytics = false;
+      state.marketing = false;
+    } else if (action === 'save') {
+      const banner = document.getElementById('cookie-banner');
+      if (banner) {
+        const analyticsToggle = banner.querySelector('input[name="analytics"]');
+        const marketingToggle = banner.querySelector('input[name="marketing"]');
         state.analytics = analyticsToggle ? analyticsToggle.checked : false;
         state.marketing = marketingToggle ? marketingToggle.checked : false;
       }
+    }
 
-      state.acknowledged = true;
+    state.acknowledged = true;
+    persist();
+    hideBanner();
+    applyPreferences(previous);
+  }
 
-      persistState(state);
-      closeBanner();
-      applyAndMaybeReload(previous, state);
+  function bindEvents(){
+    const banner = ensureBanner();
+    banner.addEventListener('click', (event) => {
+      const btn = event.target.closest('button[data-action]');
+      if (!btn) return;
+      handleAction(btn.dataset.action);
     });
 
     document.addEventListener('click', (event) => {
@@ -334,12 +319,10 @@ document.addEventListener('touchstart', () => {}, { passive: true });
     };
   }
 
+  bindEvents();
+  applyPreferences();
+
   if (!state.acknowledged) {
-    // No consent stored or only essential: show banner
-    attachEvents();
     openBanner();
-  } else {
-    // Consent already granted for at least one optional category
-    attachEvents();
   }
 })();

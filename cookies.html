@@ -1,13 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- Google Tag Manager (consent managed) -->
-  <script type="text/plain" data-cookie-category="analytics marketing">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M3Z5Z4PQ');</script>
-  <!-- End Google Tag Manager -->
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#0A5694"/>
@@ -78,11 +71,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <ul>
       <li><strong>Essential:</strong> Required for security, network management, and remembering your consent settings. These are always active because the site cannot operate correctly without them.</li>
       <li><strong>Analytics:</strong> Optional tags that help us understand how the site is used. We deploy Google Analytics via Google Tag Manager only after you give consent.</li>
-      <li><strong>Marketing:</strong> Optional tags used for advertising and remarketing. At present we only load Google Ads remarketing tags after consent.</li>
+      <li><strong>Marketing:</strong> Optional tags used for advertising and remarketing. After consent we may load Google Ads remarketing tags, the Meta Pixel, and the LinkedIn Insight Tag.</li>
     </ul>
 
     <h2>Cookie and storage list</h2>
-    <p>The table below summarises the cookies and local storage keys we currently set.</p>
+    <p>The table below summarises the cookies and local storage keys we currently set or may set once you have opted in.</p>
     <div style="overflow-x:auto">
       <table class="table">
         <thead>
@@ -99,7 +92,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <td><code>cookieConsent.v1</code> (localStorage)</td>
             <td>DMAR International</td>
             <td>Essential</td>
-            <td>Stores your cookie preferences so that the banner remembers your choices.</td>
+            <td>Stores your analytics and marketing selections so the banner remembers your choices.</td>
             <td>12 months from last update</td>
           </tr>
           <tr>
@@ -130,16 +123,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <td>Stores ad click information for conversion tracking. Set only after marketing consent.</td>
             <td>90 days</td>
           </tr>
+          <tr>
+            <td><code>_fbp</code></td>
+            <td>Meta Pixel</td>
+            <td>Marketing</td>
+            <td>Helps deliver relevant advertising on Meta platforms after you provide marketing consent.</td>
+            <td>90 days</td>
+          </tr>
+          <tr>
+            <td><code>liap</code>, <code>_guid</code></td>
+            <td>LinkedIn Insight Tag</td>
+            <td>Marketing</td>
+            <td>Enables LinkedIn ad reporting and analytics once marketing cookies are allowed.</td>
+            <td>90 days</td>
+          </tr>
         </tbody>
       </table>
     </div>
 
     <h2>Managing your preferences</h2>
-    <p>You can adjust your cookie choices at any time using the button below. Selecting “Essential only” will remove analytics and marketing consent and we will stop loading those tags on your next page refresh.</p>
+    <p>You can adjust your cookie choices at any time using the button below. Use the toggles to allow Analytics or Marketing cookies, or choose “Essential only” to decline optional tags — we will stop loading them on your next page refresh.</p>
     <p><a class="btn alt" href="#" data-cookie-open>Open cookie settings</a></p>
 
     <h2>Third-party controls</h2>
-    <p>If you wish, you can also manage cookies directly within your browser settings or install extensions that block analytics or advertising tags. Doing so may affect how our site functions or what content you see.</p>
+    <p>If you wish, you can also manage cookies directly within your browser settings or install extensions that block analytics or advertising tags. Doing so may affect how our site functions or what content you see. We load Google Tag Manager and any analytics or marketing tags only after you have enabled the relevant categories.</p>
 
     <h2>Contact us</h2>
     <p>If you have any questions about cookies or privacy at DMAR International MB, email <a href="mailto:privacy@dmarinternational.com">privacy@dmarinternational.com</a>.</p>
