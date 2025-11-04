@@ -235,24 +235,7 @@ header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.98);backd
 .mobile{transform:translateY(-8px);opacity:0;transition:transform .18s ease,opacity .18s ease}
 .mobile.open{transform:translateY(0);opacity:1}
 
-@media (max-width:780px){
-  .nav .right .btn{display:none}
-  .btn.burger{display:inline-flex;padding:8px 12px;font-size:14px}
-  .logo{height:22px}
 
-}
-/* Precise logo sizing */
-.logo img{
-  height: 26px;     /* desktop/tablet */
-  width: auto;
-  display: block;   /* removes extra inline-gap */
-}
-
-@media (max-width: 780px){
-  .logo img{
-    height: 20px;   /* phones */
-  }
-}
 
 
 /* v8: ensure header is always clickable and above all */
@@ -331,7 +314,7 @@ main > section:first-child{ position:relative; z-index: 0; }
 
 /* Header (refined) */
 header{position:sticky;top:0;z-index:1001;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-.nav{display:flex;align-items:center;gap:18px;min-height:72px}
+.nav{display:flex;align-items:center;gap:18px;min-height:64px}
 .nav .left{display:flex;align-items:center;gap:16px}
 .logo{height:28px}
 .nav .mid{flex:1 1 auto;display:flex;justify-content:center}
@@ -410,3 +393,18 @@ body.contact .form-actions #form-msg{ flex:1 1 auto; min-width:160px }
 body.cookie-banner-open{overflow:hidden}
 @media (max-width:900px){.cookie-banner__inner{grid-template-columns:1fr}.cookie-banner__actions{justify-content:flex-start}}
 @media (max-width:600px){.cookie-banner{padding:10px 12px 14px;inset:auto 8px 8px;border-radius:14px}.cookie-banner__inner{max-height:calc(100dvh - 32px)}.cookie-banner__content h2{font-size:1.08rem}.cookie-banner__actions{flex-direction:column;align-items:stretch}.cookie-banner__actions .btn{width:100%}.cookie-banner__list li{padding:9px 12px}.cookie-banner__list label{align-items:flex-start;gap:12px}}
+/* Make the logo actually smaller */
+header .logo { 
+  display: flex; align-items: center; 
+  height: 24px !important;            /* controls the link box */
+}
+header .logo img{
+  height: 100% !important;             /* image follows the box */
+  width: auto; 
+  display: block;
+}
+
+/* Phone size */
+@media (max-width:780px){
+  header .logo{ height: 20px !important; }
+}
