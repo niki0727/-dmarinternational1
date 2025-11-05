@@ -396,7 +396,7 @@ body.cookie-banner-open{overflow:hidden}
 /* Make the logo actually smaller */
 header .logo { 
   display: flex; align-items: center; 
-  height: 28px !important;            /* controls the link box */
+  height: 30px !important;            /* controls the link box */
 }
 header .logo img{
   height: 100% !important;             /* image follows the box */
