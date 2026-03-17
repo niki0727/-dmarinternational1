@@ -3,16 +3,13 @@
 Generated: 2026-03-17
 
 - Total HTML pages: 60
-- Total unique internal links (source -> target): 735
+- Total unique internal links (source -> target): 741
 
 ## Orphan Pages
 Definition: pages with zero inlinks from other pages (excluding self-links).
 
-- /regions-covered.html
 - /sea-fastening-stability-motion-review.html
-- /team-experience.html
 - /who-we-support.html
-- /why-independent-review.html
 
 ## Crawl Map
 
@@ -110,11 +107,11 @@ Definition: pages with zero inlinks from other pages (excluding self-links).
 
 ### /index.html
 - Inlinks (56): /about.html; /assurance-supports-procurement-decisions-during-volatility.html; /avoiding-abort-costs-offshore-campaigns.html; /careers.html; /case-barge-motion-stability-offshore-transport.html; /case-decommissioning-lift-readiness-review.html; /case-dp-trials-attendance-close-out.html; /case-jacket-transport-engineering-north-sea.html; /case-nacelle-tower-transport-offshore-wind.html; /case-nearshore-pull-in-readiness-review.html; /case-offshore-installation-rams-close-out.html; /case-quayside-loadout-heavy-module-mobilisation.html; /case-sea-fastening-verification-project-cargo.html; /case-studies.html; /case-vessel-suitability-cable-lay-support.html; /common-failures-rushed-marine-mobilisation.html; /contact.html; /cookies.html; /decommissioning-marine-assurance.html; /developers-epci-shipowners-support.html; /dp-assurance-readiness-reviews.html; /heavy-lift-loadout-review.html; /independent-review-vs-rework-assurance-saves-money.html; /insights.html; /involve-marine-assurance-before-vessel-commitment.html; /marine-civils-nearshore-operations.html; /marine-operations-consultancy.html; /marine-warranty-support.html; /naval-architecture-marine-operations.html; /offshore-attendance-field-verification.html; /offshore-readiness-checklist-high-pressure-schedules.html; /offshore-wind-marine-assurance.html; /oil-gas-marine-risk-review.html; /oil-gas-volatility-vs-offshore-wind-execution-risk.html; /ports-shipyards-heavy-lift-support.html; /privacy.html; /project-cargo-marine-assurance.html; /projects.html; /rams-review-offshore-operations.html; /reduce-offshore-delay-risk-market-volatility.html; /reduce-standby-costs-earlier-marine-review.html; /regions-covered.html; /renewables-marine-assurance.html; /rising-vessel-rates-marine-decision-making.html; /sea-fastening-stability-motions-review.html; /sectors.html; /services.html; /standards-frameworks.html; /subsea-cable-installation-assurance.html; /sustainability.html; /team-experience.html; /temporary-works-port-interface-review.html; /transport-installation-assurance.html; /vessel-suitability-surveys.html; /when-to-involve-us.html; /why-independent-review.html 
-- Outlinks (22): /about.html; /careers.html; /case-studies.html; /contact.html; /cookies.html; /dp-assurance-readiness-reviews.html; /marine-civils-nearshore-operations.html; /marine-warranty-support.html; /offshore-wind-marine-assurance.html; /oil-gas-marine-risk-review.html; /ports-shipyards-heavy-lift-support.html; /privacy.html; /projects.html; /rams-review-offshore-operations.html; /sea-fastening-stability-motions-review.html; /sectors.html; /services.html; /standards-frameworks.html; /subsea-cable-installation-assurance.html; /sustainability.html; /transport-installation-assurance.html; /vessel-suitability-surveys.html 
+- Outlinks (25): /about.html; /careers.html; /case-studies.html; /contact.html; /cookies.html; /dp-assurance-readiness-reviews.html; /marine-civils-nearshore-operations.html; /marine-warranty-support.html; /offshore-wind-marine-assurance.html; /oil-gas-marine-risk-review.html; /ports-shipyards-heavy-lift-support.html; /privacy.html; /projects.html; /rams-review-offshore-operations.html; /regions-covered.html; /sea-fastening-stability-motions-review.html; /sectors.html; /services.html; /standards-frameworks.html; /subsea-cable-installation-assurance.html; /sustainability.html; /team-experience.html; /transport-installation-assurance.html; /vessel-suitability-surveys.html; /why-independent-review.html 
 
 ### /insights.html
 - Inlinks (12): /assurance-supports-procurement-decisions-during-volatility.html; /avoiding-abort-costs-offshore-campaigns.html; /common-failures-rushed-marine-mobilisation.html; /independent-review-vs-rework-assurance-saves-money.html; /involve-marine-assurance-before-vessel-commitment.html; /offshore-readiness-checklist-high-pressure-schedules.html; /oil-gas-volatility-vs-offshore-wind-execution-risk.html; /projects.html; /reduce-offshore-delay-risk-market-volatility.html; /reduce-standby-costs-earlier-marine-review.html; /rising-vessel-rates-marine-decision-making.html; /standards-frameworks.html 
-- Outlinks (17): /about.html; /assurance-supports-procurement-decisions-during-volatility.html; /avoiding-abort-costs-offshore-campaigns.html; /common-failures-rushed-marine-mobilisation.html; /contact.html; /independent-review-vs-rework-assurance-saves-money.html; /index.html; /involve-marine-assurance-before-vessel-commitment.html; /offshore-readiness-checklist-high-pressure-schedules.html; /oil-gas-volatility-vs-offshore-wind-execution-risk.html; /projects.html; /reduce-offshore-delay-risk-market-volatility.html; /reduce-standby-costs-earlier-marine-review.html; /rising-vessel-rates-marine-decision-making.html; /sectors.html; /services.html; /sustainability.html 
+- Outlinks (18): /about.html; /assurance-supports-procurement-decisions-during-volatility.html; /avoiding-abort-costs-offshore-campaigns.html; /common-failures-rushed-marine-mobilisation.html; /contact.html; /independent-review-vs-rework-assurance-saves-money.html; /index.html; /involve-marine-assurance-before-vessel-commitment.html; /offshore-readiness-checklist-high-pressure-schedules.html; /oil-gas-volatility-vs-offshore-wind-execution-risk.html; /projects.html; /reduce-offshore-delay-risk-market-volatility.html; /reduce-standby-costs-earlier-marine-review.html; /rising-vessel-rates-marine-decision-making.html; /sectors.html; /services.html; /sustainability.html; /why-independent-review.html 
 
 ### /involve-marine-assurance-before-vessel-commitment.html
 - Inlinks (2): /case-vessel-suitability-cable-lay-support.html; /insights.html 
@@ -174,7 +171,7 @@ Definition: pages with zero inlinks from other pages (excluding self-links).
 
 ### /projects.html
 - Inlinks (56): /about.html; /assurance-supports-procurement-decisions-during-volatility.html; /avoiding-abort-costs-offshore-campaigns.html; /careers.html; /case-barge-motion-stability-offshore-transport.html; /case-decommissioning-lift-readiness-review.html; /case-dp-trials-attendance-close-out.html; /case-jacket-transport-engineering-north-sea.html; /case-nacelle-tower-transport-offshore-wind.html; /case-nearshore-pull-in-readiness-review.html; /case-offshore-installation-rams-close-out.html; /case-quayside-loadout-heavy-module-mobilisation.html; /case-sea-fastening-verification-project-cargo.html; /case-studies.html; /case-vessel-suitability-cable-lay-support.html; /common-failures-rushed-marine-mobilisation.html; /contact.html; /cookies.html; /decommissioning-marine-assurance.html; /developers-epci-shipowners-support.html; /dp-assurance-readiness-reviews.html; /heavy-lift-loadout-review.html; /independent-review-vs-rework-assurance-saves-money.html; /index.html; /insights.html; /involve-marine-assurance-before-vessel-commitment.html; /marine-civils-nearshore-operations.html; /marine-operations-consultancy.html; /marine-warranty-support.html; /naval-architecture-marine-operations.html; /offshore-attendance-field-verification.html; /offshore-readiness-checklist-high-pressure-schedules.html; /offshore-wind-marine-assurance.html; /oil-gas-marine-risk-review.html; /oil-gas-volatility-vs-offshore-wind-execution-risk.html; /ports-shipyards-heavy-lift-support.html; /privacy.html; /project-cargo-marine-assurance.html; /rams-review-offshore-operations.html; /reduce-offshore-delay-risk-market-volatility.html; /reduce-standby-costs-earlier-marine-review.html; /regions-covered.html; /renewables-marine-assurance.html; /rising-vessel-rates-marine-decision-making.html; /sea-fastening-stability-motions-review.html; /sectors.html; /services.html; /standards-frameworks.html; /subsea-cable-installation-assurance.html; /sustainability.html; /team-experience.html; /temporary-works-port-interface-review.html; /transport-installation-assurance.html; /vessel-suitability-surveys.html; /when-to-involve-us.html; /why-independent-review.html 
-- Outlinks (20): /about.html; /careers.html; /case-barge-motion-stability-offshore-transport.html; /case-decommissioning-lift-readiness-review.html; /case-dp-trials-attendance-close-out.html; /case-jacket-transport-engineering-north-sea.html; /case-nacelle-tower-transport-offshore-wind.html; /case-nearshore-pull-in-readiness-review.html; /case-offshore-installation-rams-close-out.html; /case-quayside-loadout-heavy-module-mobilisation.html; /case-sea-fastening-verification-project-cargo.html; /case-studies.html; /case-vessel-suitability-cable-lay-support.html; /contact.html; /index.html; /insights.html; /sectors.html; /services.html; /standards-frameworks.html; /sustainability.html 
+- Outlinks (22): /about.html; /careers.html; /case-barge-motion-stability-offshore-transport.html; /case-decommissioning-lift-readiness-review.html; /case-dp-trials-attendance-close-out.html; /case-jacket-transport-engineering-north-sea.html; /case-nacelle-tower-transport-offshore-wind.html; /case-nearshore-pull-in-readiness-review.html; /case-offshore-installation-rams-close-out.html; /case-quayside-loadout-heavy-module-mobilisation.html; /case-sea-fastening-verification-project-cargo.html; /case-studies.html; /case-vessel-suitability-cable-lay-support.html; /contact.html; /index.html; /insights.html; /regions-covered.html; /sectors.html; /services.html; /standards-frameworks.html; /sustainability.html; /team-experience.html 
 
 ### /rams-review-offshore-operations.html
 - Inlinks (14): /case-decommissioning-lift-readiness-review.html; /case-nearshore-pull-in-readiness-review.html; /case-offshore-installation-rams-close-out.html; /decommissioning-marine-assurance.html; /developers-epci-shipowners-support.html; /index.html; /marine-civils-nearshore-operations.html; /offshore-wind-marine-assurance.html; /oil-gas-marine-risk-review.html; /ports-shipyards-heavy-lift-support.html; /renewables-marine-assurance.html; /services.html; /standards-frameworks.html; /subsea-cable-installation-assurance.html 
@@ -189,7 +186,7 @@ Definition: pages with zero inlinks from other pages (excluding self-links).
 - Outlinks (11): /about.html; /contact.html; /index.html; /insights.html; /marine-warranty-support.html; /offshore-wind-marine-assurance.html; /projects.html; /sectors.html; /services.html; /sustainability.html; /when-to-involve-us.html 
 
 ### /regions-covered.html
-- Inlinks (0): -
+- Inlinks (2): /index.html; /projects.html 
 - Outlinks (8): /about.html; /careers.html; /contact.html; /index.html; /projects.html; /sectors.html; /services.html; /sustainability.html 
 
 ### /renewables-marine-assurance.html
@@ -229,7 +226,7 @@ Definition: pages with zero inlinks from other pages (excluding self-links).
 - Outlinks (9): /about.html; /careers.html; /contact.html; /cookies.html; /index.html; /privacy.html; /projects.html; /sectors.html; /services.html 
 
 ### /team-experience.html
-- Inlinks (0): -
+- Inlinks (2): /index.html; /projects.html 
 - Outlinks (13): /about.html; /careers.html; /contact.html; /developers-epci-shipowners-support.html; /index.html; /marine-warranty-support.html; /offshore-wind-marine-assurance.html; /projects.html; /sectors.html; /services.html; /sustainability.html; /transport-installation-assurance.html; /vessel-suitability-surveys.html 
 
 ### /temporary-works-port-interface-review.html
@@ -253,5 +250,5 @@ Definition: pages with zero inlinks from other pages (excluding self-links).
 - Outlinks (1): /developers-epci-shipowners-support.html 
 
 ### /why-independent-review.html
-- Inlinks (0): -
+- Inlinks (2): /index.html; /insights.html 
 - Outlinks (8): /about.html; /careers.html; /contact.html; /index.html; /projects.html; /sectors.html; /services.html; /sustainability.html 
