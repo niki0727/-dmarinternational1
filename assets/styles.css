@@ -408,3 +408,46 @@ header .logo img{
 @media (max-width:780px){
   header .logo{ height: 24px !important; }
 }
+
+/* ===== Typography Consistency Pass (2026-03) ===== */
+:root{
+  --font-main: "Source Sans 3", "Segoe UI", Tahoma, Geneva, sans-serif;
+}
+
+body{
+  font-family: var(--font-main);
+  font-size: 17px;
+  line-height: 1.72;
+  color: #24323f;
+}
+
+h1,h2,h3{
+  font-family: var(--font-main);
+  letter-spacing: 0;
+  color: #122237;
+  line-height: 1.2;
+}
+
+h1{font-size:clamp(2rem,3.5vw,3.1rem);margin-bottom:0.75rem}
+h2{font-size:clamp(1.45rem,2.6vw,2.15rem);margin-bottom:0.7rem}
+h3{font-size:clamp(1.08rem,1.8vw,1.3rem);margin-bottom:0.55rem}
+
+p,li{font-size:1rem;line-height:1.75}
+.small{font-size:.94rem;line-height:1.6}
+
+.section p.lead{
+  font-size:1.08rem;
+  line-height:1.75;
+  max-width:78ch;
+}
+
+.card p{max-width:74ch}
+.card ul{padding-left:1.1rem}
+.card li{margin-bottom:.35rem}
+
+@media (max-width:780px){
+  body{font-size:16px;line-height:1.68}
+  .section p.lead{font-size:1rem;line-height:1.65}
+  h1{font-size:clamp(1.55rem,7vw,2.3rem)}
+  h2{font-size:clamp(1.2rem,5vw,1.6rem)}
+}
