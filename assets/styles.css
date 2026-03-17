@@ -652,6 +652,18 @@ h3{font-size:clamp(1.05rem,1.5vw,1.22rem)}
   display:block;
 }
 
+main figure.card > img{
+  width:100%;
+  height:var(--size-card-image);
+  object-fit:cover;
+  border-radius:12px;
+  display:block;
+}
+
+main figure.card figcaption{
+  margin-top:10px;
+}
+
 .hero .art{
   min-height:290px;
 }
