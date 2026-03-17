@@ -610,7 +610,6 @@ footer{
   --space-section:50px;
   --space-card:18px;
   --size-card-image:210px;
-  --size-snapshot-image:210px;
 }
 
 body{
@@ -638,30 +637,50 @@ h3{font-size:clamp(1.05rem,1.5vw,1.22rem)}
 .card-media{
   width:calc(100% + (var(--space-card) * 2));
   margin:calc(var(--space-card) * -1) calc(var(--space-card) * -1) 12px;
+  aspect-ratio:16/10;
+  background:#dfe8f0;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
 }
 
 .card-media img{
-  height:var(--size-card-image);
-}
-
-.snapshot-img{
   width:100%;
-  height:var(--size-snapshot-image);
+  height:100%;
   object-fit:cover;
-  border-radius:12px;
-  display:block;
-}
-
-main figure.card > img{
-  width:100%;
-  height:var(--size-card-image);
-  object-fit:cover;
-  border-radius:12px;
+  object-position:50% 42%;
   display:block;
 }
 
 main figure.card figcaption{
   margin-top:10px;
+  line-height:1.5;
+}
+
+main figure.card > .card-media{
+  margin:calc(var(--space-card) * -1) calc(var(--space-card) * -1) 12px;
+}
+
+/* Focus tuning for portrait source photos in fixed-ratio cards */
+img[src$="wa-010.jpeg"]{object-position:50% 70%}
+img[src$="wa-018.jpeg"]{object-position:50% 62%}
+img[src$="wa-042.jpeg"]{object-position:62% 44%}
+img[src$="wa-048.jpeg"]{object-position:50% 36%}
+img[src$="wa-053.jpeg"]{object-position:56% 48%}
+img[src$="wa-030.jpeg"]{object-position:50% 48%}
+
+.hero-scene .scene.s1{object-position:50% 42%}
+.hero-scene .scene.s2{object-position:50% 46%}
+.hero-scene .scene.s3{object-position:50% 55%}
+
+/* Better visual rhythm for cards that include media + text */
+a.card h2,
+a.card h3{
+  margin-top:2px;
+}
+
+a.card p.small,
+figure.card figcaption{
+  color:#3b5267;
 }
 
 .hero .art{
@@ -681,7 +700,6 @@ main figure.card figcaption{
     --space-section:40px;
     --space-card:14px;
     --size-card-image:175px;
-    --size-snapshot-image:175px;
   }
 
   h1{font-size:clamp(1.55rem,6.7vw,2.2rem)}
@@ -690,6 +708,10 @@ main figure.card figcaption{
 
   .hero{
     padding:54px 0 20px;
+  }
+
+  .card-media{
+    aspect-ratio:16/11;
   }
 
   .hero .art{
