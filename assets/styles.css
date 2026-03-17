@@ -543,3 +543,48 @@ footer{
     max-height:360px;
   }
 }
+
+.hero-scene{
+  position:relative;
+  min-height:320px;
+  overflow:hidden;
+}
+
+.hero-scene .scene{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transform:scale(1.08);
+  animation:sceneSwap 21s ease-in-out infinite;
+}
+
+.hero-scene .scene.s1{animation-delay:0s}
+.hero-scene .scene.s2{animation-delay:7s}
+.hero-scene .scene.s3{animation-delay:14s}
+
+.hero-scene .scene-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(6,18,31,.06), rgba(6,18,31,.18));
+  pointer-events:none;
+}
+
+@keyframes sceneSwap{
+  0%{opacity:0;transform:scale(1.08)}
+  8%{opacity:1}
+  30%{opacity:1;transform:scale(1.02)}
+  40%{opacity:0}
+  100%{opacity:0}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero-scene .scene{
+    animation:none;
+    opacity:0;
+    transform:none;
+  }
+  .hero-scene .scene.s1{opacity:1}
+}
