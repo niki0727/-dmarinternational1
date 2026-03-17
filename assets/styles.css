@@ -602,3 +602,86 @@ footer{
   }
   .hero-scene .scene.s1{opacity:1}
 }
+
+/* ===== Sizing Consistency Pass (2026-03-17) ===== */
+:root{
+  --size-body:16px;
+  --size-lead:1.03rem;
+  --space-section:50px;
+  --space-card:18px;
+  --size-card-image:210px;
+  --size-snapshot-image:210px;
+}
+
+body{
+  font-size:var(--size-body);
+  line-height:1.66;
+}
+
+h1{font-size:clamp(1.9rem,3.2vw,2.8rem)}
+h2{font-size:clamp(1.35rem,2.2vw,2rem)}
+h3{font-size:clamp(1.05rem,1.5vw,1.22rem)}
+
+.section{
+  padding:var(--space-section) 0;
+}
+
+.section p.lead{
+  font-size:var(--size-lead);
+  line-height:1.68;
+}
+
+.card{
+  padding:var(--space-card);
+}
+
+.card-media{
+  width:calc(100% + (var(--space-card) * 2));
+  margin:calc(var(--space-card) * -1) calc(var(--space-card) * -1) 12px;
+}
+
+.card-media img{
+  height:var(--size-card-image);
+}
+
+.snapshot-img{
+  width:100%;
+  height:var(--size-snapshot-image);
+  object-fit:cover;
+  border-radius:12px;
+  display:block;
+}
+
+.hero .art{
+  min-height:290px;
+}
+
+@media (max-width:980px){
+  .hero .art{
+    max-height:330px;
+  }
+}
+
+@media (max-width:780px){
+  :root{
+    --size-body:15.5px;
+    --size-lead:0.98rem;
+    --space-section:40px;
+    --space-card:14px;
+    --size-card-image:175px;
+    --size-snapshot-image:175px;
+  }
+
+  h1{font-size:clamp(1.55rem,6.7vw,2.2rem)}
+  h2{font-size:clamp(1.16rem,4.7vw,1.52rem)}
+  h3{font-size:clamp(1rem,3.7vw,1.15rem)}
+
+  .hero{
+    padding:54px 0 20px;
+  }
+
+  .hero .art{
+    min-height:250px;
+    max-height:280px;
+  }
+}
