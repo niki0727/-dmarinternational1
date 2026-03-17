@@ -717,3 +717,41 @@ figure.card figcaption{
     max-height:280px;
   }
 }
+
+/* ===== Emergency Image Size Lock (2026-03-17) ===== */
+main .card-media{
+  height:220px !important;
+  aspect-ratio:auto !important;
+  width:calc(100% + (var(--space-card) * 2)) !important;
+  margin:calc(var(--space-card) * -1) calc(var(--space-card) * -1) 12px !important;
+  overflow:hidden !important;
+  border-bottom:1px solid var(--line) !important;
+  background:#dfe8f0 !important;
+}
+
+main .card-media img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  display:block !important;
+}
+
+main figure.card{
+  display:flex;
+  flex-direction:column;
+}
+
+main a.card{
+  display:flex;
+  flex-direction:column;
+}
+
+main figure.card figcaption{
+  margin-top:10px !important;
+}
+
+@media (max-width:780px){
+  main .card-media{
+    height:170px !important;
+  }
+}
