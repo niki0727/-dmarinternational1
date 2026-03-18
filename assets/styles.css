@@ -952,7 +952,14 @@ body.home .hero .wrap{
   align-items:center !important;
 }
 
+body.home .hero .wrap > div:first-child{
+  position:relative;
+  z-index:2;
+}
+
 body.home .hero .art{
+  position:relative;
+  z-index:1;
   height:auto !important;
   min-height:0 !important;
   width:100% !important;
@@ -1143,6 +1150,11 @@ body.vessel-suitability-page .detail-card{
     linear-gradient(180deg, #ffffff 0%, #f9fcff 100%);
 }
 
+body.vessel-suitability-page .detail-card > *{
+  position:relative;
+  z-index:2;
+}
+
 body.vessel-suitability-page .detail-card::after{
   content:"";
   position:absolute;
@@ -1150,6 +1162,7 @@ body.vessel-suitability-page .detail-card::after{
   background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.65) 46%, transparent 62%);
   transform:translateX(-120%);
   pointer-events:none;
+  z-index:1;
 }
 
 body.vessel-suitability-page .detail-card:hover::after{
