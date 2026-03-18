@@ -836,6 +836,8 @@ body.home .hero .art{
 body.home .hero-scene{
   height:100% !important;
   min-height:unset !important;
+  border-radius:20px;
+  isolation:isolate;
 }
 
 body.home .hero-scene .scene{
@@ -845,12 +847,27 @@ body.home .hero-scene .scene{
 }
 
 body.home .hero-scene .scene.s1{
-  object-position:50% 46% !important;
+  object-position:50% 52% !important;
 }
 
 body.home .hero-scene .scene.s2,
 body.home .hero-scene .scene.s3{
   display:none !important;
+}
+
+body.home .hero-scene .scene-overlay{
+  background:
+    linear-gradient(180deg, rgba(6,18,31,.20), rgba(6,18,31,.48)) !important;
+}
+
+body.home .hero-scene::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(90% 65% at 50% 35%, rgba(255,255,255,.08), transparent 70%);
+  z-index:2;
 }
 
 @keyframes heroDrift{
