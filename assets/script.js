@@ -19,12 +19,32 @@ const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selec
 
 /* ---------- topbar ---------- */
 (function initTopbar(){
+  const STORAGE_KEY = 'dmar.topbar.dismissed.v1';
+  let dismissed = false;
+  try {
+    dismissed = localStorage.getItem(STORAGE_KEY) === '1';
+  } catch (err) {
+    dismissed = false;
+  }
+
+  const bar = $('.topbar');
+  if (!bar) return;
+  if (dismissed) {
+    bar.style.display = 'none';
+    return;
+  }
+
   const closeBtn = $('.topbar .close');
   if (!closeBtn) return;
   closeBtn.addEventListener('click', () => {
-    const bar = closeBtn.closest('.topbar');
-    if (!bar) return;
-    bar.style.display = 'none';
+    const parentBar = closeBtn.closest('.topbar');
+    if (!parentBar) return;
+    try {
+      localStorage.setItem(STORAGE_KEY, '1');
+    } catch (err) {
+      // no-op
+    }
+    parentBar.style.display = 'none';
   });
 })();
 

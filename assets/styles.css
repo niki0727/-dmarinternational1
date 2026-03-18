@@ -825,6 +825,122 @@ body[data-sector-page="true"] .btn.alt{
   background:#fff;
 }
 
+/* ===== Menu + Topbar + Services Sizing Polish ===== */
+.topbar .row{
+  min-height:42px;
+  padding:8px 20px;
+  font-size:1.04rem;
+  text-align:center;
+}
+
+.topbar .close{
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  line-height:1;
+  display:grid;
+  place-items:center;
+  transition:background .18s ease;
+}
+
+.topbar .close:hover{
+  background:rgba(255,255,255,.14);
+}
+
+#menuToggle.btn.burger{
+  border-radius:10px;
+  min-width:94px;
+  font-weight:700;
+  letter-spacing:.01em;
+}
+
+#menuToggle.btn.burger::before{
+  content:"";
+  display:inline-block;
+  width:16px;
+  height:2px;
+  border-radius:2px;
+  background:currentColor;
+  box-shadow:0 5px 0 currentColor, 0 -5px 0 currentColor;
+  margin-right:8px;
+  transform:translateY(1px);
+}
+
+#menuToggle.btn.burger[aria-expanded="true"]{
+  background:#0a243f;
+  border-color:#0a243f;
+  color:#fff;
+}
+
+body.services-page main > .section:first-of-type .cards{
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:18px;
+}
+
+body.services-page main > .section:first-of-type .card{
+  padding:18px;
+  min-height:265px;
+}
+
+body.services-page main > .section:first-of-type .card h3{
+  font-size:1.08rem;
+  line-height:1.3;
+}
+
+body.services-page main > .section:first-of-type .card .small{
+  font-size:.93rem;
+  line-height:1.58;
+}
+
+body.services-page main > .section:first-of-type .card ul{
+  margin:10px 0 0;
+}
+
+body.services-page main > .section:first-of-type .card li{
+  font-size:.95rem;
+  line-height:1.5;
+}
+
+body.services-page .section{
+  padding:46px 0;
+}
+
+@media (max-width:1100px){
+  body.services-page main > .section:first-of-type .cards{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width:780px){
+  .topbar .row{
+    min-height:38px;
+    padding:6px 38px 6px 14px;
+    font-size:.92rem;
+    justify-content:flex-start;
+  }
+
+  .topbar .close{
+    right:6px;
+    top:5px;
+  }
+
+  #menuToggle.btn.burger{
+    min-width:86px;
+    padding:7px 10px;
+    font-size:13px;
+  }
+
+  body.services-page main > .section:first-of-type .cards{
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  body.services-page main > .section:first-of-type .card{
+    min-height:0;
+    padding:14px;
+  }
+}
+
 /* ===== Homepage Hero (Power Layout) ===== */
 body.home .hero{
   padding:86px 0 46px !important;
