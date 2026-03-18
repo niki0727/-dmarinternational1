@@ -1116,3 +1116,123 @@ body.home .home-proof .tile-card{
     padding:15px 15px 14px;
   }
 }
+
+/* ===== Home Hero H1 lock to 2 lines ===== */
+body.home .hero h1{
+  max-width:14.8ch;
+  line-height:1.06;
+  letter-spacing:-.015em;
+}
+
+body.home .hero h1 span{
+  display:block;
+  white-space:nowrap;
+}
+
+/* ===== Vessel Suitability card art + animation ===== */
+body.vessel-suitability-page .container.grid.cards{
+  gap:18px;
+}
+
+body.vessel-suitability-page .detail-card{
+  position:relative;
+  overflow:hidden;
+  border:1px solid #cdd9e7;
+  background:
+    radial-gradient(130% 100% at 100% -10%, rgba(13,97,163,.09) 0%, rgba(13,97,163,0) 60%),
+    linear-gradient(180deg, #ffffff 0%, #f9fcff 100%);
+}
+
+body.vessel-suitability-page .detail-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.65) 46%, transparent 62%);
+  transform:translateX(-120%);
+  pointer-events:none;
+}
+
+body.vessel-suitability-page .detail-card:hover::after{
+  animation:cardSweep 1.15s ease;
+}
+
+body.vessel-suitability-page .card-icon{
+  width:52px;
+  height:52px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  margin:0 0 10px;
+  border:1px solid #c0d3e7;
+  background:linear-gradient(180deg, #ffffff 0%, #eef5fd 100%);
+}
+
+body.vessel-suitability-page .line-icon{
+  width:34px;
+  height:34px;
+  fill:none;
+  stroke:#1f4f7a;
+  stroke-width:2.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+body.vessel-suitability-page .line-icon path,
+body.vessel-suitability-page .line-icon circle,
+body.vessel-suitability-page .line-icon rect{
+  stroke-dasharray:140;
+  stroke-dashoffset:140;
+  animation:drawLine 1s ease forwards;
+}
+
+body.vessel-suitability-page .detail-card:nth-child(2) .line-icon path,
+body.vessel-suitability-page .detail-card:nth-child(2) .line-icon circle,
+body.vessel-suitability-page .detail-card:nth-child(2) .line-icon rect{animation-delay:.06s}
+body.vessel-suitability-page .detail-card:nth-child(3) .line-icon path,
+body.vessel-suitability-page .detail-card:nth-child(3) .line-icon circle,
+body.vessel-suitability-page .detail-card:nth-child(3) .line-icon rect{animation-delay:.12s}
+body.vessel-suitability-page .detail-card:nth-child(4) .line-icon path,
+body.vessel-suitability-page .detail-card:nth-child(4) .line-icon circle,
+body.vessel-suitability-page .detail-card:nth-child(4) .line-icon rect{animation-delay:.18s}
+body.vessel-suitability-page .detail-card:nth-child(5) .line-icon path,
+body.vessel-suitability-page .detail-card:nth-child(5) .line-icon circle,
+body.vessel-suitability-page .detail-card:nth-child(5) .line-icon rect{animation-delay:.24s}
+body.vessel-suitability-page .detail-card:nth-child(6) .line-icon path,
+body.vessel-suitability-page .detail-card:nth-child(6) .line-icon circle,
+body.vessel-suitability-page .detail-card:nth-child(6) .line-icon rect{animation-delay:.3s}
+body.vessel-suitability-page .detail-card:nth-child(7) .line-icon path,
+body.vessel-suitability-page .detail-card:nth-child(7) .line-icon circle,
+body.vessel-suitability-page .detail-card:nth-child(7) .line-icon rect{animation-delay:.36s}
+body.vessel-suitability-page .detail-card:nth-child(8) .line-icon path,
+body.vessel-suitability-page .detail-card:nth-child(8) .line-icon circle,
+body.vessel-suitability-page .detail-card:nth-child(8) .line-icon rect{animation-delay:.42s}
+
+@keyframes drawLine{
+  to{stroke-dashoffset:0}
+}
+
+@keyframes cardSweep{
+  to{transform:translateX(120%)}
+}
+
+@media (max-width:900px){
+  body.home .hero h1{
+    max-width:100%;
+    letter-spacing:0;
+  }
+  body.home .hero h1 span{
+    white-space:normal;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  body.vessel-suitability-page .line-icon path,
+  body.vessel-suitability-page .line-icon circle,
+  body.vessel-suitability-page .line-icon rect{
+    animation:none;
+    stroke-dashoffset:0;
+  }
+  body.vessel-suitability-page .detail-card:hover::after{
+    animation:none;
+  }
+}
