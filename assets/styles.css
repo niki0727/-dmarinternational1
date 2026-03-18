@@ -837,8 +837,10 @@ body.home .hero .wrap{
 }
 
 body.home .hero .art{
-  height:clamp(340px, 44vw, 520px) !important;
-  min-height:340px !important;
+  height:auto !important;
+  min-height:0 !important;
+  width:100% !important;
+  aspect-ratio:1103/857 !important;
   max-width:none !important;
   margin:0 !important;
   border-radius:24px !important;
@@ -856,11 +858,12 @@ body.home .hero-scene .scene{
   opacity:1 !important;
   transform:none !important;
   animation:none !important;
-  object-fit:cover !important;
+  object-fit:contain !important;
+  object-position:50% 50% !important;
 }
 
 body.home .hero-scene .scene.s1{
-  object-position:50% 40% !important;
+  object-position:50% 50% !important;
 }
 
 body.home .hero-scene .scene.s2,
@@ -869,18 +872,11 @@ body.home .hero-scene .scene.s3{
 }
 
 body.home .hero-scene .scene-overlay{
-  background:
-    linear-gradient(180deg, rgba(6,18,31,.18), rgba(6,18,31,.42)) !important;
+  display:none !important;
 }
 
 body.home .hero-scene::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(90% 75% at 52% 18%, rgba(255,255,255,.12), transparent 68%);
-  z-index:2;
+  content:none !important;
 }
 
 @media (max-width:980px){
@@ -895,7 +891,7 @@ body.home .hero-scene::after{
     padding:56px 0 24px !important;
   }
   body.home .hero .art{
-    height:300px !important;
-    min-height:300px !important;
+    height:auto !important;
+    min-height:0 !important;
   }
 }
