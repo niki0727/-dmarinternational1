@@ -1011,3 +1011,108 @@ body.home .hero-scene::after{
     min-height:0 !important;
   }
 }
+
+/* ===== Homepage Tile Sections (Start Here / Proof & Trust) ===== */
+body.home .home-tiles{
+  position:relative;
+}
+
+body.home .home-tiles .cards{
+  gap:16px;
+}
+
+body.home .home-tiles .tile-card{
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:158px;
+  padding:18px 18px 16px;
+  border:1px solid #c8d5e6;
+  border-radius:14px;
+  background:
+    radial-gradient(120% 100% at 100% -12%, rgba(35,108,179,.12) 0%, rgba(35,108,179,0) 58%),
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  box-shadow:0 8px 20px rgba(9,27,47,.06);
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  color:#0c1f38;
+}
+
+body.home .home-tiles .tile-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:4px;
+  background:linear-gradient(180deg, #0a5694 0%, #1c79c7 100%);
+  opacity:.92;
+}
+
+body.home .home-tiles .tile-card::after{
+  content:"\2192";
+  position:absolute;
+  right:14px;
+  bottom:12px;
+  font-size:18px;
+  font-weight:700;
+  color:#3f6f9f;
+  opacity:.72;
+  transition:transform .2s ease, opacity .2s ease;
+}
+
+body.home .home-tiles .tile-card h3{
+  margin:0 0 10px;
+  padding-right:22px;
+  font-size:1.08rem;
+  line-height:1.28;
+  color:#102744;
+}
+
+body.home .home-tiles .tile-card .tile-meta{
+  margin:0;
+  font-size:.92rem;
+  line-height:1.45;
+  color:#4a6079;
+}
+
+body.home .home-tiles .tile-card:hover{
+  transform:translateY(-3px);
+  border-color:#9fb5cd;
+  box-shadow:0 16px 28px rgba(9,27,47,.12);
+}
+
+body.home .home-tiles .tile-card:hover::after{
+  transform:translateX(3px);
+  opacity:1;
+}
+
+body.home .home-start .tile-card{
+  background:
+    radial-gradient(120% 100% at 100% -12%, rgba(35,108,179,.13) 0%, rgba(35,108,179,0) 58%),
+    linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+}
+
+body.home .home-proof .tile-card{
+  background:
+    radial-gradient(120% 100% at 100% -12%, rgba(8,125,110,.12) 0%, rgba(8,125,110,0) 58%),
+    linear-gradient(180deg, #ffffff 0%, #f8fcfb 100%);
+}
+
+@media (max-width:980px){
+  body.home .home-tiles .cards{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width:780px){
+  body.home .home-tiles .cards{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  body.home .home-tiles .tile-card{
+    min-height:130px;
+    padding:15px 15px 14px;
+  }
+}
