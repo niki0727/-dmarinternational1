@@ -842,12 +842,13 @@ body.home .hero-scene{
 
 body.home .hero-scene .scene{
   opacity:1 !important;
-  transform:scale(1.03);
-  animation:heroDrift 18s ease-in-out infinite alternate !important;
+  transform:none;
+  animation:heroDrift 14s ease-in-out infinite alternate !important;
+  object-fit:contain !important;
 }
 
 body.home .hero-scene .scene.s1{
-  object-position:50% 52% !important;
+  object-position:50% 50% !important;
 }
 
 body.home .hero-scene .scene.s2,
@@ -857,7 +858,7 @@ body.home .hero-scene .scene.s3{
 
 body.home .hero-scene .scene-overlay{
   background:
-    linear-gradient(180deg, rgba(6,18,31,.20), rgba(6,18,31,.48)) !important;
+    linear-gradient(180deg, rgba(6,18,31,.12), rgba(6,18,31,.32)) !important;
 }
 
 body.home .hero-scene::after{
@@ -871,8 +872,8 @@ body.home .hero-scene::after{
 }
 
 @keyframes heroDrift{
-  0%{transform:scale(1.03) translateX(0)}
-  100%{transform:scale(1.08) translateX(-1.5%)}
+  0%{transform:translateY(0)}
+  100%{transform:translateY(-6px)}
 }
 
 @media (max-width:780px){
