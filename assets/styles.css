@@ -824,3 +824,43 @@ body[data-sector-page="true"] .btn.alt{
   border-color:var(--sector-accent);
   background:#fff;
 }
+
+/* ===== Homepage Hero Stability Fix ===== */
+body.home .hero .art{
+  height:clamp(280px, 36vw, 420px) !important;
+  min-height:280px !important;
+  max-width:none !important;
+  margin:0 !important;
+}
+
+body.home .hero-scene{
+  height:100% !important;
+  min-height:unset !important;
+}
+
+body.home .hero-scene .scene{
+  opacity:1 !important;
+  transform:scale(1.03);
+  animation:heroDrift 18s ease-in-out infinite alternate !important;
+}
+
+body.home .hero-scene .scene.s1{
+  object-position:50% 46% !important;
+}
+
+body.home .hero-scene .scene.s2,
+body.home .hero-scene .scene.s3{
+  display:none !important;
+}
+
+@keyframes heroDrift{
+  0%{transform:scale(1.03) translateX(0)}
+  100%{transform:scale(1.08) translateX(-1.5%)}
+}
+
+@media (max-width:780px){
+  body.home .hero .art{
+    height:260px !important;
+    min-height:260px !important;
+  }
+}
