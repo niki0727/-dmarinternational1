@@ -353,3 +353,53 @@ document.addEventListener('touchstart', () => {}, { passive: true });
     attachEvents();
   }
 })();
+
+/* ---------- sector theme switcher ---------- */
+(function initSectorTheme(){
+  const body = document.body;
+  if (!body || body.dataset.sectorPage !== 'true') return;
+
+  const STORAGE_KEY = 'dmar.sectorTheme.v1';
+  const defaultTheme = body.dataset.sectorDefaultTheme === 'oil' ? 'oil' : 'wind';
+  const buttons = $$('[data-sector-theme-btn]');
+  if (!buttons.length) return;
+
+  function readStoredTheme(){
+    try {
+      return localStorage.getItem(STORAGE_KEY);
+    } catch (err) {
+      return null;
+    }
+  }
+
+  function saveTheme(theme){
+    try {
+      localStorage.setItem(STORAGE_KEY, theme);
+    } catch (err) {
+      // no-op
+    }
+  }
+
+  function applyTheme(theme){
+    const next = (theme === 'oil' || theme === 'wind') ? theme : defaultTheme;
+    body.classList.remove('theme-wind', 'theme-oil');
+    body.classList.add(`theme-${next}`);
+
+    buttons.forEach((btn) => {
+      const active = btn.dataset.sectorThemeBtn === next;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  const initialTheme = readStoredTheme() || defaultTheme;
+  applyTheme(initialTheme);
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const theme = btn.dataset.sectorThemeBtn;
+      applyTheme(theme);
+      saveTheme(theme);
+    });
+  });
+})();
