@@ -1126,14 +1126,13 @@ body.home .home-proof .tile-card{
 
 /* ===== Home Hero H1 lock to 2 lines ===== */
 body.home .hero h1{
-  max-width:14.8ch;
+  max-width:none;
   line-height:1.06;
   letter-spacing:-.015em;
 }
 
 body.home .hero h1 span{
-  display:block;
-  white-space:nowrap;
+  white-space:normal;
 }
 
 /* ===== Vessel Suitability card art + animation ===== */
