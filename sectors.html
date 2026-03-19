@@ -15,13 +15,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles.css?v=20260319a"/>
+  <link rel="stylesheet" href="/assets/styles.css?v=20260319b"/>
   <meta name="description" content="Sector-specific marine assurance support for offshore wind, subsea cable, oil and gas, decommissioning, ports, and heavy transport."/>
   <meta property="og:title" content="Sectors • DMAR International" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/assets/images/hero-port.jpg" />
 </head>
-<body data-sector-page="true" data-sector-default-theme="wind">
+<body class="sectors-page" data-sector-page="true" data-sector-default-theme="wind">
 <div class="topbar" role="region" aria-label="announcement">
   <div class="row container">
     <span class="dot" aria-hidden="true"></span>
@@ -77,22 +77,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <div class="grid cards">
 
-      <div class="card">
+      <div class="card" data-theme-category="wind">
         <h3>Offshore Wind</h3>
         <p>Marine Warranty and engineering assurance for fixed-bottom and floating wind installation campaigns. Experience includes foundations, transition pieces, towers, nacelles, OSS modules, heavy-lift operations, port interface and vessel suitability across the North Sea, Baltic and Mediterranean.</p>
       </div>
 
-      <div class="card">
+      <div class="card" data-theme-category="wind">
         <h3>Subsea Cables</h3>
         <p>Assurance for export and inter-array cable installation, nearshore landfalls, pull-ins, crossings and HDD interfaces. We support trenching, burial and marine spread readiness in complex shallow-water environments.</p>
       </div>
 
-      <div class="card">
+      <div class="card" data-theme-category="oil">
         <h3>Oil & Gas / Decommissioning</h3>
         <p>Technical and MWS support for module transport, jacket installation, decommissioning lifts and towage. Activities include readiness checks, sea-fastening verification, transport engineering and compliance with DNV and IMCA standards.</p>
       </div>
 
-      <div class="card">
+      <div class="card" data-theme-category="oil">
         <h3>Ports, Shipyards & Heavy-Lift</h3>
         <p>Quayside integration, SPMT load-outs, heavy transport preparations and rigging verification. We support fabrication yards and staging ports with engineering review, ballast plans, lifting checks and operational supervision.</p>
       </div>
@@ -121,15 +121,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <h2>Sector examples in practice</h2>
     <p class="lead">Field examples aligned to offshore wind, subsea cable, and heavy transport support scopes.</p>
     <div class="grid cards">
-      <figure class="card">
+      <figure class="card" data-theme-category="wind">
         <div class="card-media"><img src="/assets/images/whatsapp/wa-012.jpeg" alt="Heavy-lift vessel at quay during offshore wind transport campaign"/></div>
         <figcaption>Offshore wind transport and port-interface assurance activities.</figcaption>
       </figure>
-      <figure class="card">
+      <figure class="card" data-theme-category="wind">
         <div class="card-media"><img src="/assets/images/whatsapp/wa-024.jpeg" alt="Cable reel deck loadout during offshore marine spread preparation"/></div>
         <figcaption>Subsea cable and project-cargo review support at execution stage.</figcaption>
       </figure>
-      <figure class="card">
+      <figure class="card" data-theme-category="oil">
         <div class="card-media"><img class="media-focus-high" src="/assets/images/whatsapp/wa-048.jpeg" alt="Barge tow with escort vessels in confined waterway"/></div>
         <figcaption>Heavy transport, towage planning, and marine risk control.</figcaption>
       </figure>
@@ -142,15 +142,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <h2>Focused sector landing pages</h2>
     <p class="lead">Dedicated pages aligned to search intent and buyer use-cases.</p>
     <div class="grid cards">
-      <a class="card" href="/offshore-wind-marine-assurance.html"><h3>Offshore Wind Marine Assurance</h3></a>
-      <a class="card" href="/subsea-cable-installation-assurance.html"><h3>Subsea Cable Installation Assurance</h3></a>
-      <a class="card" href="/oil-gas-marine-risk-review.html"><h3>Oil & Gas Marine Risk Review</h3></a>
-      <a class="card" href="/decommissioning-marine-assurance.html"><h3>Decommissioning Marine Assurance</h3></a>
-      <a class="card" href="/ports-shipyards-heavy-lift-support.html"><h3>Ports, Shipyards & Heavy-Lift Support</h3></a>
+      <a class="card" data-theme-category="wind" href="/offshore-wind-marine-assurance.html"><h3>Offshore Wind Marine Assurance</h3></a>
+      <a class="card" data-theme-category="wind" href="/subsea-cable-installation-assurance.html"><h3>Subsea Cable Installation Assurance</h3></a>
+      <a class="card" data-theme-category="oil" href="/oil-gas-marine-risk-review.html"><h3>Oil & Gas Marine Risk Review</h3></a>
+      <a class="card" data-theme-category="oil" href="/decommissioning-marine-assurance.html"><h3>Decommissioning Marine Assurance</h3></a>
+      <a class="card" data-theme-category="oil" href="/ports-shipyards-heavy-lift-support.html"><h3>Ports, Shipyards & Heavy-Lift Support</h3></a>
       <a class="card" href="/marine-civils-nearshore-operations.html"><h3>Marine Civils & Nearshore Operations</h3></a>
       <a class="card" href="/project-cargo-marine-assurance.html"><h3>Project Cargo Marine Assurance</h3></a>
       <a class="card" href="/developers-epci-shipowners-support.html"><h3>Support for Developers, EPCIs & Shipowners</h3></a>
-      <a class="card" href="/renewables-marine-assurance.html"><h3>Renewables Marine Assurance</h3></a>
+      <a class="card" data-theme-category="wind" href="/renewables-marine-assurance.html"><h3>Renewables Marine Assurance</h3></a>
     </div>
   </div>
 </section>
@@ -191,7 +191,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="sticky-cta">
   <a class="btn" href="/contact.html">Talk to an expert</a>
 </div>
-<script src="/assets/script.js?v=20260319a"></script>
+<script src="/assets/script.js?v=20260319b"></script>
 
 </body>
 </html>

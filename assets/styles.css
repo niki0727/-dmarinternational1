@@ -857,6 +857,17 @@ body[data-sector-page="true"] .sector-theme-card.is-theme-match:hover{
   animation:sectorPulse 1.2s ease-in-out infinite;
 }
 
+body[data-sector-page="true"] .sector-theme-card.is-theme-match.theme-flash{
+  animation:sectorMatchIn .56s cubic-bezier(.2,.7,.2,1) both;
+  animation-delay:var(--theme-delay, 0ms);
+}
+
+@keyframes sectorMatchIn{
+  0%{transform:translateY(7px) scale(.985);opacity:.78;filter:saturate(.82)}
+  70%{transform:translateY(-3px) scale(1.01);opacity:1;filter:saturate(1)}
+  100%{transform:translateY(-2px) scale(1);opacity:1;filter:saturate(1)}
+}
+
 /* ===== Menu + Topbar + Services Sizing Polish ===== */
 .topbar .row{
   min-height:42px;

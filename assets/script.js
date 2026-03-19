@@ -438,14 +438,20 @@ document.addEventListener('touchstart', () => {}, { passive: true });
     const cards = $$('main .card');
     if (!cards.length) return;
 
-    cards.forEach((card) => {
+    cards.forEach((card, index) => {
       const category = inferCardTheme(card);
-      card.classList.remove('sector-theme-card', 'is-theme-match', 'is-theme-dim');
+      card.classList.remove('sector-theme-card', 'is-theme-match', 'is-theme-dim', 'theme-flash');
       card.classList.add('sector-theme-card');
+      card.style.removeProperty('--theme-delay');
 
       if (category === 'neutral') return;
       if (category === theme) {
         card.classList.add('is-theme-match');
+        card.classList.add('theme-flash');
+        card.style.setProperty('--theme-delay', `${Math.min(index * 35, 280)}ms`);
+        window.setTimeout(() => {
+          card.classList.remove('theme-flash');
+        }, 560 + Math.min(index * 35, 280));
       } else {
         card.classList.add('is-theme-dim');
       }
