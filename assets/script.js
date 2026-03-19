@@ -380,9 +380,14 @@ document.addEventListener('touchstart', () => {}, { passive: true });
   if (!body || body.dataset.sectorPage !== 'true') return;
 
   const STORAGE_KEY = 'dmar.sectorTheme.v1';
+  const VOTE_STORAGE_KEY = 'dmar.sectorVotes.v1';
+  const VOTE_QUEUE_KEY = 'dmar.sectorVotes.queue.v1';
+  const voteEndpoint = body.dataset.voteEndpoint || window.DMAR_SECTOR_VOTE_ENDPOINT || '/submit-sector-vote';
   const defaultTheme = body.dataset.sectorDefaultTheme === 'oil' ? 'oil' : 'wind';
   const buttons = $$('[data-sector-theme-btn]');
+  const switcher = $('[data-sector-theme]');
   if (!buttons.length) return;
+  let statusEl = null;
 
   function readStoredTheme(){
     try {
@@ -397,6 +402,130 @@ document.addEventListener('touchstart', () => {}, { passive: true });
       localStorage.setItem(STORAGE_KEY, theme);
     } catch (err) {
       // no-op
+    }
+  }
+
+  function readVoteState(){
+    try {
+      const raw = localStorage.getItem(VOTE_STORAGE_KEY);
+      const parsed = raw ? JSON.parse(raw) : {};
+      return {
+        wind: Number(parsed.wind) || 0,
+        oil: Number(parsed.oil) || 0
+      };
+    } catch (err) {
+      return { wind: 0, oil: 0 };
+    }
+  }
+
+  function saveVoteState(state){
+    try {
+      localStorage.setItem(VOTE_STORAGE_KEY, JSON.stringify(state));
+    } catch (err) {
+      // no-op
+    }
+  }
+
+  function readVoteQueue(){
+    try {
+      const raw = localStorage.getItem(VOTE_QUEUE_KEY);
+      const parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (err) {
+      return [];
+    }
+  }
+
+  function saveVoteQueue(queue){
+    try {
+      localStorage.setItem(VOTE_QUEUE_KEY, JSON.stringify(queue.slice(-100)));
+    } catch (err) {
+      // no-op
+    }
+  }
+
+  function showVoteStatus(message, type = 'info'){
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.dataset.state = type;
+  }
+
+  function renderVoteCounts(){
+    const voteState = readVoteState();
+    buttons.forEach((btn) => {
+      const key = btn.dataset.sectorThemeBtn === 'oil' ? 'oil' : 'wind';
+      btn.setAttribute('data-vote-count', String(voteState[key] || 0));
+    });
+  }
+
+  function upsertVoteUi(){
+    if (!switcher) return;
+    switcher.classList.add('theme-vote');
+    if (!statusEl) {
+      statusEl = document.createElement('p');
+      statusEl.className = 'theme-vote-status';
+      statusEl.textContent = 'Vote by selecting the sector focus for your next campaign.';
+      switcher.insertAdjacentElement('afterend', statusEl);
+    }
+    buttons.forEach((btn) => {
+      const key = btn.dataset.sectorThemeBtn === 'oil' ? 'oil' : 'wind';
+      btn.classList.add('theme-vote-btn');
+      btn.dataset.voteLabel = key === 'oil' ? 'Vote Oil & Gas' : 'Vote Wind / Electric';
+      btn.textContent = btn.dataset.voteLabel;
+    });
+    renderVoteCounts();
+  }
+
+  async function sendVote(payload){
+    const res = await fetch(voteEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      keepalive: true
+    });
+    if (!res.ok) throw new Error(`Vote endpoint error: ${res.status}`);
+  }
+
+  async function flushVoteQueue(){
+    const queue = readVoteQueue();
+    if (!queue.length) return;
+
+    const remaining = [];
+    for (const item of queue) {
+      try {
+        await sendVote(item);
+      } catch (err) {
+        remaining.push(item);
+      }
+    }
+    saveVoteQueue(remaining);
+  }
+
+  async function recordVote(theme){
+    const payload = {
+      vote: theme,
+      page: window.location.pathname,
+      title: document.title,
+      votedAt: new Date().toISOString(),
+      userAgent: navigator.userAgent,
+      referrer: document.referrer || ''
+    };
+
+    const voteState = readVoteState();
+    voteState[theme] = (voteState[theme] || 0) + 1;
+    saveVoteState(voteState);
+    renderVoteCounts();
+    showVoteStatus('Saving your vote…', 'pending');
+
+    try {
+      await sendVote(payload);
+      showVoteStatus('Thanks. Vote saved.', 'ok');
+      flushVoteQueue();
+    } catch (err) {
+      const queue = readVoteQueue();
+      queue.push(payload);
+      saveVoteQueue(queue);
+      showVoteStatus('Vote saved locally. It will sync when endpoint is available.', 'queued');
     }
   }
 
@@ -458,14 +587,17 @@ document.addEventListener('touchstart', () => {}, { passive: true });
     });
   }
 
+  upsertVoteUi();
   const initialTheme = readStoredTheme() || defaultTheme;
   applyTheme(initialTheme);
+  flushVoteQueue();
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const theme = btn.dataset.sectorThemeBtn;
       applyTheme(theme);
       saveTheme(theme);
+      recordVote(theme);
     });
   });
 })();
