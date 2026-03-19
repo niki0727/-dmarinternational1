@@ -840,27 +840,17 @@ body[data-sector-page="true"] .theme-vote-viz{
 
 body[data-sector-page="true"] .theme-vote-track{
   position:relative;
-  display:flex;
   height:10px;
   border-radius:999px;
   overflow:hidden;
-  background:#e8eef5;
+  background:linear-gradient(90deg, rgba(31,158,99,.14) 0%, rgba(192,122,58,.14) 100%);
 }
 
 body[data-sector-page="true"] .theme-vote-fill{
+  position:absolute;
+  inset:0;
   display:block;
-  height:100%;
-  transition:width .35s ease;
-}
-
-body[data-sector-page="true"] .theme-vote-fill.wind{
-  width:50%;
-  background:linear-gradient(90deg, #1a8f58 0%, #2bb774 100%);
-}
-
-body[data-sector-page="true"] .theme-vote-fill.oil{
-  width:50%;
-  background:linear-gradient(90deg, #c07a3a 0%, #d99a5f 100%);
+  transition:background .35s ease;
 }
 
 body[data-sector-page="true"] .theme-vote-pointer{

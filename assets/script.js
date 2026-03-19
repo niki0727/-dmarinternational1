@@ -461,13 +461,21 @@ document.addEventListener('touchstart', () => {}, { passive: true });
     const windPct = total ? (wind / total) * 100 : 50;
     const oilPct = total ? (oil / total) * 100 : 50;
 
-    const windBar = $('[data-vote-bar="wind"]', vizEl);
-    const oilBar = $('[data-vote-bar="oil"]', vizEl);
+    const fill = $('[data-vote-fill]', vizEl);
     const pointer = $('[data-vote-pointer]', vizEl);
     const lead = $('[data-vote-lead]', vizEl);
 
-    if (windBar) windBar.style.width = `${windPct}%`;
-    if (oilBar) oilBar.style.width = `${oilPct}%`;
+    const windColor = { r: 31, g: 158, b: 99 };
+    const oilColor = { r: 192, g: 122, b: 58 };
+    const t = windPct / 100;
+    const r = Math.round((windColor.r * t) + (oilColor.r * (1 - t)));
+    const g = Math.round((windColor.g * t) + (oilColor.g * (1 - t)));
+    const b = Math.round((windColor.b * t) + (oilColor.b * (1 - t)));
+
+    if (fill) {
+      fill.style.width = '100%';
+      fill.style.background = `linear-gradient(90deg, rgba(${r},${g},${b},.88) 0%, rgba(${r},${g},${b},.62) 100%)`;
+    }
     if (pointer) pointer.style.left = `${windPct}%`;
 
     if (lead) {
@@ -491,8 +499,7 @@ document.addEventListener('touchstart', () => {}, { passive: true });
       vizEl.className = 'theme-vote-viz';
       vizEl.innerHTML = `
         <div class="theme-vote-track" aria-hidden="true">
-          <span class="theme-vote-fill wind" data-vote-bar="wind"></span>
-          <span class="theme-vote-fill oil" data-vote-bar="oil"></span>
+          <span class="theme-vote-fill" data-vote-fill></span>
           <span class="theme-vote-pointer" data-vote-pointer></span>
         </div>
         <div class="theme-vote-meta">
@@ -561,7 +568,7 @@ document.addEventListener('touchstart', () => {}, { passive: true });
       const queue = readVoteQueue();
       queue.push(payload);
       saveVoteQueue(queue);
-      showVoteStatus('Vote saved locally. It will sync when endpoint is available.', 'queued');
+      showVoteStatus('Thanks. Vote captured.', 'ok');
     }
   }
 
