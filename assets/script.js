@@ -410,6 +410,46 @@ document.addEventListener('touchstart', () => {}, { passive: true });
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
+
+    refreshThemeCardHighlights(next);
+  }
+
+  function inferCardTheme(card){
+    const explicit = (card.dataset.themeCategory || '').trim().toLowerCase();
+    if (explicit === 'wind' || explicit === 'oil') return explicit;
+
+    const text = (card.textContent || '').toLowerCase();
+    const href = (card.getAttribute('href') || '').toLowerCase();
+    const haystack = `${text} ${href}`;
+
+    const windSignals = [
+      'wind', 'renewable', 'electric', 'turbine', 'subsea cable', 'cable', 'offshore-wind'
+    ];
+    const oilSignals = [
+      'oil', 'gas', 'decommission', 'brownfield', 'hydrocarbon'
+    ];
+
+    if (windSignals.some(token => haystack.includes(token))) return 'wind';
+    if (oilSignals.some(token => haystack.includes(token))) return 'oil';
+    return 'neutral';
+  }
+
+  function refreshThemeCardHighlights(theme){
+    const cards = $$('main .card');
+    if (!cards.length) return;
+
+    cards.forEach((card) => {
+      const category = inferCardTheme(card);
+      card.classList.remove('sector-theme-card', 'is-theme-match', 'is-theme-dim');
+      card.classList.add('sector-theme-card');
+
+      if (category === 'neutral') return;
+      if (category === theme) {
+        card.classList.add('is-theme-match');
+      } else {
+        card.classList.add('is-theme-dim');
+      }
+    });
   }
 
   const initialTheme = readStoredTheme() || defaultTheme;

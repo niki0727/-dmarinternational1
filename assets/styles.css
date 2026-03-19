@@ -758,10 +758,10 @@ main figure.card figcaption{
 
 /* ===== Sector Theme Switcher ===== */
 body[data-sector-page="true"]{
-  --sector-accent:#0b7cc6;
-  --sector-accent-soft:rgba(11,124,198,.14);
-  --sector-tint-a:rgba(7,102,170,.07);
-  --sector-tint-b:rgba(22,147,206,.04);
+  --sector-accent:#1f9e63;
+  --sector-accent-soft:rgba(31,158,99,.16);
+  --sector-tint-a:rgba(16,110,66,.08);
+  --sector-tint-b:rgba(56,175,115,.06);
 }
 
 body[data-sector-page="true"].theme-oil{
@@ -823,6 +823,38 @@ body[data-sector-page="true"] .btn.alt{
   color:var(--sector-accent);
   border-color:var(--sector-accent);
   background:#fff;
+}
+
+body[data-sector-page="true"] .sector-theme-card{
+  transition:border-color .22s ease, box-shadow .22s ease, transform .22s ease, filter .22s ease, opacity .22s ease;
+}
+
+body[data-sector-page="true"] .sector-theme-card.is-theme-dim{
+  opacity:.72;
+  filter:saturate(.82);
+}
+
+body[data-sector-page="true"] .sector-theme-card.is-theme-match{
+  transform:translateY(-2px);
+}
+
+body[data-sector-page="true"].theme-wind .sector-theme-card.is-theme-match{
+  border-color:#1f9e63;
+  box-shadow:0 0 0 2px rgba(31,158,99,.22), 0 14px 30px rgba(23,90,56,.14);
+}
+
+body[data-sector-page="true"].theme-oil .sector-theme-card.is-theme-match{
+  border-color:#c07a3a;
+  box-shadow:0 0 0 2px rgba(192,122,58,.2), 0 14px 30px rgba(84,49,22,.14);
+}
+
+@keyframes sectorPulse{
+  0%,100%{box-shadow:inherit}
+  50%{box-shadow:0 0 0 3px color-mix(in srgb, var(--sector-accent) 30%, transparent), 0 16px 32px rgba(6,24,42,.18)}
+}
+
+body[data-sector-page="true"] .sector-theme-card.is-theme-match:hover{
+  animation:sectorPulse 1.2s ease-in-out infinite;
 }
 
 /* ===== Menu + Topbar + Services Sizing Polish ===== */
