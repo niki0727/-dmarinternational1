@@ -843,14 +843,15 @@ body[data-sector-page="true"] .theme-vote-track{
   height:10px;
   border-radius:999px;
   overflow:hidden;
-  background:linear-gradient(90deg, rgba(31,158,99,.14) 0%, rgba(192,122,58,.14) 100%);
+  background:#e5edf5;
 }
 
 body[data-sector-page="true"] .theme-vote-fill{
   position:absolute;
   inset:0;
   display:block;
-  transition:background .35s ease;
+  background:#d7e1ec;
+  transition:background .22s ease;
 }
 
 body[data-sector-page="true"] .theme-vote-pointer{

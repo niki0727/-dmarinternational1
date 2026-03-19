@@ -465,16 +465,17 @@ document.addEventListener('touchstart', () => {}, { passive: true });
     const pointer = $('[data-vote-pointer]', vizEl);
     const lead = $('[data-vote-lead]', vizEl);
 
-    const windColor = { r: 31, g: 158, b: 99 };
-    const oilColor = { r: 192, g: 122, b: 58 };
-    const t = windPct / 100;
-    const r = Math.round((windColor.r * t) + (oilColor.r * (1 - t)));
-    const g = Math.round((windColor.g * t) + (oilColor.g * (1 - t)));
-    const b = Math.round((windColor.b * t) + (oilColor.b * (1 - t)));
-
     if (fill) {
       fill.style.width = '100%';
-      fill.style.background = `linear-gradient(90deg, rgba(${r},${g},${b},.88) 0%, rgba(${r},${g},${b},.62) 100%)`;
+      if (!total) {
+        fill.style.background = '#d7e1ec';
+      } else if (wind > oil) {
+        fill.style.background = '#1f9e63';
+      } else if (oil > wind) {
+        fill.style.background = '#c07a3a';
+      } else {
+        fill.style.background = '#6b7f93';
+      }
     }
     if (pointer) pointer.style.left = `${windPct}%`;
 
