@@ -903,20 +903,20 @@ body[data-sector-page="true"] .theme-vote-meta [data-vote-lead]{
 body.sectors-page .section:first-of-type .lead{
   color:#23384c;
   max-width:860px;
-  margin-left:auto;
-  margin-right:auto;
-  text-align:center;
+  margin-left:0;
+  margin-right:0;
+  text-align:left;
 }
 
 body.sectors-page .section:first-of-type > .container > h2{
-  text-align:center;
+  text-align:left;
 }
 
 body.sectors-page .section:first-of-type > .container > .theme-switcher,
 body.sectors-page .section:first-of-type > .container > .theme-vote-status,
 body.sectors-page .section:first-of-type > .container > .theme-vote-viz{
-  margin-left:auto;
-  margin-right:auto;
+  margin-left:0;
+  margin-right:0;
 }
 
 @media (max-width:780px){
