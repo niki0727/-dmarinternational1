@@ -469,12 +469,8 @@ document.addEventListener('touchstart', () => {}, { passive: true });
       fill.style.width = '100%';
       if (!total) {
         fill.style.background = '#d7e1ec';
-      } else if (wind > oil) {
-        fill.style.background = '#1f9e63';
-      } else if (oil > wind) {
-        fill.style.background = '#c07a3a';
       } else {
-        fill.style.background = '#6b7f93';
+        fill.style.background = `linear-gradient(90deg, #1f9e63 0%, #1f9e63 ${windPct}%, #c07a3a ${windPct}%, #c07a3a 100%)`;
       }
     }
     if (pointer) pointer.style.left = `${windPct}%`;
