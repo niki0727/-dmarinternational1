@@ -801,6 +801,11 @@ body[data-sector-page="true"] .theme-chip{
 }
 
 body[data-sector-page="true"] .theme-switcher.theme-vote{
+  width:100%;
+  max-width:560px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
   box-shadow:0 10px 20px rgba(15,35,52,.08);
   border-color:#c6d8ea;
   background:linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
@@ -808,13 +813,22 @@ body[data-sector-page="true"] .theme-switcher.theme-vote{
 
 body[data-sector-page="true"] .theme-chip.theme-vote-btn{
   position:relative;
+  width:100%;
+  min-height:44px;
+  white-space:normal;
+  text-align:center;
+  justify-content:center;
   padding:9px 15px;
   font-weight:700;
+  line-height:1.25;
+  font-size:.94rem;
 }
 
 body[data-sector-page="true"] .theme-vote-status{
   margin:9px 0 2px;
-  font-size:.92rem;
+  max-width:560px;
+  font-size:.97rem;
+  line-height:1.5;
   color:#41586f;
 }
 
@@ -831,6 +845,8 @@ body[data-sector-page="true"] .theme-vote-status[data-state="queued"]{
 }
 
 body[data-sector-page="true"] .theme-vote-viz{
+  width:100%;
+  max-width:560px;
   margin:8px 0 16px;
   padding:10px 12px 11px;
   border:1px solid #d6e2ee;
@@ -873,7 +889,8 @@ body[data-sector-page="true"] .theme-vote-meta{
   grid-template-columns:auto 1fr auto;
   gap:10px;
   align-items:center;
-  font-size:.82rem;
+  font-size:.92rem;
+  line-height:1.35;
   color:#5b6f82;
 }
 
@@ -881,6 +898,33 @@ body[data-sector-page="true"] .theme-vote-meta [data-vote-lead]{
   text-align:center;
   font-weight:600;
   color:#22384c;
+}
+
+@media (max-width:780px){
+  body[data-sector-page="true"] .theme-switcher.theme-vote{
+    max-width:100%;
+    grid-template-columns:1fr;
+  }
+
+  body[data-sector-page="true"] .theme-chip.theme-vote-btn{
+    font-size:.96rem;
+  }
+
+  body[data-sector-page="true"] .theme-vote-status,
+  body[data-sector-page="true"] .theme-vote-viz{
+    max-width:100%;
+  }
+
+  body[data-sector-page="true"] .theme-vote-meta{
+    grid-template-columns:1fr;
+    justify-items:start;
+    gap:6px;
+    font-size:.9rem;
+  }
+
+  body[data-sector-page="true"] .theme-vote-meta [data-vote-lead]{
+    text-align:left;
+  }
 }
 
 body[data-sector-page="true"] .theme-chip:hover{
