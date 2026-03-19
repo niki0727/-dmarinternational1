@@ -388,6 +388,7 @@ document.addEventListener('touchstart', () => {}, { passive: true });
   const switcher = $('[data-sector-theme]');
   if (!buttons.length) return;
   let statusEl = null;
+  let vizEl = null;
 
   function readStoredTheme(){
     try {
@@ -450,12 +451,30 @@ document.addEventListener('touchstart', () => {}, { passive: true });
     statusEl.dataset.state = type;
   }
 
-  function renderVoteCounts(){
+  function renderVoteViz(){
     const voteState = readVoteState();
-    buttons.forEach((btn) => {
-      const key = btn.dataset.sectorThemeBtn === 'oil' ? 'oil' : 'wind';
-      btn.setAttribute('data-vote-count', String(voteState[key] || 0));
-    });
+    if (!vizEl) return;
+
+    const wind = voteState.wind || 0;
+    const oil = voteState.oil || 0;
+    const total = wind + oil;
+    const windPct = total ? (wind / total) * 100 : 50;
+    const oilPct = total ? (oil / total) * 100 : 50;
+
+    const windBar = $('[data-vote-bar="wind"]', vizEl);
+    const oilBar = $('[data-vote-bar="oil"]', vizEl);
+    const pointer = $('[data-vote-pointer]', vizEl);
+    const lead = $('[data-vote-lead]', vizEl);
+
+    if (windBar) windBar.style.width = `${windPct}%`;
+    if (oilBar) oilBar.style.width = `${oilPct}%`;
+    if (pointer) pointer.style.left = `${windPct}%`;
+
+    if (lead) {
+      if (!total) lead.textContent = 'No votes yet. Pick your sector focus.';
+      else if (wind === oil) lead.textContent = 'Current result: balanced';
+      else lead.textContent = wind > oil ? 'Current result: Wind / Electric leads' : 'Current result: Oil & Gas leads';
+    }
   }
 
   function upsertVoteUi(){
@@ -467,13 +486,30 @@ document.addEventListener('touchstart', () => {}, { passive: true });
       statusEl.textContent = 'Vote by selecting the sector focus for your next campaign.';
       switcher.insertAdjacentElement('afterend', statusEl);
     }
+    if (!vizEl) {
+      vizEl = document.createElement('div');
+      vizEl.className = 'theme-vote-viz';
+      vizEl.innerHTML = `
+        <div class="theme-vote-track" aria-hidden="true">
+          <span class="theme-vote-fill wind" data-vote-bar="wind"></span>
+          <span class="theme-vote-fill oil" data-vote-bar="oil"></span>
+          <span class="theme-vote-pointer" data-vote-pointer></span>
+        </div>
+        <div class="theme-vote-meta">
+          <span>Wind / Electric</span>
+          <span data-vote-lead>Current result: balanced</span>
+          <span>Oil & Gas</span>
+        </div>
+      `;
+      statusEl.insertAdjacentElement('afterend', vizEl);
+    }
     buttons.forEach((btn) => {
       const key = btn.dataset.sectorThemeBtn === 'oil' ? 'oil' : 'wind';
       btn.classList.add('theme-vote-btn');
       btn.dataset.voteLabel = key === 'oil' ? 'Vote Oil & Gas' : 'Vote Wind / Electric';
       btn.textContent = btn.dataset.voteLabel;
     });
-    renderVoteCounts();
+    renderVoteViz();
   }
 
   async function sendVote(payload){
@@ -514,7 +550,7 @@ document.addEventListener('touchstart', () => {}, { passive: true });
     const voteState = readVoteState();
     voteState[theme] = (voteState[theme] || 0) + 1;
     saveVoteState(voteState);
-    renderVoteCounts();
+    renderVoteViz();
     showVoteStatus('Saving your vote…', 'pending');
 
     try {

@@ -812,34 +812,8 @@ body[data-sector-page="true"] .theme-chip.theme-vote-btn{
   font-weight:700;
 }
 
-body[data-sector-page="true"] .theme-chip.theme-vote-btn::after{
-  content:attr(data-vote-count);
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-width:20px;
-  height:20px;
-  margin-left:8px;
-  padding:0 6px;
-  border-radius:999px;
-  font-size:.78rem;
-  line-height:1;
-  color:#0f273a;
-  background:#e7eef6;
-}
-
-body[data-sector-page="true"].theme-wind .theme-chip.theme-vote-btn.active::after{
-  background:rgba(31,158,99,.24);
-  color:#14583a;
-}
-
-body[data-sector-page="true"].theme-oil .theme-chip.theme-vote-btn.active::after{
-  background:rgba(192,122,58,.25);
-  color:#5f3817;
-}
-
 body[data-sector-page="true"] .theme-vote-status{
-  margin:8px 0 2px;
+  margin:9px 0 2px;
   font-size:.92rem;
   color:#41586f;
 }
@@ -854,6 +828,68 @@ body[data-sector-page="true"] .theme-vote-status[data-state="ok"]{
 
 body[data-sector-page="true"] .theme-vote-status[data-state="queued"]{
   color:#8a5a28;
+}
+
+body[data-sector-page="true"] .theme-vote-viz{
+  margin:8px 0 16px;
+  padding:10px 12px 11px;
+  border:1px solid #d6e2ee;
+  border-radius:12px;
+  background:linear-gradient(180deg, #fff 0%, #f9fbfe 100%);
+}
+
+body[data-sector-page="true"] .theme-vote-track{
+  position:relative;
+  display:flex;
+  height:10px;
+  border-radius:999px;
+  overflow:hidden;
+  background:#e8eef5;
+}
+
+body[data-sector-page="true"] .theme-vote-fill{
+  display:block;
+  height:100%;
+  transition:width .35s ease;
+}
+
+body[data-sector-page="true"] .theme-vote-fill.wind{
+  width:50%;
+  background:linear-gradient(90deg, #1a8f58 0%, #2bb774 100%);
+}
+
+body[data-sector-page="true"] .theme-vote-fill.oil{
+  width:50%;
+  background:linear-gradient(90deg, #c07a3a 0%, #d99a5f 100%);
+}
+
+body[data-sector-page="true"] .theme-vote-pointer{
+  position:absolute;
+  top:-3px;
+  left:50%;
+  width:2px;
+  height:16px;
+  border-radius:2px;
+  background:#102133;
+  transform:translateX(-1px);
+  opacity:.72;
+  transition:left .35s ease;
+}
+
+body[data-sector-page="true"] .theme-vote-meta{
+  margin-top:8px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:10px;
+  align-items:center;
+  font-size:.82rem;
+  color:#5b6f82;
+}
+
+body[data-sector-page="true"] .theme-vote-meta [data-vote-lead]{
+  text-align:center;
+  font-weight:600;
+  color:#22384c;
 }
 
 body[data-sector-page="true"] .theme-chip:hover{
