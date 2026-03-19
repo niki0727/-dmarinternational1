@@ -900,6 +900,10 @@ body[data-sector-page="true"] .theme-vote-meta [data-vote-lead]{
   color:#22384c;
 }
 
+body.sectors-page .section:first-of-type .lead{
+  color:#23384c;
+}
+
 @media (max-width:780px){
   body[data-sector-page="true"] .theme-switcher.theme-vote{
     max-width:100%;
