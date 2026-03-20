@@ -384,6 +384,7 @@ document.addEventListener('touchstart', () => {}, { passive: true });
   const VOTE_QUEUE_KEY = 'dmar.sectorVotes.queue.v1';
   const voteEndpoint = body.dataset.voteEndpoint || window.DMAR_SECTOR_VOTE_ENDPOINT || '/submit-sector-vote';
   const defaultTheme = body.dataset.sectorDefaultTheme === 'oil' ? 'oil' : 'wind';
+  const persistThemeAcrossPages = body.classList.contains('sectors-page');
   const buttons = $$('[data-sector-theme-btn]');
   const switcher = $('[data-sector-theme]');
   if (!buttons.length) return;
@@ -628,7 +629,7 @@ document.addEventListener('touchstart', () => {}, { passive: true });
   }
 
   upsertVoteUi();
-  const initialTheme = readStoredTheme() || defaultTheme;
+  const initialTheme = persistThemeAcrossPages ? (readStoredTheme() || defaultTheme) : defaultTheme;
   applyTheme(initialTheme);
   flushVoteQueue();
 
@@ -636,7 +637,7 @@ document.addEventListener('touchstart', () => {}, { passive: true });
     btn.addEventListener('click', () => {
       const theme = btn.dataset.sectorThemeBtn;
       applyTheme(theme);
-      saveTheme(theme);
+      if (persistThemeAcrossPages) saveTheme(theme);
       recordVote(theme);
     });
   });
