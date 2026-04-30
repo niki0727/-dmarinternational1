@@ -1,0 +1,36 @@
+name: Production Monitor
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check homepage is up
+        run: |
+          curl -fsSLI https://www.dmarinternational.com | head -n 20
+
+      - name: Check apex redirects to www
+        run: |
+          location=$(curl -sSI https://dmarinternational.com | awk 'tolower($1)=="location:" {print $2}' | tr -d '\r')
+          echo "location=$location"
+          test "$location" = "https://www.dmarinternational.com/"
+
+      - name: Check key pages return 200
+        run: |
+          set -e
+          for path in / /services.html /sectors.html /projects.html /contact.html /sitemap.xml /robots.txt; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "https://www.dmarinternational.com${path}")
+            echo "${path} -> ${code}"
+            test "$code" = "200"
+          done
+
+      - name: Check homepage content markers
+        run: |
+          body=$(curl -fsSL https://www.dmarinternational.com)
+          echo "$body" | grep -q "Independent Marine Operations"
+          echo "$body" | grep -q "Recent Work Snapshots"
+          echo "$body" | grep -q "Quayside integration and heavy-lift method verification"
