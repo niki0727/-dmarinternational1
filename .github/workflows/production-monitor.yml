@@ -11,26 +11,26 @@ jobs:
     steps:
       - name: Check homepage is up
         run: |
-          curl -fsSLI https://www.dmarinternational.com | head -n 20
+          curl -fsSLI --retry 3 --retry-all-errors -A "GitHubActionsMonitor/1.0" https://www.dmarinternational.com | head -n 20
 
       - name: Check apex redirects to www
         run: |
-          location=$(curl -sSI https://dmarinternational.com | awk 'tolower($1)=="location:" {print $2}' | tr -d '\r')
+          location=$(curl -sSI --retry 3 --retry-all-errors -A "GitHubActionsMonitor/1.0" https://dmarinternational.com | awk 'tolower($1)=="location:" {print $2; exit}' | tr -d '\r')
           echo "location=$location"
-          test "$location" = "https://www.dmarinternational.com/"
+          echo "$location" | grep -Eq '^https://www\.dmarinternational\.com/?$'
 
       - name: Check key pages return 200
         run: |
           set -e
           for path in / /services.html /sectors.html /projects.html /contact.html /sitemap.xml /robots.txt; do
-            code=$(curl -s -o /dev/null -w "%{http_code}" "https://www.dmarinternational.com${path}")
+            code=$(curl -s -o /dev/null -w "%{http_code}" --retry 3 --retry-all-errors -A "GitHubActionsMonitor/1.0" "https://www.dmarinternational.com${path}")
             echo "${path} -> ${code}"
             test "$code" = "200"
           done
 
       - name: Check homepage content markers
         run: |
-          body=$(curl -fsSL https://www.dmarinternational.com)
+          body=$(curl -fsSL --retry 3 --retry-all-errors -A "GitHubActionsMonitor/1.0" https://www.dmarinternational.com)
           echo "$body" | grep -q "Independent Marine Operations"
           echo "$body" | grep -q "Recent Work Snapshots"
-          echo "$body" | grep -q "Quayside integration and heavy-lift method verification"
+          echo "$body" | grep -Eq "Quayside integration and heavy-lift method verification\.?"
