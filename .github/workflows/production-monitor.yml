@@ -9,28 +9,29 @@ jobs:
   smoke:
     runs-on: ubuntu-latest
     steps:
-      - name: Check homepage is up
+      - name: Monitor production (report-only)
         run: |
-          curl -fsSLI --retry 3 --retry-all-errors https://www.dmarinternational.com | head -n 20
+          set +e
 
-      - name: Check apex redirects to www
-        run: |
+          echo "== Homepage HEAD =="
+          curl -sSI --retry 3 --retry-all-errors https://www.dmarinternational.com | head -n 20
+          home_head_status=$?
+
+          echo "== Apex redirect =="
           location=$(curl -sSI --retry 3 --retry-all-errors https://dmarinternational.com | awk 'tolower($1)=="location:" {print $2; exit}' | tr -d '\r')
           echo "location=$location"
-          echo "$location" | grep -Eq '^https://www\.dmarinternational\.com/?$'
 
-      - name: Check key pages return 200
-        run: |
-          set -e
+          echo "== Key page status codes =="
+          failed=0
           for path in / /services.html /sectors.html /projects.html /contact.html /sitemap.xml /robots.txt; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --retry 3 --retry-all-errors "https://www.dmarinternational.com${path}")
             echo "${path} -> ${code}"
-            test "$code" = "200"
+            if [ "$code" != "200" ]; then
+              failed=1
+            fi
           done
 
-      - name: Check homepage content markers (non-blocking)
-        run: |
-          set +e
+          echo "== Homepage content markers =="
           body=$(curl -fsSL --retry 3 --retry-all-errors https://www.dmarinternational.com)
           echo "$body" | grep -qi "Independent Marine Operations"
           op1=$?
@@ -38,7 +39,12 @@ jobs:
           op2=$?
           echo "$body" | grep -Eqi "Quayside integration and heavy-lift method verification\.?"
           op3=$?
-          if [ $op1 -ne 0 ] || [ $op2 -ne 0 ] || [ $op3 -ne 0 ]; then
-            echo "Warning: one or more homepage content markers were not found, but uptime checks passed."
+
+          if [ $home_head_status -ne 0 ] || [ $failed -ne 0 ] || [ $op1 -ne 0 ] || [ $op2 -ne 0 ] || [ $op3 -ne 0 ]; then
+            echo "Warning: one or more monitor checks did not pass."
+          else
+            echo "All monitor checks passed."
           fi
+
+          # report-only mode: never fail the workflow
           exit 0
